@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    //SELECT DE CONTACTO
+//    SELECT DE CONTACTO
     function enableSelectBoxes() {
         $('div.selectBox').each(function () {
             $(this).children('span.selected').html($(this).children('div.selectOptions').children('span.selectOption:first').html());
@@ -22,25 +22,35 @@ $(document).ready(function(){
                 $(this).parent().siblings('span.selected').html($(this).html());
             });
         });
-    }//-->
+    }
     
     enableSelectBoxes();
     
-    //NAVEGACION
-//    $('#dateNav').scrollspy();
-    $('body').scrollspy({target: '.nav-navigation', offset: 55});
+
     /* smooth scrolling sections */
-//    $('a[href*=#]:not([href=#])').click(function () {
-//        if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
-//            var target = $(this.hash);
-//            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-//            if (target.length) {
-//                $('html,body').animate({scrollTop: target.offset().top}, 1000);
-//                console.log(target.offset().top);
-//                return false;
-//            }
-//        }
-//    });
+    $('a[href*=#]:not([href=#])').click(function () {
+        if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+            if (target.length) {
+                $('html,body').animate({scrollTop: target.offset().top}, 500);
+                console.log(target.offset().top);
+                return false;
+            }
+        }
+    });
+    
+    //poner mas arriba el navegador si sobrepasa su posicion
+    var altura = $('#navegacion').offset().top;    
+    $(window).on('scroll', function(){
+        if ( $(window).scrollTop() > altura ){
+            $('#navegacion').addClass('navegacion_posicion_top');
+            $('#navegacion').removeClass('navegacion_posicion_standar');
+        } else {
+            $('#navegacion').addClass('navegacion_posicion_standar');
+            $('#navegacion').removeClass('navegacion_posicion_top');
+        }
+    });
     
 });
 

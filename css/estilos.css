@@ -221,10 +221,11 @@ h3.titulo04:after{
 
 /*SERVICIOS*/
 
-#seccion_servicios, #seccion_servicios_movil{
+/*#seccion_servicios, #seccion_servicios_movil{
     background-color: #eae3d0;
     padding-bottom: 40px;
     padding-top: 40px;
+    position: relative;
 }
 
 #seccion_servicios #contenedor_servicio{
@@ -270,8 +271,92 @@ h3.titulo04:after{
 
 #seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque div a:hover{
     text-decoration: none;
+}*/
+
+/*SERVICIOS*/
+
+#seccion_servicios, #seccion_servicios_movil{
+    background-color: #eae3d0;
+    padding-bottom: 40px;
+    padding-top: 40px;
 }
-//movil
+
+#seccion_servicios #contenedor_servicio{
+height: 460px;
+width: 100%;
+}
+#seccion_servicios #contenedor_servicio ul#servicio{  
+    display: table;
+    height: 100%;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque{
+display: block;
+float: left;
+height: 100%;
+position: absolute;
+}
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque:last-of-type{
+    margin-right: 0px;
+}
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque div{
+    position: relative;
+}
+
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque div span.img{    
+background-position: center center;
+border: 1px solid white;
+display: block;
+height: 460px;
+opacity: 1 !important;
+transition: opacity 0.3s ease 0s;
+width: 100%;
+}
+
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque div a{
+background-color: rgba(0, 0, 0, 0.5);
+bottom: 30px;
+color: #eae3d0;
+display: block;
+font-size: 18px;
+height: 64px;
+left: calc(50% - 112px);
+padding: 19px 0;
+position: absolute;
+text-align: center;
+width: 225px;
+}
+
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque div a:hover{
+    text-decoration: none;
+}
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_damas{
+
+}
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_damas div span.img
+{
+    background-image: url('../images/servicio.jpg');
+}
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_caballeros{
+
+}
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_caballeros div span.img
+{
+    background-image: url('../images/servicio.jpg');
+}
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_accesorios{
+
+}
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_accesorios div span.img
+{
+    background-image: url('../images/servicio.jpg');
+}
+
+
+/*movil*/
 #seccion_servicios_movil div.servicio_bloque {
     
 }
@@ -378,7 +463,7 @@ width: calc(100% - 505px);
     height: 515px;
 }
 
-//movil
+/*movil*/
 #seccion_portafolio_movil{   
     background-color: #98968F;
 }
@@ -780,29 +865,46 @@ width: 100%;
 
 /*NAVEGACION*/
 #navegacion{
-position: fixed;
-right: 40px;
-top: 160px;
-z-index: 4;
+    right: 40px;
+    z-index: 4;
 }
-.nav-navigation .active > a, .nav-navigation a:hover, .nav-navigation a:focus {
-background-color: #5c6163;
-background-image: none;
-height: 28px;
-padding: 5px 0;
-width: 138px;
+.navegacion_posicion_standar{
+    top: 160px;
+    position: absolute;
 }
-.nav-navigation a {
+.navegacion_posicion_top{
+    top: 30px;
+    position: fixed;
+}
+.nav-navigation li a {
+background-color: #5c6163 !important;
+clear: both;
+float: right;
+height: 10px;
+margin-bottom: 3px;
+overflow: hidden;
+padding: 0;
+text-align: center;
+text-decoration: none;
+transition: all 0.1s linear 0s;
+width: 40px;
+    
+-o-transition: width 0.1s linear;
+-moz-transition: width 0.1s linear;
+-khtml-transition: width 0.1s linear;
+-webkit-transition: width 0.1s linear;
+-ms-transition: width 0.1s linear;
+transition: width 0.1s linear;
+    
+}
+.nav-navigation li.active > a, .nav-navigation li a:hover, .nav-navigation li a:focus {
     background-color: #5c6163;
-    clear: both;
-    float: right;
-    height: 5px;
-    margin-bottom: 8px;
-    overflow: hidden;
-    text-align: center;
-    text-decoration: none;
-    width: 40px; 
+    background-image: none;
+    height: 28px;
+    padding: 4px 0;
+    width: 138px;
 }
+
 .nav-navigation .active > a > .expand, .nav-navigation a:hover > .expand, .nav-navigation a:focus > .expand {
   visibility: visible;
 }
@@ -950,7 +1052,7 @@ width: calc(100% - 505px);
     height: 515px;
 }
 
-//movil
+/*movil*/
 #promocion_detalle_contenedor_movil{   
     background-color: #98968F;
 }
