@@ -52,6 +52,11 @@ Class Frontend extends CI_Controller {
         $data['serv1'] = $this->generico_model->get(1,'home_contenido');
         $data['serv2'] = $this->generico_model->get(2,'home_contenido');
         $data['serv3'] = $this->generico_model->get(3,'home_contenido');
+        //SERVICIOS MOVIL
+        $data['serv_mov_1'] = $this->generico_model->get(4,'home_contenido');
+        $data['serv_mov_2'] = $this->generico_model->get(5,'home_contenido');
+        $data['serv_mov_3'] = $this->generico_model->get(6,'home_contenido');
+        
         return $this->load->view("home/seccion_servicios",$data,true);
     }
     

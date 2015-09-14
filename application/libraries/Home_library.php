@@ -62,10 +62,14 @@ Class Home_library {
         $data['serv1'] = $this->CI->generico_model->get(1,'home_contenido');
         $data['serv2'] = $this->CI->generico_model->get(2,'home_contenido');
         $data['serv3'] = $this->CI->generico_model->get(3,'home_contenido');
+        //SERVICIOS MOVIL
+        $data['serv_mov_1'] = $this->CI->generico_model->get(4,'home_contenido');
+        $data['serv_mov_2'] = $this->CI->generico_model->get(5,'home_contenido');
+        $data['serv_mov_3'] = $this->CI->generico_model->get(6,'home_contenido');
         //PORTAFOLIO
-        $data['port1'] = $this->CI->generico_model->get(4,'home_contenido');
-        $data['port2'] = $this->CI->generico_model->get(5,'home_contenido');     
-        $data['port3'] = $this->CI->generico_model->get(6,'home_contenido');      
+        $data['port1'] = $this->CI->generico_model->get(7,'home_contenido');
+        $data['port2'] = $this->CI->generico_model->get(8,'home_contenido');     
+        $data['port3'] = $this->CI->generico_model->get(9,'home_contenido');      
         
         $data = array_merge($data, $data_config); 
         

@@ -66,7 +66,7 @@
                 
                 TweenMax.to($this, time, {clip:'rect(0px,'+liHoverWidth+'px,'+liHeight+'px,0px)', x: $this.data('index') * liRestWidth+ $this.data('index')*margen ,   ease: Ease});
                 
-                TweenMax.to($this.find('> div'), time, {x:-((imagen_ancho - liHoverWidth) / 2 ), ease: Ease});
+                TweenMax.to($this.find('> div'), time, {x:-((imagen_ancho - liHoverWidth) / 2 ), ease: Ease, poner_sombra:true});
                                
                 //TweenMax.to($this.find('.overlay'), time, {backgroundColor:'rgba(0,0,0,0)', ease: Linear.easeNone, force3D:true})
                 
@@ -112,7 +112,7 @@
                     if($(this).data('index') != $this.data('index')){
                         TweenMax.killTweensOf($(this));
                         TweenMax.killTweensOf($(this).find('> div'));
-                        TweenMax.to($(this), time, {clip:'rect(0px,'+liAncho+'px,'+liHeight+'px,0px)', x:liAncho*index + index*margen,  ease: Ease, delay:Delay, overwrite:'all', onComplete:clear3D, onCompleteParams:[$(this)]});
+                        TweenMax.to($(this), time, {clip:'rect(0px,'+liAncho+'px,'+liHeight+'px,0px)', x:liAncho*index + index*margen,  ease: Ease, delay:Delay, overwrite:'all', onComplete:borrar_sombra, onCompleteParams:[$(this)]});
                         TweenMax.to($(this).find('> div'), time, {x:-((imagen_ancho - liAncho) / 2 ), ease: Ease})
                         //TweenMax.to($(this).find('> .box-contact.right .close'), time, {x:((sizes[liNum].width*liCoef - liAncho) / 2 ), ease: Ease})
                     }
@@ -128,10 +128,16 @@
 */
         };
 
-        var clear3D = function(element){
+        var poner_sombra = function(element){
             //element.css({'transform': '', '-webkit-transform': ''})
             //resize();
-            element.find('.overlay').css('backgroundColor', '')
+            element.find('.servicio_bloque_hover').show();
+        }
+        
+        var borrar_sombra = function(element){
+            //element.css({'transform': '', '-webkit-transform': ''})
+            //resize();
+            element.find('.servicio_bloque_hover').hide();
         }
 
         $(window).on('resize', resize);

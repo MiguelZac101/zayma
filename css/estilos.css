@@ -278,7 +278,7 @@ h3.titulo04:after{
 #seccion_servicios, #seccion_servicios_movil{
     background-color: #eae3d0;
     padding-bottom: 40px;
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 #seccion_servicios #contenedor_servicio{
@@ -316,6 +316,20 @@ transition: opacity 0.3s ease 0s;
 width: 100%;
 }
 
+#seccion_servicios .servicio_bloque_hover{
+    background-color: #3d454b;
+    display: none;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+#seccion_servicios .servicio_bloque_hover .bloque_lineas{
+    
+}
 #seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque div a{
 background-color: rgba(0, 0, 0, 0.5);
 bottom: 30px;
@@ -333,6 +347,8 @@ width: 225px;
 #seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque div a:hover{
     text-decoration: none;
 }
+
+
 #seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_damas{
 
 }

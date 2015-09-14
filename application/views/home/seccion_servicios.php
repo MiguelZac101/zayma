@@ -16,7 +16,15 @@
                     <ul id="servicio">
                         <li class="servicio_bloque servicio_damas" data-index="0">
                             <div >
-                                <span class="img" style="background-image: url(<?php echo $serv1['imagen'] ?>)"></span>                                        
+                                <span class="img" style="background-image: url(<?php echo $serv1['imagen'] ?>)"></span>
+                                <div class="servicio_bloque_hover">
+                                    <div class="bloque_lineas">
+                                        <div class="top"></div>
+                                        <div class="right"></div>
+                                        <div class="bottom"></div>
+                                        <div class="left"></div>
+                                    </div>                                    
+                                </div>
                                 <a href="#" title="xxx">
                                     DAMAS
                                 </a>
@@ -25,7 +33,15 @@
 
                         <li class="servicio_bloque servicio_caballeros" data-index="1">
                             <div >
-                                <span class="img" style="background-image: url(<?php echo $serv2['imagen'] ?>)"></span>             
+                                <span class="img" style="background-image: url(<?php echo $serv2['imagen'] ?>)"></span>  
+                                <div class="servicio_bloque_hover">
+                                    <div class="bloque_lineas">
+                                        <div class="top"></div>
+                                        <div class="right"></div>
+                                        <div class="bottom"></div>
+                                        <div class="left"></div>
+                                    </div>                                    
+                                </div>
                                 <a href="#" title="xxx">
                                     CABALLEROS
                                 </a>
@@ -34,7 +50,15 @@
 
                         <li class="servicio_bloque servicio_accesorios" data-index="2" >
                             <div>
-                                <span  class="img" style="background-image: url(<?php echo $serv3['imagen'] ?>)"></span>                                        
+                                <span  class="img" style="background-image: url(<?php echo $serv3['imagen'] ?>)"></span>     
+                                <div class="servicio_bloque_hover">
+                                    <div class="bloque_lineas">
+                                        <div class="top"></div>
+                                        <div class="right"></div>
+                                        <div class="bottom"></div>
+                                        <div class="left"></div>
+                                    </div>                                    
+                                </div>
                                 <a href="#" title="xxx">
                                     ACCESORIOS
                                 </a>
@@ -64,24 +88,24 @@
                 <br/>                        
                 <div class="row">                            
                     <div class="col-xs-12 servicio_bloque">                               
-                        <span style="background-image: url('images/movil/servicio_damas.jpg');" class="img">
-                            <a href="#" title="xxx" class="btn04">
+                        <span style="background-image: url(<?php echo $serv_mov_1['imagen'] ?>);" class="img">
+                            <a href="#" title="DAMAS" class="btn04">
                                 DAMAS
                             </a> 
                         </span> 
                         <br/><br/>
                     </div>   
                     <div class="col-xs-12 servicio_bloque">                               
-                        <span style="background-image: url('images/movil/servicio_caballeros.jpg');" class="img">
-                            <a href="#" title="xxx" class="btn04">
+                        <span style="background-image: url(<?php echo $serv_mov_2['imagen'] ?>);" class="img">
+                            <a href="#" title="CABALLEROS" class="btn04">
                                 CABALLEROS
                             </a> 
                         </span>  
                         <br/><br/>
                     </div> 
                     <div class="col-xs-12 servicio_bloque">                               
-                        <span style="background-image: url('images/movil/servicio_accesorios.jpg');" class="img">
-                            <a href="#" title="xxx" class="btn04">
+                        <span style="background-image: url(<?php echo $serv_mov_3['imagen'] ?>);" class="img">
+                            <a href="#" title="ACCESORIOS" class="btn04">
                                 ACCESORIOS
                             </a> 
                         </span>                                                              
