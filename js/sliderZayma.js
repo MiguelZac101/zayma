@@ -135,5 +135,9 @@
         addListeners();
     }  
 
+        
+    $("#contenedor_servicio").sliderZayma();      
+
+    
     
 }( jQuery ));
