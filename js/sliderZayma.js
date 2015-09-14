@@ -15,12 +15,12 @@
         
         // Define variables y constantes internas
         //var sizes = {7: {hoverCoef:5, width:600}, 3:{hoverCoef:2.5, width:851}, 2:{hoverCoef:1.8, width:1496}}
-        var porcentaje_area = .4;//40% que porcentaje del area que se dispone debe tener cuando se agrandas
+        var porcentaje_area = .5;//40% que porcentaje del area que se dispone debe tener cuando se agrandas
         var imagen_ancho = 500;
         
         var $contenedor = $(this);
 
-        var margen;// = 50;//margenes centrales
+        var margen = 30;//margenes centrales
         
 
         var liNum = 3,//son 3 pestañas
@@ -32,10 +32,10 @@
             
         var resize = function(){
             //liNum = $contenedor.find('li').length;
-            margen = $contenedor.width()*.04;//margenes centrales
+            //margen = $contenedor.width()*.03;//margenes centrales
 
             liAncho = Math.ceil(($contenedor.width()-2*margen) / liNum); //ancho del bloque
-            liHoverWidth = Math.ceil(($contenedor.width()-2*margen) * porcentaje_area);//ancho cuando se agranda
+            liHoverWidth = imagen_ancho;//Math.ceil(($contenedor.width()-1*margen) * porcentaje_area);//ancho cuando se agranda
             liRestWidth = Math.ceil(liAncho - ((liHoverWidth - liAncho) / (liNum - 1)));//ancho reducido
             //alert("ancho imagen :"+imagen_ancho+" liAncho : "+liAncho);
 
@@ -51,8 +51,6 @@
 
                 //TweenMax.set($(this).find("div"), {x: ((imagen_ancho-liAncho)/2)*-1});                
             });
-
-            //alert("liAncho : "+liAncho+" liHoverWidth : "+liHoverWidth+" liRestWidth : "+liRestWidth);
         };
       
         var addListeners = function(){
@@ -69,9 +67,15 @@
                 TweenMax.to($this, time, {clip:'rect(0px,'+liHoverWidth+'px,'+liHeight+'px,0px)', x: $this.data('index') * liRestWidth+ $this.data('index')*margen ,   ease: Ease});
                 
                 TweenMax.to($this.find('> div'), time, {x:-((imagen_ancho - liHoverWidth) / 2 ), ease: Ease});
-                                
+                               
                 //TweenMax.to($this.find('.overlay'), time, {backgroundColor:'rgba(0,0,0,0)', ease: Linear.easeNone, force3D:true})
+                
+                
+                
                 $contenedor.find('li.servicio_bloque').each(function(index, element){
+                    
+//                    alert(liRestWidth+" "+index+" "+margen+" "+liHoverWidth);
+                    
                     if($(this).data('index') != $this.data('index')){
                         TweenMax.killTweensOf($(this));
                         TweenMax.killTweensOf($(this).find('> div'));

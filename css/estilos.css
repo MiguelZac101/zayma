@@ -336,24 +336,24 @@ width: 225px;
 #seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_damas{
 
 }
-#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_damas div span.img
+/*#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_damas div span.img
 {
     background-image: url('../images/servicio_damas.jpg');
-}
+}*/
 #seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_caballeros{
 
 }
-#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_caballeros div span.img
+/*#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_caballeros div span.img
 {
     background-image: url('../images/servicio_damas.jpg');
-}
+}*/
 #seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_accesorios{
 
 }
-#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_accesorios div span.img
+/*#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque.servicio_accesorios div span.img
 {
     background-image: url('../images/servicio_damas.jpg');
-}
+}*/
 
 
 /*movil*/
