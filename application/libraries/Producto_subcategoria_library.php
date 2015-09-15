@@ -1,30 +1,42 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 
-Class Noticia_categoria_library {
+Class Producto_subcategoria_library {
 
     protected $CI;
 
     public function __construct(){
-        $this->CI =& get_instance();
-//        $this->CI->load->library("view_admin_library");
-        $this->CI->load->model("noticia_categoria_model");
+        $this->CI =& get_instance(); 
+        
+        
+//        $this->CI->load->model("producto_subcategoria_model");
+        $this->CI->load->model("generico_model");
+        
         $this->CI->load->model("anexgrid_model"); 
-//        $this->CI->load->library("noticia_categoria_anexgrid");
+        $this->CI->load->library("anexgrid");
     }
     
     //nuevo vista
-    public function nuevo($data_config) {       
-        echo $this->CI->load->view("admin/noticia_categoria/nuevo",$data_config,true);     
+    public function nuevo($data_config) {             
+        $data_nuevo['grupos'] = $this->CI->generico_model->listado("producto_grupo");         
+        $data_config = array_merge($data_config,$data_nuevo);
+        
+        return $this->CI->load->view("admin/producto_subcategoria/nuevo",$data_config,true);     
     }   
      
     //editar vista  
     public function editar($data_config) {
         $id = $this->CI->input->post("id");
-        $data = $this->CI->noticia_categoria_model->get($id,$data_config['control']);
+        $data = $this->CI->generico_model->get($id,"producto_subcategoria");//datos de la subcategoria
+        $data['grupos'] = $this->CI->generico_model->listado("producto_grupo"); 
         
+        $categoria = $this->CI->generico_model->get($data['id_categoria'],"producto_categoria");
+        $data['id_grupo'] = $categoria['id_grupo'];
+        $data['categorias'] = $this->CI->generico_model->listadoCondicion( array("id_grupo"=>$categoria['id_grupo']) ,"producto_categoria"); 
+//        echo $this->CI->db->last_query();
+//        
         $data = array_merge($data,$data_config);
         
-        echo $this->CI->load->view("admin/noticia_categoria/editar",$data,true);
+        echo $this->CI->load->view("admin/producto_subcategoria/editar",$data,true);
     }
     
     public function registrar($data_config) {
@@ -33,53 +45,20 @@ Class Noticia_categoria_library {
             'registro' => ''
         );
         $nombre = $this->CI->input->post("nombre");
-        
-//        $file_name = "categoria_".Date("YmdHis");
-//        $file_name_ext = "";
+        $id_grupo = $this->CI->input->post("id_grupo");      
+        $id_categoria = $this->CI->input->post("id_categoria");
+
         $url = codificarURL($nombre);
 
-//        $config['upload_path'] = $data_config['carpeta_imagen'];
-//        $config['file_name'] = $file_name;
-//        $config['allowed_types'] = "gif|jpg|jpeg|png";  
-////            $config['max_size'] = '100';
-////            $config['max_width'] = '1024';
-////            $config['max_height'] = '768';
-//
-//        $this->CI->load->library('upload', $config);
-//
-//        if (!$this->CI->upload->do_upload("imagen")) {                   
-//            $errors['upload_imagen'] =  $this->CI->upload->display_errors('','');          
-//            
-//        }else{
-//            $uploadSuccess = $this->CI->upload->data();
-//            $file_name_ext = $uploadSuccess['file_name'];  
-//            $full_path = $uploadSuccess['full_path']; 
-//            
-//            //registrar
-//            $noticia_categoria = array(
-//                'nombre' => $nombre,
-//                'imagen' => $config['upload_path'].$file_name_ext,
-//                'url' => $url ,
-//                'orden' => $this->CI->orden_library->getOrdenxTabla($data_config['control'])
-//            );
-//            
-//            if($this->CI->noticia_categoria_model->nuevo($noticia_categoria,$data_config['control'])){
-//                $errors['registro'] = 1;                
-//            }else{
-//                $errors['registro'] = 0;                
-//            }
-//            
-//            
-//        }
-//        
         //registrar
-        $noticia_categoria = array(
+        $producto_subcategoria = array(
+            'id_categoria' => $id_categoria,
             'nombre' => $nombre,            
             'url' => $url ,
-            'orden' => $this->CI->orden_library->getOrdenxTabla($data_config['control'])
+            'orden' => $this->CI->orden_library->getOrdenxTabla($data_config['tabla'])
         );
 
-        if($this->CI->noticia_categoria_model->nuevo($noticia_categoria,$data_config['control'])){
+        if($this->CI->generico_model->nuevo($producto_subcategoria,$data_config['tabla'])){
             $errors['registro'] = 1;                
         }else{
             $errors['registro'] = 0;                
@@ -92,16 +71,17 @@ Class Noticia_categoria_library {
     public function actualizar($data_config) {
         $id = $this->CI->input->post("id");
         $nombre = $this->CI->input->post("nombre");
+        $id_categoria = $this->CI->input->post("id_categoria"); 
         
         $errors = array(
 //            'upload_imagen' => '',
             'actualizar' => ''
         );        
         
-        //obtener el noticia_categoria
-        $noticia_categoria = $this->CI->noticia_categoria_model->get($id,$data_config['control']);
+        //obtener el producto_subcategoria
+        $producto_subcategoria = $this->CI->generico_model->get($id,"producto_subcategoria");
                 
-//        $file_name = "noticia_categoria_".Date("YmdHis");
+//        $file_name = "producto_subcategoria_".Date("YmdHis");
 //        $file_name_ext = "";
         $url = codificarURL($nombre);
 
@@ -112,7 +92,8 @@ Class Noticia_categoria_library {
 //        $this->CI->load->library('upload', $config);
         
         //update
-        $noticia_categoria_update = array(
+        $producto_subcategoria_update = array(
+            'id_categoria' => $id_categoria,
             'nombre' => $nombre,
             'url' => $url                
         );
@@ -124,10 +105,10 @@ Class Noticia_categoria_library {
 //            $uploadSuccess = $this->CI->upload->data();
 //            $file_name_ext = $uploadSuccess['file_name'];   
 //            //borrar la imagen anterior
-//            $noticia_categoria_update['imagen'] = $config['upload_path'].$file_name_ext;
+//            $producto_subcategoria_update['imagen'] = $config['upload_path'].$file_name_ext;
 //        }        
 
-        if($this->CI->noticia_categoria_model->editar($id,$noticia_categoria_update,$data_config['control'])){
+        if($this->CI->generico_model->editar($id,$producto_subcategoria_update,"producto_subcategoria")){
 //            $errors['db'] = $this->CI->db->last_query();
             $errors['actualizar'] = 1;                
         }else{
@@ -141,18 +122,18 @@ Class Noticia_categoria_library {
     public function listado($data_config) {
         $header = array();
         $data = array(
-            "pagina" => $this->CI->load->view("admin/noticia_categoria/nuevo",$data_config,true)
+            "pagina" => $this->nuevo($data_config)
         );
         
         $data = array_merge($data, $data_config); 
         
         $footer = array();        
         
-        $this->CI->view_admin_library->plantilla("noticia_categoria/listado",$header,$data,$footer);       
+        $this->CI->view_admin_library->plantilla("producto_subcategoria/listado",$header,$data,$footer);       
     }
     
     public function anexgrid($data_config){
-//        $this->CI->noticia_categoria_anexgrid->set();
+//        $this->CI->producto_subcategoria_anexgrid->set();
         try
         {
             $this->CI->anexgrid->set();
@@ -190,21 +171,26 @@ Class Noticia_categoria_library {
     }
     
     public function eliminar($data_config){
-        $id = $this->CI->input->post('id');        
-        $noticia_categoria = $this->CI->noticia_categoria_model->get($id,$data_config['control']);
-        //eliminar imagen
-        @unlink($noticia_categoria['imagen']);
+        $id = $this->CI->input->post('id'); 
+        $data_error = array("error" => 1); 
+        //verificar si no tiene subcategorias
+        if(!$this->CI->generico_model->getCondicion(array('id_categoria'=> $id ),"producto_subcategoria")){
+//            $producto_subcategoria = $this->CI->generico_model->get($id,$data_config['tabla']);
         
-        //eliminar registro de base de datos
-        $result = $this->CI->noticia_categoria_model->eliminar($id,$data_config['control']);       
+            //eliminar registro de base de datos
+            $result = $this->CI->generico_model->eliminar($id,$data_config['tabla']);       
+            $data_error["error"] = 0;            
+        }
+            
+        echo json_encode($data_error); 
         
-        echo json_encode(true);  
+         
     }
     
     public function publicar($data_config){
         $id = $this->CI->input->post('id'); 
         $publicar = ($this->CI->input->post('publicar')==1)?0:1;        
-        $this->CI->noticia_categoria_model->editar($id,array('publicar' =>$publicar),$data_config['control']);       
+        $this->CI->producto_subcategoria_model->editar($id,array('publicar' =>$publicar),$data_config['control']);       
         
         echo json_encode(true);  
     }

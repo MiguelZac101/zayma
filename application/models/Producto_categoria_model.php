@@ -1,6 +1,6 @@
 <?php
 
-Class Noticia_categoria_Model extends CI_Model {
+Class Producto_categoria_Model extends CI_Model {
 
     public function __construct() {
         parent::__construct();

@@ -50,9 +50,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-//$route['admin/'] = 'auth';
+$route['auth'] = 'auth';
+$route['auth/(.+)'] = 'auth/$1';
 //$route['galeria/(.+)'] = 'galeria/$1';
-////$route['admin'] = 'auth';
+$route['admin'] = 'admin';
 $route['admin/(.+)'] = 'admin/$1';
 ////paginacion de los articulos
 ////BLOG/CATEGORIA/PAGINA/NUMERO-PAGINA                            /BLOG/CATEGORIA/NUMERO-PAGINA

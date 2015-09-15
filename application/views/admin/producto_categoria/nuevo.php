@@ -1,28 +1,40 @@
 <div class="panel panel-default">
-    <div class="panel-heading">Editor - Nuevo</div>                      
+    <div class="panel-heading"><?php echo $titulo_modulo; ?> - Nuevo</div>                      
 
     <div class="panel-body" >
-        <form name="form_nuevo" role="form" enctype="multipart/form-data">
-            <fieldset>
-<!--                <legend>Datos Principales</legend>-->
+        <!--<form name="form_nuevo" role="form" enctype="multipart/form-data">-->
+        <form name="form_nuevo" role="form">        
+            <div class="form-group">
+                <label>Grupo</label>
+                <select class="form-control" name="id_grupo" id="id_grupo">
+                    <?php 
+                    foreach ($grupos as $g){
+                    ?>
+                    <option value="<?php echo $g['id'];?>"><?php echo $g['nombre'];?></option>
+                    <?php
+                    }
+                    ?>                  
+                    
+                </select>
+            </div>
 
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del editor." value="">
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="">
                 </div>          
 
-            </fieldset>
-            <fieldset>
-<!--                <legend>Multimedia</legend>-->
+<!--            <fieldset>
+                <legend>Multimedia</legend>
                 <div class="form-group">
                     <label>Imagen</label>
                     <input id="imagen" type="file" name="imagen" class="file" accept="image/*" data-show-upload="false" data-show-caption="false">
-                    <p class="text-info" style="font-size: 11px;">Medidas 100 pixeles x 100 pixeles.</p>
+                    <p class="text-info" style="font-size: 11px;">Dimensiones de imagen recomendado 265x200px.</p>
                     <script>
                         $('#imagen').fileinput();
                     </script>
+
                 </div>
-            </fieldset>
+            </fieldset>-->
                                            
             <fieldset>
                 <hr>                
@@ -41,36 +53,32 @@
 </div>
 
 <script>
-    $(document).ready(function (){
+$(document).ready(function (){
 
-    $('form[name=form_nuevo]').validate({
-        
+    $('form[name=form_nuevo]').validate({   
         rules:{
             nombre: {
                 required: true,
-                maxlength: 100
+                minlength: 5
             }
-            ,
-            imagen: {
-                required: true,
-                accept: "image/*",
-//                dimenciones: true,
-            }
-        }
-        ,
+//            ,
+//            imagen: {
+//                required: true,
+//                accept: "image/*"
+//            }
+        },
         messages:{
-
-            imagen: {
-                required: "Imagen requerido",
-                accept: "Solo se aceptan imagenes"
-            }
+//            imagen: {
+//                required: "Imagen requerido.",
+//                accept: "Solo se aceptan imagenes."
+//            }
         },
         submitHandler: function(form) {
             // some other code
             // maybe disabling submit button
             // then:
 //            $(form).submit(); 
-            var url = base_url + 'admin/editor/registrar';
+            var url = "<?php echo base_url(); ?>admin/<?php echo $control;?>/registrar" ;
             var data = new FormData(form);
             $("#preloader").show();
             $.ajax({
@@ -82,33 +90,23 @@
                 type: 'POST',
                 dataType : 'json',
                 success: function(data){
-//                    $("#preloader").hide();
-                    //error de imagen
-                   if(data.upload_imagen!=''){
-                       alert(data.upload_imagen);
-                   }
+
                    //registro
                    if(data.registro==1){
                        alert("Se registro correctamente.");
-                       $(location).attr('href', base_url+"admin/editor/listado");
-//                       redirect("admin/editor/listado");
+                       $(location).attr('href', "<?php echo base_url(); ?>admin/<?php echo $control;?>/listado");
+//                       redirect("admin/noticia_categoria/listado");
                    }else{
-                       $("#preloader").hide();
-                       if(data.upload_imagen!=''){
-                            alert(data.upload_imagen);
-                            return;
-                        }else{
-                            alert("Sucedio un error no se pudo registrar.");
-                        }  
+                       alert("Sucedio un error no se pudo registrar.");
                    }
                     
                 }
             });
         }
     });
+    
+
+        
 
 });
-   
-
-
 </script>

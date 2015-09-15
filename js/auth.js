@@ -16,12 +16,12 @@ $(function ()
                 
         $.post( base_url + 'auth/login_user', form.serialize(),function (data) {
             btn.html(texto_inicial);
-            $('#message').html(data.mensaje);
+            $('#message').html(data.mensaje);            
             $('#message').fadeIn(500);            
             
             if (data.result == 1){         
                 //redireccionar
-                setTimeout("redirect('admin/')", 2000);
+                setTimeout("redirect('admin/')", 1000);
                 
             }else if(data.result == 0){
                              

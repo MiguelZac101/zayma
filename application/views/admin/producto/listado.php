@@ -1,13 +1,13 @@
 <div id="wrapper">
     <section>
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row">                      
 
                             <div class="col-sm-6">
-                                Fotos - Listado
+                                PRODUCTO - Listado
                             </div>
                             <div class="col-sm-6 text-right">
 
@@ -16,16 +16,11 @@
                     </div>
 
                     <div class="panel-body">
-
-                        <div id="list"></div>                           
-
-
+                        <div id="list"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" id="cargar_ajax">
-                <?php echo $pagina;?>
-            </div>
+
         </div>
     </section>
 </div>
@@ -34,20 +29,23 @@
     $(document).ready(function () {
         var agrid = $("#list").anexGrid({
             class: 'table-striped table-bordered table-condensed',
-            columnas: [
+            columnas: [                
                 {leyenda: 'Titulo', style: '', class: '', columna: 'titulo'},
-                {leyenda: 'Destacado', style: 'width:100px;', columna: 'destacado'},
-//                {leyenda: 'Descripcion', style: '', columna: 'descripcion'},
+//                {leyenda: 'Publicar', style: 'width:100px;', columna: 'publicar'},
+//                {leyenda: 'Destacado', style: 'width:100px;', columna: 'destacado'},
+                {style: 'width:48px;'},
                 {style: 'width:48px;'},
                 {style: 'width:48px;'},
                 {style: 'width:48px;'}
             ],
-            modelo: [
-                {propiedad: 'titulo'},
-//                {propiedad: 'descripcion'},
-                {propiedad: 'destacado', formato: function (tr, obj, valor) {
-                        return valor == 1 ? '<div class="text-success">Destacado</div>' : '<div class="text-danger">No Destacado</div>';
-                    }},
+            modelo: [                
+                {propiedad: 'titulo'},              
+//                {propiedad: 'publicar', formato: function (tr, obj, valor) {
+//                        return valor == 1 ? '<div class="text-success">Publicado</div>' : '<div class="text-danger">No Publicado</div>';
+//                    }},
+//                {propiedad: 'destacado', formato: function (tr, obj, valor) {
+//                        return valor == 1 ? '<div class="text-success">Destacado</div>' : '<div class="text-danger">No Destacado</div>';
+//                    }},
                 {formato: function (tr, obj, celda) {
                         return anexGrid_boton({
                             class: 'btn btn-danger btn-sm btn-eliminar',
@@ -70,6 +68,16 @@
                     }},
                     { formato: function(tr, obj, celda){
                         return anexGrid_boton({
+                            class: 'btn btn-success btn-sm btn-publicar',
+                            contenido: '<i class="fa fa-refresh fa-fw"></i>',
+                            value: tr.data('fila'),
+                            attr: [
+                                'title="Publicar/Despublicar"'
+                            ]
+                        });    
+                    }},
+                    { formato: function(tr, obj, celda){
+                        return anexGrid_boton({
                             class: 'btn btn-info btn-sm btn-destacado',
                             contenido: '<i class="fa fa-star fa-fw"></i>',
                             value: tr.data('fila'),
@@ -80,12 +88,12 @@
                     }}
                
             ],
-            url: '<?php echo base_url(); ?>admin/galeria_fotos/anexgrid',
+            url: '<?php echo base_url(); ?>admin/producto/anexgrid',
             paginable: true,
 //                    filtrable: true,
             limite: [10, 20, 50],
             columna: 'id',
-            columna_orden: 'DESC'
+            columna_orden: 'ASC'
         });
 
         agrid.tabla().on('click', '.btn-eliminar', function (e) {
@@ -98,17 +106,37 @@
 
             $("#preloader").show();
             /* Petición ajax al servidor */
-            $.post('<?php echo base_url(); ?>admin/galeria_fotos/eliminar/', {
+            $.post('<?php echo base_url(); ?>admin/producto/eliminar/', {
                 id: fila.id
             }, function (r) {
                 if (r) {
                     agrid.refrescar();                    
                 }
                 $("#preloader").hide();
-            }, 'json')
+            }, 'json');
 
             return false;
         });
+
+        agrid.tabla().on('click', '.btn-publicar', function(e){
+            e.preventDefault();
+            //if(!confirm('¿Esta seguro de eliminar este registro?')) return;
+
+            /* Obtiene el objeto actual de la fila seleccionada */
+            var fila = agrid.obtener($(this).val());               
+            $("#preloader").show();
+            /* Petición ajax al servidor */
+            $.post('<?php echo base_url(); ?>admin/producto/publicar/', {
+                id: fila.id,
+                publicar:fila.publicar
+            }, function(r){
+                if(r) agrid.refrescar();
+                $("#preloader").hide();
+            }, 'json');
+
+            return false;
+        });
+
         agrid.tabla().on('click', '.btn-editar', function (e) {
             e.preventDefault();
             //if(!confirm('¿Esta seguro de eliminar este registro?')) return;
@@ -117,12 +145,15 @@
             var fila = agrid.obtener($(this).val());
             $("#preloader").show();
             /* Petición ajax al servidor */
-            $.post('<?php echo base_url(); ?>admin/galeria_fotos/editar', {
+            $.post('<?php echo base_url(); ?>admin/producto/editar', {
                 id: fila.id
+//                control:"<?php echo $control; ?>",
+//                titulo_modulo:"<?php echo $titulo_modulo; ?>",
+//                tabla_categoria:"<?php echo $tabla_categoria; ?>"
             }, function (data) {                
                 $("#cargar_ajax").html(data);
                 $("#preloader").hide();
-            })
+            });
 
             return false;
         });
@@ -135,7 +166,7 @@
             var fila = agrid.obtener($(this).val());               
             $("#preloader").show();
             /* Petición ajax al servidor */
-            $.post('<?php echo base_url(); ?>admin/galeria_fotos/destacado/', {
+            $.post('<?php echo base_url(); ?>admin/producto/destacado/', {
                 id: fila.id
             }, function(r){
                 if(r) agrid.refrescar();
@@ -146,7 +177,8 @@
         });
 
 
+
     })
 </script>       
 
-<script src="<?php echo base_url(); ?>plugins/jquery_anexgrid/jquery.anexgrid.js"></script>
+<!--<script src="<?php echo base_url(); ?>plugins/jquery_anexgrid/jquery.anexgrid.js"></script>-->

@@ -5,7 +5,6 @@ Class Auth extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-//        $this->load->model("cpanel_model");
         $this->load->library("auth_library");
     }
 

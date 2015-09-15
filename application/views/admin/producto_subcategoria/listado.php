@@ -110,7 +110,7 @@
             paginable: true,
 //                    filtrable: true,
             limite: [10, 20, 50],
-            columna: 'orden',
+            columna: 'id',
             columna_orden: 'ASC'
         });
 
@@ -127,9 +127,12 @@
             $.post('<?php echo base_url(); ?>admin/<?php echo $control; ?>/eliminar/', {
                 id: fila.id
             }, function (r) {
-                if (r) {
+                if (r.error==0) {
                     agrid.refrescar();                    
-                }
+                }else{
+                    alert("Al parecer esta Categoria tiene Subcategorias registradas, primero debe eliminar todas las subcategorias dependientes.")
+                }    
+                
                 $("#preloader").hide();
             }, 'json');
 
@@ -226,5 +229,3 @@
 </script>       
 
 <script src="<?php echo base_url(); ?>plugins/jquery_anexgrid/jquery.anexgrid.js"></script>
-
-<script type="text/javascript" src="<?php // echo base_url('js/admin/noticia/categoria.js'); ?>"></script>

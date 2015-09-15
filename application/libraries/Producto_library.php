@@ -1,50 +1,48 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 
-Class Noticia_articulo_library {
+Class Producto_library {
 
     protected $CI;
 
     public function __construct(){
         $this->CI =& get_instance();
-//        $this->CI->load->library("view_admin_library");
-        $this->CI->load->model("noticia_articulo_model");
-        $this->CI->load->model("anexgrid_model");//generico para todas las consultas
-//      $this->CI->load->library("noticia_articulo_anexgrid");        
-        $this->CI->load->model("editor_model");        
-        $this->CI->load->library("anexgrid");
         
+        $this->CI->load->model("generico_model");
+//        $this->CI->load->model("producto_model");
+        $this->CI->load->model("anexgrid_model");     
+        $this->CI->load->library("anexgrid");    
         
-
     }
     
     //nuevo vista
     //se llama por js
-    public function nuevo($data) {   
-        //cargar los editores
-        $data_nuevo['editores'] = $this->CI->editor_model->listado();       
-        $data_nuevo['categorias'] = $this->CI->noticia_articulo_model->categoria_listado($data['tabla_categoria']);         
-        $data = array_merge($data,$data_nuevo);
-
-        return $this->CI->load->view("admin/noticia_articulo/nuevo",$data,true);     
+    public function nuevo() { 
+        $header = array();
+        $data = array();                     
+        $footer = array(); 
+        
+        $data['grupos'] = $this->CI->generico_model->listado("producto_grupo");
+        
+        $this->CI->view_admin_library->plantilla("producto/nuevo",$header,$data,$footer);       
     }   
      
     //editar vista  
     //se llama por js
-    public function editar($data) {
+    public function editar() {
         $id = $this->CI->input->post("id");
         
-        $data_articulo = $this->CI->noticia_articulo_model->get($id,$data['control']);
+        $data_articulo = $this->CI->producto_model->get($id,$data['control']);
         
         $data['editores'] = $this->CI->editor_model->listado();       
-        $data['categorias'] = $this->CI->noticia_articulo_model->categoria_listado($data['tabla_categoria']); 
+        $data['categorias'] = $this->CI->producto_model->categoria_listado($data['tabla_categoria']); 
         
         $data = array_merge($data,$data_articulo);
         
-        return $this->CI->load->view("admin/noticia_articulo/editar",$data,true);
+        return $this->CI->load->view("admin/producto/editar",$data,true);
     }
     
     //esto viene de js que esta en la vista nuevo
-    public function registrar($data_config) {
+    public function registrar() {
         $errors = array(
             'upload_imagen' => '',
             'registro' => 0
@@ -89,7 +87,7 @@ Class Noticia_articulo_library {
             imagen_crear_miniatura($full_path, $thumbnail_path ,200, 200);
             
             //registrar
-            $noticia_articulo = array(
+            $producto = array(
                 'titulo' => $titulo,
                 'imagen' => $config['upload_path'].$file_name_ext,
                 'imagen_thumbnail' => $thumbnail_path,
@@ -102,7 +100,7 @@ Class Noticia_articulo_library {
                 'id_categoria' => $id_categoria
             );
             
-            if($this->CI->noticia_articulo_model->nuevo($noticia_articulo,$control)){
+            if($this->CI->producto_model->nuevo($producto,$control)){
                 $errors['registro'] = 1;                
             }else{
                 $errors['registro'] = 0;                
@@ -113,7 +111,7 @@ Class Noticia_articulo_library {
         
     }
     
-    public function actualizar($data) {
+    public function actualizar() {
         $id = $this->CI->input->post("id");
         
         //datos del formulario
@@ -133,10 +131,10 @@ Class Noticia_articulo_library {
             'actualizar' => 0
         );        
         
-        //obtener el noticia_articulo
-        $noticia_articulo = $this->CI->noticia_articulo_model->get($id,$control);   
-        $imagen_path_antiguo = $noticia_articulo['imagen'];
-        $imagen_thumbnail_path_antiguo = $noticia_articulo['imagen_thumbnail'];
+        //obtener el producto
+        $producto = $this->CI->producto_model->get($id,$control);   
+        $imagen_path_antiguo = $producto['imagen'];
+        $imagen_thumbnail_path_antiguo = $producto['imagen_thumbnail'];
         
                 
         $file_name = "articulo_".Date("YmdHis");
@@ -155,7 +153,7 @@ Class Noticia_articulo_library {
         $this->CI->load->library('upload', $config);
         
         //update
-        $noticia_articulo_update = array(
+        $producto_update = array(
             'titulo' => $titulo,   
             'url' => $url ,
             'fecha' => $fecha,
@@ -185,8 +183,8 @@ Class Noticia_articulo_library {
             
             
             //borrar la imagen anterior
-            $noticia_articulo_update['imagen'] = $config['upload_path'].$file_name_ext;
-            $noticia_articulo_update['imagen_thumbnail'] =  $thumbnail_path;
+            $producto_update['imagen'] = $config['upload_path'].$file_name_ext;
+            $producto_update['imagen_thumbnail'] =  $thumbnail_path;
         } 
         
         //envia imagen
@@ -202,7 +200,7 @@ Class Noticia_articulo_library {
             
         }
 
-        if($this->CI->noticia_articulo_model->editar($id,$noticia_articulo_update,$control)){
+        if($this->CI->producto_model->editar($id,$producto_update,$control)){
             $errors['db'] = $this->CI->db->last_query();
             $errors['actualizar'] = 1;                
         }else{
@@ -213,25 +211,22 @@ Class Noticia_articulo_library {
         
     }
     
-    public function listado($data_general) {
+    public function listado() {
         $header = array();
         $data = array(
-//            "pagina" => $this->CI->load->view("admin/noticia_articulo/nuevo",$data_general,true)
-            "pagina" => $this->nuevo($data_general)
             
-        );
-        $data = array_merge($data, $data_general);        
+        );             
         
         $footer = array();        
         
-        $this->CI->view_admin_library->plantilla("noticia_articulo/listado",$header,$data,$footer);       
+        $this->CI->view_admin_library->plantilla("producto/listado",$header,$data,$footer);       
     }
     
 //    public function anexgrid(){
-//        $this->CI->noticia_articulo_anexgrid->set();
+//        $this->CI->producto_anexgrid->set();
 //    }
     
-    public function anexgrid($data){
+    public function anexgrid(){
         
         
         
@@ -249,7 +244,7 @@ Class Noticia_articulo_library {
             }
             
             $query = "
-                SELECT * FROM ".$data['control']."
+                SELECT * FROM producto
                 WHERE $wh ORDER BY ".$this->CI->anexgrid->columna." ".$this->CI->anexgrid->columna_orden." 
                 LIMIT ".$this->CI->anexgrid->pagina." , ".$this->CI->anexgrid->limite;          
             
@@ -257,7 +252,7 @@ Class Noticia_articulo_library {
             
             $query = "
                 SELECT COUNT(*) as Total
-                FROM ".$data['control']."
+                FROM producto
                 WHERE $wh";
             
             $total = $this->CI->anexgrid_model->query_total($query);       
@@ -271,33 +266,33 @@ Class Noticia_articulo_library {
         }
     }
     
-    public function eliminar($data){
+    public function eliminar(){
         $id = $this->CI->input->post('id');        
-        $noticia_articulo = $this->CI->noticia_articulo_model->get($id,$data['control']);
+        $producto = $this->CI->producto_model->get($id,$data['control']);
         //eliminar imagen
-        @unlink($noticia_articulo['imagen']);
-        @unlink($noticia_articulo['imagen_thumbnail']);
+        @unlink($producto['imagen']);
+        @unlink($producto['imagen_thumbnail']);
         
         //eliminar registro de base de datos
-        $result = $this->CI->noticia_articulo_model->eliminar($id,$data['control']);       
+        $result = $this->CI->producto_model->eliminar($id,$data['control']);       
         
         echo json_encode(true);  
     }
     
-    public function publicar($data){
+    public function publicar(){
         $id = $this->CI->input->post('id'); 
         $publicar = ($this->CI->input->post('publicar')==1)?0:1;        
-        $this->CI->noticia_articulo_model->editar($id,array('publicar' =>$publicar),$data['control']);       
+        $this->CI->producto_model->editar($id,array('publicar' =>$publicar),$data['control']);       
         
         echo json_encode(true);  
     }
     
-    public function destacado($data){
+    public function destacado(){
         $id = $this->CI->input->post('id'); 
         //todos los demas articulos poner a 0 su destacado
-        $this->CI->noticia_articulo_model->editar_todos(array('destacado' => 0 ),$data['control']);  
+        $this->CI->producto_model->editar_todos(array('destacado' => 0 ),$data['control']);  
         //cambiar destacado a 1 solo a este articulo
-        $this->CI->noticia_articulo_model->editar($id,array('destacado' => 1 ),$data['control']);       
+        $this->CI->producto_model->editar($id,array('destacado' => 1 ),$data['control']);       
         
         echo json_encode(true);  
     }
@@ -305,7 +300,7 @@ Class Noticia_articulo_library {
 //    public function orden_arriba(){
 //        $id = $this->CI->input->post('id'); 
 //                
-//        if($this->CI->orden_library->orden_arriba_tabla($id,'noticia_articulo')){
+//        if($this->CI->orden_library->orden_arriba_tabla($id,'producto')){
 //            //intercambio bien
 //            echo json_encode(array("arriba"=> 1)); 
 //        }else{
@@ -317,7 +312,7 @@ Class Noticia_articulo_library {
 //    public function orden_abajo(){
 //        $id = $this->CI->input->post('id'); 
 //                
-//        if($this->CI->orden_library->orden_abajo_tabla($id,'noticia_articulo')){
+//        if($this->CI->orden_library->orden_abajo_tabla($id,'producto')){
 //            //intercambio bien
 //            echo json_encode(array("abajo"=> 1)); 
 //        }else{

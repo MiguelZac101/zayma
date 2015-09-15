@@ -52,7 +52,17 @@ Class Generico_Model extends CI_Model {
         //orders
         $this->db->order_by('id', 'asc');        
         return $query->result_array();
-    }    
+    }  
+    //LISTADO CONDICIONAL
+    public function listadoCondicion($condicion,$tabla) {            
+        foreach ($condicion as $key => $value) {
+            $this->db->where($key, $value);
+        }
+        $query = $this->db->get($tabla);
+        //orders
+        $this->db->order_by('id', 'asc');        
+        return $query->result_array();
+    }  
 
     
     //PAGINACION GENERICA

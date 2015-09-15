@@ -4,30 +4,41 @@
     <div class="panel-body" >
         <form name="form_editar" role="form" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $id; ?>"/>
-            <fieldset>
-<!--                <legend>Datos Principales</legend>-->
 
-                <div class="form-group">
-                    <label>Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="<?php echo $nombre; ?>">
-                </div>          
+            <div class="form-group">
+                <label>Grupo</label>
+                <select class="form-control" name="id_grupo" id="id_grupo">
+                    <?php 
+                    foreach ($grupos as $g){
+                    ?>
+                    <option value="<?php echo $g['id'];?>" <?php if($g['id']==$id_grupo){ echo "selected"; } ?> > <?php echo $g['nombre'];?></option>
+                    <?php
+                    }
+                    ?>                  
+                    
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Categorias</label>
+                <select class="form-control" name="id_categoria" id="id_categoria">
+                    <?php 
+                    foreach ($categorias as $cat){
+                    ?>
+                    <option value="<?php echo $cat['id'];?>" <?php if($cat['id']==$id_categoria){ echo "selected"; } ?> > <?php echo $cat['nombre'];?></option>
+                    <?php
+                    }
+                    ?>                  
+                    
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="<?php echo $nombre; ?>">
+            </div>          
 
-            </fieldset>
-<!--            <fieldset>
-                <legend>Multimedia</legend>
-                <div class="form-group">
-                    <label>Imagen</label>
-                    <input id="imagen" type="file" name="imagen" class="file" accept="image/*" data-show-upload="false" data-show-caption="false">
-                    <p class="text-info" style="font-size: 11px;">Dimensiones de imagen recomendado 265x200px.</p>
-                    <script>
-                        $('#imagen').fileinput({
-                            initialPreview: [
-                                '<img src="<?php echo base_url($imagen); ?>" class="file-preview-image" alt="<?php echo $nombre; ?>" title="<?php echo $nombre; ?>">'
-                            ]
-                        });
-                    </script>
-                </div>
-            </fieldset>-->
+
                                            
             <fieldset>
                 <hr>                
@@ -104,7 +115,19 @@
             $("#preloader").hide();
         });
     });
+    
+    
+    //CARGAR AJAX LAS CATEGORIAS SEGUN EL GRUPO
+    $("select[name=id_grupo]").on('change',function(){
+        var id_grupo = $(this).val();        
+        $.post( "<?php echo base_url(); ?>admin/combo/categorias_grupo", 
+            { id_grupo: id_grupo },
+            function(data){
+                $("select[name=id_categoria]").html(data);
+        });
         
+       
+    });
 
 });
 

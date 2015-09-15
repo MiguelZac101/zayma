@@ -92,200 +92,41 @@
                                             Contenido
                                         </a>
                                     </li>
-                                    <li class="divider"></li>
-                                    <li>
+<!--                                    <li class="divider"></li>-->
+<!--                                    <li>
                                         <a href="<?php echo base_url('admin/home_carrusel/listado'); ?>" tabindex="0">
                                             <i class="fa fa-image fa-fw"></i> 
                                             Carrusel
                                         </a>
-                                    </li>
+                                    </li>-->
                                 </ul>
-                            </li> 
-
-                            <li class="dropdown">
-                                <a tabindex="0" data-toggle="dropdown">Editor<i class="fa fa-angle-down fa-fw"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?php echo base_url('admin/editor/listado'); ?>" tabindex="0"><i class="fa fa-bars fa-fw"></i> Listado</a></li>
-                                    <!--<li><a href="<?php echo base_url('admin/editor/nuevo'); ?>" tabindex="0"><i class="fa fa-plus fa-fw"></i> Nuevo</a></li>-->
-                                </ul>
-                            </li>   
+                            </li>                            
                             
                             <li class="dropdown">
                                 <a tabindex="0" data-toggle="dropdown">
-                                    Noticias <i class="fa fa-angle-down fa-fw"></i>
+                                    Productos <i class="fa fa-angle-down fa-fw"></i>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="<?php echo base_url('admin/noticia_categoria/listado'); ?>" tabindex="0">
+                                        <a href="<?php echo base_url('admin/producto_categoria/listado'); ?>" tabindex="0">
                                             <i class="fa fa-book fa-fw"></i> 
                                             Categorias
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url('admin/noticia_articulo/listado'); ?>" tabindex="0">
+                                        <a href="<?php echo base_url('admin/producto_subcategoria/listado'); ?>" tabindex="0">
                                             <i class="fa fa-file-text-o"></i> 
-                                            Articulos
+                                            Subcategorias
                                         </a>
-                                    </li>
-                                    <li class="divider"></li>
+                                    </li>                                  
                                     <li>
-                                        <a href="<?php echo base_url('admin/noticia_carrusel/listado'); ?>" tabindex="0">
+                                        <a href="<?php echo base_url('admin/producto/listado'); ?>" tabindex="0">
                                             <i class="fa fa-image fa-fw"></i> 
-                                            Carrusel
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>   
-                            
-                            <li class="dropdown">
-                                <a tabindex="0" data-toggle="dropdown">
-                                    Ideologia <i class="fa fa-angle-down fa-fw"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="<?php echo base_url('admin/ideologia_categoria/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-book fa-fw"></i> 
-                                            Categorias
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo base_url('admin/ideologia_articulo/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-file-text-o"></i> 
-                                            Articulos
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="<?php echo base_url('admin/ideologia_carrusel/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-image fa-fw"></i> Carrusel
+                                            Productos
                                         </a>
                                     </li>
                                 </ul>
                             </li>  
-                            
-                            <li class="dropdown">
-                                <a tabindex="0" data-toggle="dropdown">
-                                    Logros <i class="fa fa-angle-down fa-fw"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="<?php echo base_url('admin/logros_categoria/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-book fa-fw"></i> 
-                                            Categorias
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo base_url('admin/logros_articulo/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-file-text-o"></i> 
-                                            Articulos
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="<?php echo base_url('admin/logros_carrusel/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-image fa-fw"></i> Carrusel
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            
-                            <li class="dropdown">
-                                <a tabindex="0" data-toggle="dropdown">
-                                    Documentos <i class="fa fa-angle-down fa-fw"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="<?php echo base_url('admin/documentos_categoria/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-book fa-fw"></i> 
-                                            Categorias
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo base_url('admin/documentos_articulo/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-file-text-o"></i> 
-                                            Articulos
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="<?php echo base_url('admin/documentos_carrusel/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-image fa-fw"></i> Carrusel
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            
-                            <li class="dropdown">
-                                <a tabindex="0" data-toggle="dropdown">
-                                    Kausachun Perú <i class="fa fa-angle-down fa-fw"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="<?php echo base_url('admin/kausachun_categoria/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-book fa-fw"></i> 
-                                            Categorias
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo base_url('admin/kausachun_articulo/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-file-text-o"></i> 
-                                            Articulos
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="<?php echo base_url('admin/kausachun_carrusel/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-image fa-fw"></i> Carrusel
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            
-                            <li class="dropdown">
-                                <a tabindex="0" data-toggle="dropdown">
-                                    Grandes Lideres <i class="fa fa-angle-down fa-fw"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="<?php echo base_url('admin/lideres_categoria/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-book fa-fw"></i> 
-                                            Categorias
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo base_url('admin/lideres_articulo/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-file-text-o"></i> 
-                                            Biografías
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="<?php echo base_url('admin/lideres_carrusel/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-image fa-fw"></i> Carrusel
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            
-                            <li class="dropdown">
-                                <a tabindex="0" data-toggle="dropdown">
-                                    Galería <i class="fa fa-angle-down fa-fw"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu"> 
-
-                                    <li>
-                                        <a href="<?php echo base_url('admin/galeria_fotos/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-image fa-fw"></i> Fotos
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo base_url('admin/galeria_videos/listado'); ?>" tabindex="0">
-                                            <i class="fa fa-youtube fa-fw"></i> Videos
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            
                            
                             <li class="dropdown">
                                 <a tabindex="0" data-toggle="dropdown">
