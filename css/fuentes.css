@@ -16,25 +16,25 @@
     font-family: 'Caviar Dreams';
     font-style: normal;
     font-weight: 400;
-    src: local('Caviar Dreams'), local('CaviarDreams'), url(../fuentes/caviardreams/caviardreams-webfont.woff2) format('woff2'), url(../fuentes/CaviarDreams/CaviarDreams.woff) format('woff');
+    src: local('Caviar Dreams'), local('CaviarDreams'), url(../fuentes/CaviarDreams/CaviarDreams.woff2) format('woff2'), url(../fuentes/CaviarDreams/CaviarDreams.woff) format('woff');
 }
 @font-face {
     font-family: 'Caviar Dreams';
     font-style: normal;
     font-weight: 700;
-    src: local('Caviar Dreams Bold'), local('CaviarDreams-Bold'), url(../fuentes/caviardreams/2db742738dcd2c92177425a97adb99cb.woff2) format('woff2'), url(../fuentes/CaviarDreams/CaviarDreams_Bold.woff) format('woff');
+    src: local('Caviar Dreams Bold'), local('CaviarDreams-Bold'), url(../fuentes/CaviarDreams/CaviarDreams_Bold.woff2) format('woff2'), url(../fuentes/CaviarDreams/CaviarDreams_Bold.woff) format('woff');
 }
 @font-face {
     font-family: 'Caviar Dreams';
     font-style: italic;
     font-weight: 400;
-    src: local('Caviar Dreams Italic'), local('CaviarDreams-Italic'), url(../fuentes/caviardreams/43b42538c080a113660999aa1768bdf7.woff2) format('woff2'), url(../fuentes/CaviarDreams/CaviarDreams_Italic.woff) format('woff');
+    src: local('Caviar Dreams Italic'), local('CaviarDreams-Italic'), url(../fuentes/CaviarDreams/CaviarDreams_Italic.woff2) format('woff2'), url(../fuentes/CaviarDreams/CaviarDreams_Italic.woff) format('woff');
 }
 @font-face {
     font-family: 'Caviar Dreams';
     font-style: italic;
     font-weight: 700;
-    src: local('Caviar Dreams Bold Italic'), local('CaviarDreams-BoldItalic'), url(../fuentes/caviardreams/3dc3636029edaf4dfaa7c68d8edb4c72.woff2) format('woff2'), url(../fuentes/CaviarDreams/CaviarDreams_BoldItalic.woff) format('woff');
+    src: local('Caviar Dreams Bold Italic'), local('CaviarDreams-BoldItalic'), url(../fuentes/CaviarDreams/CaviarDreams_BoldItalic.woff2) format('woff2'), url(../fuentes/CaviarDreams/CaviarDreams_BoldItalic.woff) format('woff');
 }
 
 /*@font-face {
