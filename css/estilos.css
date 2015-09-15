@@ -1,80 +1,15 @@
 
-@font-face {
-    font-family: CaviarDreams;
-    src: url('../fuentes/CaviarDreams.ttf');
-}
-@font-face {
-    font-family: CaviarDreams;
-    src: url('../fuentes/CaviarDreams_Bold.ttf');
-}
-@font-face {
-    font-family: CaviarDreams;
-    src: url('../fuentes/CaviarDreams_BoldItalic.ttf');
-}
-@font-face {
-    font-family: CaviarDreams;
-    src: url('../fuentes/CaviarDreams_Italic.ttf');
+
+body{
+    font-family: 'Caviar Dreams';
 }
 
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-Black.otf');
+h2{
+    font-family: 'Caviar Dreams';
 }
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-BlackItalic.otf');
+h3{
+    font-family: 'Caviar Dreams', Arial, sans-serif;;
 }
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-Bold.otf');
-}
-
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-BoldItalic.otf');
-}
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-Light.otf');
-}
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-LightItalic.otf');
-}
-
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-Medium.otf');
-}
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-MediumItalic.otf');
-}
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-Regular.otf');
-}
-
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-RegularItalic.otf');
-}
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-Thin.otf');
-}
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-ThinItalic.otf');
-}
-
-
-/*h2{
-    font-family: 'CaviarDreams';
-}*/
-/*h3{
-    font-family: 'CaviarDreams';
-}*/
 
 body{
     position: relative;
@@ -302,7 +237,7 @@ position: absolute;
 #seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque:last-of-type{
     margin-right: 0px;
 }
-#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque div{
+#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque > div{
     position: relative;
 }
 
@@ -317,11 +252,10 @@ width: 100%;
 }
 
 #seccion_servicios .servicio_bloque_hover{
-    background-color: #3d454b;
+    background-color: rgba(61, 69, 75, 0.6);
     display: none;
     height: 100%;
     left: 0;
-    opacity: 0.5;
     padding: 20px;
     position: absolute;
     top: 0;
@@ -446,7 +380,7 @@ right: -29px;
 width: 29px;
 }
 #seccion_portafolio .portafolio .portafolio_descripcion .portafolio_descripcion_lineas{
-    padding-top: 135px;    
+    padding-top: 115px;    
 }
 #seccion_portafolio .portafolio .portafolio_descripcion .portafolio_descripcion_lineas:after{
     background-color: #98968f;

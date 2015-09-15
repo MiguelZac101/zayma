@@ -25,7 +25,7 @@
                                         <div class="left"></div>
                                     </div>                                    
                                 </div>
-                                <a href="#" title="xxx">
+                                <a href="#" class="btn_servicio">
                                     DAMAS
                                 </a>
                             </div>
@@ -42,7 +42,7 @@
                                         <div class="left"></div>
                                     </div>                                    
                                 </div>
-                                <a href="#" title="xxx">
+                                <a href="#"  class="btn_servicio">
                                     CABALLEROS
                                 </a>
                             </div>
@@ -59,7 +59,7 @@
                                         <div class="left"></div>
                                     </div>                                    
                                 </div>
-                                <a href="#" title="xxx">
+                                <a href="#"  class="btn_servicio">
                                     ACCESORIOS
                                 </a>
                             </div>

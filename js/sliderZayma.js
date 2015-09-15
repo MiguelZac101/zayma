@@ -66,11 +66,10 @@
                 
                 TweenMax.to($this, time, {clip:'rect(0px,'+liHoverWidth+'px,'+liHeight+'px,0px)', x: $this.data('index') * liRestWidth+ $this.data('index')*margen ,   ease: Ease});
                 
-                TweenMax.to($this.find('> div'), time, {x:-((imagen_ancho - liHoverWidth) / 2 ), ease: Ease, poner_sombra:true});
-                               
-                //TweenMax.to($this.find('.overlay'), time, {backgroundColor:'rgba(0,0,0,0)', ease: Linear.easeNone, force3D:true})
-                
-                
+                TweenMax.to($this.find('> div'), time, {x:-((imagen_ancho - liHoverWidth) / 2 ), ease: Ease, onComplete:poner_sombra, onCompleteParams:[$(this)]});
+                TweenMax.to($(this).find(".servicio_bloque_hover"), time, {display:"block",  ease: Ease, delay:Delay, overwrite:'all'});
+                TweenMax.to($(this).find(".btn_servicio"), time, {bottom: 198, ease: Ease});
+                TweenMax.to($(this).find(".btn_servicio"), time, {css:{backgroundColor:"none",border:"1px solid #eae3d0"}});
                 
                 $contenedor.find('li.servicio_bloque').each(function(index, element){
                     
@@ -102,19 +101,22 @@
 
                 TweenMax.killTweensOf($(this));
                 TweenMax.killTweensOf($(this).find('> div'));
-
                 TweenMax.to($(this), time, {clip:'rect(0px,'+liAncho+'px,'+liHeight+'px,0px)', x: $this.data('index') * liAncho + $this.data('index')*margen, ease: Ease, delay:Delay, overwrite:'all'});
-
-                TweenMax.to($this.find('> div'), time, {x:-((imagen_ancho - liAncho) / 2 ), ease: Ease})
+                TweenMax.to($this.find('> div'), time, {x:-((imagen_ancho - liAncho) / 2 ), ease: Ease});
+                
+                TweenMax.to($(this).find(".servicio_bloque_hover"), 0 , {display:"none",  ease: Ease, delay:Delay, overwrite:'all'});
+                TweenMax.to($(this).find(".btn_servicio"), time, {bottom: 30, ease: Ease});
+                TweenMax.to($(this).find(".btn_servicio"), time, { css:{ backgroundColor:"rgba(0, 0, 0, 0.5)",border:"0px solid"}});
                 
                 //TweenMax.to($this.find('.overlay'), time, {backgroundColor:'rgba(0,0,0,.6)', ease: Linear.easeNone, delay:Delay, overwrite:'all', })
                 $contenedor.find('li.servicio_bloque').each(function(index, element){
                     if($(this).data('index') != $this.data('index')){
                         TweenMax.killTweensOf($(this));
                         TweenMax.killTweensOf($(this).find('> div'));
-                        TweenMax.to($(this), time, {clip:'rect(0px,'+liAncho+'px,'+liHeight+'px,0px)', x:liAncho*index + index*margen,  ease: Ease, delay:Delay, overwrite:'all', onComplete:borrar_sombra, onCompleteParams:[$(this)]});
+                        TweenMax.to($(this), time, {clip:'rect(0px,'+liAncho+'px,'+liHeight+'px,0px)', x:liAncho*index + index*margen,  ease: Ease, delay:Delay, overwrite:'all'});
                         TweenMax.to($(this).find('> div'), time, {x:-((imagen_ancho - liAncho) / 2 ), ease: Ease})
-                        //TweenMax.to($(this).find('> .box-contact.right .close'), time, {x:((sizes[liNum].width*liCoef - liAncho) / 2 ), ease: Ease})
+                        
+                        
                     }
                 })
             });
