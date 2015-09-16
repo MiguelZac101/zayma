@@ -29,17 +29,17 @@
     $(document).ready(function () {
         var agrid = $("#list").anexGrid({
             class: 'table-striped table-bordered table-condensed',
-            columnas: [                
-                {leyenda: 'Titulo', style: '', class: '', columna: 'titulo'},
+            columnas: [  
+                
+                {leyenda: 'Nombre', style: '', class: '', columna: 'nombre'},
 //                {leyenda: 'Publicar', style: 'width:100px;', columna: 'publicar'},
 //                {leyenda: 'Destacado', style: 'width:100px;', columna: 'destacado'},
                 {style: 'width:48px;'},
-                {style: 'width:48px;'},
-                {style: 'width:48px;'},
+                {style: 'width:48px;'},            
                 {style: 'width:48px;'}
             ],
             modelo: [                
-                {propiedad: 'titulo'},              
+                {propiedad: 'nombre'},              
 //                {propiedad: 'publicar', formato: function (tr, obj, valor) {
 //                        return valor == 1 ? '<div class="text-success">Publicado</div>' : '<div class="text-danger">No Publicado</div>';
 //                    }},
@@ -75,17 +75,18 @@
                                 'title="Publicar/Despublicar"'
                             ]
                         });    
-                    }},
-                    { formato: function(tr, obj, celda){
-                        return anexGrid_boton({
-                            class: 'btn btn-info btn-sm btn-destacado',
-                            contenido: '<i class="fa fa-star fa-fw"></i>',
-                            value: tr.data('fila'),
-                            attr: [
-                                'title="Destacado"'
-                            ]
-                        });    
                     }}
+//                    ,
+//                    { formato: function(tr, obj, celda){
+//                        return anexGrid_boton({
+//                            class: 'btn btn-info btn-sm btn-destacado',
+//                            contenido: '<i class="fa fa-star fa-fw"></i>',
+//                            value: tr.data('fila'),
+//                            attr: [
+//                                'title="Destacado"'
+//                            ]
+//                        });    
+//                    }}
                
             ],
             url: '<?php echo base_url(); ?>admin/producto/anexgrid',
@@ -145,36 +146,34 @@
             var fila = agrid.obtener($(this).val());
             $("#preloader").show();
             /* Petición ajax al servidor */
-            $.post('<?php echo base_url(); ?>admin/producto/editar', {
-                id: fila.id
-//                control:"<?php echo $control; ?>",
-//                titulo_modulo:"<?php echo $titulo_modulo; ?>",
-//                tabla_categoria:"<?php echo $tabla_categoria; ?>"
-            }, function (data) {                
-                $("#cargar_ajax").html(data);
-                $("#preloader").hide();
-            });
-
+//            $.post('<?php echo base_url(); ?>admin/producto/editar', {
+//                id: fila.id
+//            }, function (data) {                
+//                $("#cargar_ajax").html(data);
+//                $("#preloader").hide();
+//            });
+            //REDIRECCION AL EDITAR
+            $(location).attr('href', base_url+"admin/producto/editar/"+fila.id);
             return false;
         });
-        
-        agrid.tabla().on('click', '.btn-destacado', function(e){
-            e.preventDefault();
-            //if(!confirm('¿Esta seguro de eliminar este registro?')) return;
-
-            /* Obtiene el objeto actual de la fila seleccionada */
-            var fila = agrid.obtener($(this).val());               
-            $("#preloader").show();
-            /* Petición ajax al servidor */
-            $.post('<?php echo base_url(); ?>admin/producto/destacado/', {
-                id: fila.id
-            }, function(r){
-                if(r) agrid.refrescar();
-                $("#preloader").hide();
-            }, 'json');
-
-            return false;
-        });
+//        
+//        agrid.tabla().on('click', '.btn-destacado', function(e){
+//            e.preventDefault();
+//            //if(!confirm('¿Esta seguro de eliminar este registro?')) return;
+//
+//            /* Obtiene el objeto actual de la fila seleccionada */
+//            var fila = agrid.obtener($(this).val());               
+//            $("#preloader").show();
+//            /* Petición ajax al servidor */
+//            $.post('<?php echo base_url(); ?>admin/producto/destacado/', {
+//                id: fila.id
+//            }, function(r){
+//                if(r) agrid.refrescar();
+//                $("#preloader").hide();
+//            }, 'json');
+//
+//            return false;
+//        });
 
 
 

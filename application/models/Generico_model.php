@@ -9,7 +9,8 @@ Class Generico_Model extends CI_Model {
 
     //NUEVO
     public function nuevo($data,$tabla) {
-        return $this->db->insert($tabla, $data);
+        $this->db->insert($tabla, $data);
+        return $this->db->insert_id();                
     }    
     //GET
     public function get($id,$tabla) {

@@ -1,32 +1,25 @@
+<div id="wrapper">
+    <section>
+        <div class="row">
+            <div class="col-xs-6">
+
 <div class="panel panel-default">
-    <div class="panel-heading"><?php echo $titulo_modulo; ?> - Editar</div>                      
+    <div class="panel-heading">PRODUCTO - EDITAR</div>                      
 
     <div class="panel-body" >
         <form name="form_editar" role="form" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?php echo $id; ?>"/>  
+            <input type="hidden" name="id" value="<?php echo $producto['id']; ?>"/>  
 
             <div class="form-group">
-                <?php 
-                if($control=="lideres_articulo"){
-                ?>
-                <label>Nombre</label>
-                <?php
-                }else{
-                ?>
-                <label>Titulo</label>
-                <?php
-                }
-                ?>
-                <input type="text" class="form-control" id="titulo" name="titulo" placeholder="" value="<?php echo $titulo; ?>">
-            </div>
-            
-            <div class="form-group">
-                <label>Editor</label>
-                <select class="form-control" name="id_editor" id="id_editor">
+                <label>Grupo</label>
+                <select class="form-control" name="id_grupo" id="id_grupo">
+                    <option value="0">Seleccione Grupo</option>
                     <?php 
-                    foreach ($editores as $editor){
+                    foreach ($grupos as $g){
                     ?>
-                    <option value="<?php echo $editor['id'];?>" <?php if($editor['id']==$id_editor){ echo "selected"; } ?> > <?php echo $editor['nombre'];?></option>
+                    <option value="<?php echo $g['id'];?>" <?php if($g['id']==$producto['id_grupo']){ ?> selected=" " <?php } ?> >
+                        <?php echo $g['nombre'];?>
+                    </option>
                     <?php
                     }
                     ?>                  
@@ -37,99 +30,104 @@
             <div class="form-group">
                 <label>Categoria</label>
                 <select class="form-control" name="id_categoria" id="id_categoria">
+                    <option value="0">Seleccione Categoria</option>                                    
                     <?php 
-                    foreach ($categorias as $categoria){
+                    foreach ($categorias as $g){
                     ?>
-                    <option value="<?php echo $categoria['id'];?>" <?php if($categoria['id']==$id_categoria){ echo "selected"; } ?> ><?php echo $categoria['nombre'];?></option>
+                    <option value="<?php echo $g['id'];?>" <?php if($g['id']==$producto['id_categoria']){?> selected=" "<?php } ?>>
+                        <?php echo $g['nombre'];?>
+                    </option>
                     <?php
                     }
-                    ?>                  
-                    
+                    ?> 
                 </select>
-            </div>
- 
-<?php 
-if($control=="lideres_articulo"){
-?>
-    <input type='hidden' name='fecha' value="<?php echo fechaMysqlANatural($fecha);?>"/>        
-<?php
-}else{
-?> 
-            <div class="form-group">
-                <label>Fecha</label>
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" name='fecha' value="<?php echo fechaMysqlANatural($fecha);?>"/>
-<!--                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>-->
-                </div>
-            </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('input[name=fecha]').datepicker({
-                        format: 'dd/mm/yyyy',
-                        language:'es',
-                        todayHighlight:true
-                    });
-                });
-            </script>
-<?php
-}
-?>
-            <div class="form-group">
-                <label>Imagen</label>
-                <input id="imagen" type="file" name="imagen" class="file" accept="image/*" data-show-upload="false" data-show-caption="false">
-                <p class="text-info" style="font-size: 11px;">Dimensiones de imagen 850 pixeles de ancho y 500 pixeles de alto.</p>
-                <script>
-                    $('#imagen').fileinput({
-                        initialPreview: [
-                            '<img src="<?php echo base_url($imagen); ?>" class="file-preview-image" alt="<?php echo $titulo; ?>" title="<?php echo $titulo; ?>">'
-                        ]
-                    });
-                </script>
             </div>
             
             <div class="form-group">
-                <label>Descripción</label>
-                <textarea class="form-control" rows="3" maxlength="200" id="descripcion" name="descripcion" placeholder="Descripción"><?php echo $descripcion; ?></textarea>
-                <p class="text-info" style="font-size: 11px;">Máximo de caracteres 200.</p>
+                <label>Subcategoria</label>
+                <select class="form-control" name="id_subcategoria" id="id_subcategoria">
+                    <option value="0">Seleccione Subcategoria</option>                                    
+                    <?php 
+                    foreach ($subcategorias as $g){
+                    ?>
+                    <option value="<?php echo $g['id'];?>" <?php if($g['id']==$producto['id_subcategoria']){?> selected=" "<?php } ?>>
+                        <?php echo $g['nombre'];?>
+                    </option>
+                    <?php
+                    }
+                    ?> 
+                </select>
             </div>
+            
             <div class="form-group">
-<?php 
-if($control=="lideres_articulo"){
-?>
-    <label>Biografía</label>      
-<?php
-}else{
-?> 
-    <label>Contenido</label>  
-<?php
-}
-?>                                     
-                <textarea id="contenido" rows="25" class="textarea form-control" name="contenido" placeholder="contenido"><?php echo $contenido; ?></textarea>                                    
-                <script type="text/javascript">
-                    $(document).ready(function(){
-                        $('.textarea').wysihtml5();
-                    });
-                    
-                </script>
-                <div id="has-message"></div>
+                <label>Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="<?php echo $producto['nombre']; ?>">
             </div>
-                                           
-            <fieldset>
-                <hr>                
-                <div class="form-group text-right">
-                    
-                    <button type="button" class="btn btn-default btn-sm" name="cancelar">CANCELAR</button>
-                    <!--<input type="reset" value="CANCELAR" name="CANCELAR" class="btn btn-default btn-sm">-->
-                    <!--<button type="button" class="btn btn-success btn-sm" name="guardar">GUARDAR</button>-->
-                    <input type="submit" value="GUARDAR" name="GUARDAR" class="btn btn-success btn-sm">
-                    
-                </div>
-            </fieldset>
+
+            <div class="form-group">
+                <label>Imagen</label>
+                <input id="imagen" type="file" name="imagen[]" class="file" accept="image/*" data-show-upload="false" data-show-caption="false" multiple>
+                <p class="text-info" style="font-size: 11px;">Dimensiones de imagen 850 pixeles de ancho y 500 pixeles de alto.</p>
+                <script>
+                    $('#imagen').fileinput();
+                </script>
+            </div>                      
+
+            <hr>                
+            <div class="form-group text-right">
+
+                <button type="button" class="btn btn-default btn-sm" name="cancelar">CANCELAR</button>
+                <!--<input type="reset" value="CANCELAR" name="CANCELAR" class="btn btn-default btn-sm">-->
+                <!--<button type="button" class="btn btn-success btn-sm" name="guardar">GUARDAR</button>-->
+                <input type="submit" value="GUARDAR" name="GUARDAR" class="btn btn-success btn-sm">
+
+            </div>
+
             
         </form>
     </div>
+</div>
+
+                </div>
+            <div class="col-xs-6">
+
+<div class="panel panel-default">
+    <div class="panel-heading">PRODUCTO - IMAGENES</div>                      
+
+    <div class="panel-body" >
+        <div class="row">
+            <?php
+            foreach ($producto_imagen as $key => $imagen) {                
+            ?>
+            <div class="col-xs-4 producto_imagen">
+
+                <div class="thumbnail">
+                    <img src="<?php echo base_url().$imagen['imagen'];?>" alt="imagen de producto" class="img-responsive">
+                    <div class="caption">                        
+                        
+                        <a href="#" class="btn btn-danger btn-block btn-eliminar" role="button" data-imagen="<?php echo $imagen['id'];?>">
+                            Eliminar
+                        </a> 
+                        <a href="#" class="btn btn-default btn-block btn-destacado" role="button" data-imagen="<?php echo $imagen['id'];?>">
+                            Destacado
+                        </a>
+                        
+                    </div>
+                </div>
+    
+                
+            </div>
+            <?php
+            }
+            ?>
+        </div>
+    </div>
+</div>
+                
+                
+            </div>
+        </div>
+    </section>
 </div>
 
 <script>
@@ -138,26 +136,27 @@ if($control=="lideres_articulo"){
     
     $('form[name=form_editar]').validate({        
         rules:{
-            titulo: {
+            nombre: {
                 required: true,
-                maxlength: 100
+                minlength: 5
             },
-            fecha: {
+            imagen: {
                 required: true,
-                date: true
-            },
-            descripcion : {
-                required:true,
-                maxlength : 200
-            }  
+                accept: "image/*"
+            }
 
-        },       
+        }, 
+        messages:{
+            imagen: {                
+                accept: "Solo se aceptan imagenes."
+            }
+        },
         submitHandler: function(form) {
             // some other code
             // maybe disabling submit button
             // then:
 //            $(form).submit(); 
-            var url = base_url + 'admin/<?php echo $control;?>/actualizar';
+            var url = "<?php echo base_url();?>admin/producto/actualizar" ;
             var data = new FormData(form);
             
             $("#preloader").show();
@@ -177,18 +176,12 @@ if($control=="lideres_articulo"){
 //                   }
                    //registro
                    if(data.actualizar==1){
-                       alert("Registro Actualizado!.");
-                       $(location).attr('href', base_url+"admin/<?php echo $control;?>/listado");
+                       alert(data.mensaje);
+                       $(location).attr('href', "<?php echo base_url();?>admin/producto/editar/<?php echo $producto['id'];?>");
 //                       redirect("admin/editor/listado");
                    }else{
-                       $("#preloader").hide();
-                       
-                        if(data.upload_imagen!=''){
-                            alert(data.upload_imagen);
-                        }else{
-                            alert("Sucedio un error no se pudo actualizar el registro.");
-                        }          
-                       
+                        $("#preloader").hide();
+                        alert(data.mensaje);                              
                    }
                     
                 }
@@ -200,14 +193,33 @@ if($control=="lideres_articulo"){
     $('form[name=form_editar] button[name=cancelar]').on('click',function(e){
         e.preventDefault();
         $("#preloader").show();
-        $.post('<?php echo base_url(); ?>admin/<?php echo $control;?>/nuevo/', {
+        $.post('<?php echo base_url(); ?>admin/producto/nuevo/', {
             
         }, function (data) {
             $("#cargar_ajax").html(data);
             $("#preloader").hide();
         });
     });
+    
+    $(".btn_eliminar").on('click', function (e) {
+        e.preventDefault();
+        if (!confirm('¿Esta seguro de eliminar esta imagen?'))return;            
         
+        var imagen = $(this);
+        /* Obtiene el objeto actual de la fila seleccionada */
+        var id_imagen = $(this).data('imagen');
+
+        $("#preloader").show();
+        /* Petición ajax al servidor */
+        $.post('<?php echo base_url(); ?>admin/producto_imagen/eliminar/', {
+            id: id_imagen
+        }, function (r) {            
+            $("#preloader").hide();
+            imagen.parents(".producto_imagen").remove();
+        }, 'json');
+
+        return false;
+    });
 
 });
 

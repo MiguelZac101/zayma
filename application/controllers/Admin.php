@@ -132,7 +132,7 @@ Class Admin extends CI_Controller {
     }
     
     //PRODUCTOS
-    public function producto($page){        
+    public function producto($page,$id_producto=NULL){        
         
         switch($page){
             case "nuevo":                
@@ -145,7 +145,7 @@ Class Admin extends CI_Controller {
                 $this->producto_library->listado();
                 break;
             case "editar": 
-                $this->producto_library->editar();
+                $this->producto_library->editar($id_producto);
                 break;            
             case "actualizar": 
                 $this->producto_library->actualizar(); 
@@ -168,6 +168,15 @@ Class Admin extends CI_Controller {
         }
     }
     
+    //PRODUCTO IMAGEN
+    public function producto_imagen($page,$id_producto=NULL){        
+        
+        switch($page){           
+            case "eliminar": 
+                $this->producto_imagen_library->eliminar();
+                break;                  
+        }
+    }
     
     //COMBOS
     public function combo($funcion){

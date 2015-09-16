@@ -90,7 +90,7 @@ div{
     <div>
         <h1>404</h1>
         <p>Parece que no existe esta pagina.</p>
-        <a href="http://localhost:81/velascoperu_CI_3.0.1/">Volver al inicio.</a>
+        <a href="http://zayma.pe/">Volver al inicio.</a>
     </div>    
 </body>
 </html>

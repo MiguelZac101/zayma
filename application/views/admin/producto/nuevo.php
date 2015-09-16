@@ -44,12 +44,12 @@
                 <label>Nombre</label>
                
                 
-                <input type="text" class="form-control" id="titulo" name="titulo" placeholder="" value="">
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="">
             </div>
 
             <div class="form-group">
                 <label>Imagenes</label>
-                <input id="imagen" type="file" name="imagen" class="file" accept="image/*" data-show-upload="false" data-show-caption="false">
+                <input id="imagen" type="file" name="imagen[]" class="file" accept="image/*" data-show-upload="false" data-show-caption="false" multiple>
                 <p class="text-info" style="font-size: 11px;">Dimensiones de imagen 850 pixeles de ancho y 500 pixeles de alto.</p>
                 <script>
                     $('#imagen').fileinput();
@@ -96,24 +96,13 @@ $(document).ready(function (){
 
     $('form[name=form_nuevo]').validate({   
         rules:{
-            titulo: {
+            nombre: {
                 required: true,
-                maxlength: 100
-            },
-            fecha: {
-                required: true,
-                date: true
-            },
-            descripcion : {
-                required:true,
-                maxlength : 200
-            }             
-            ,
+                minlength: 5
+            },        
             imagen: {
                 required: true,
                 accept: "image/*"
-//                ,
-//                validarImagenAnchoAlto  : true
             }
         },
         messages:{
@@ -136,24 +125,21 @@ $(document).ready(function (){
                 type: 'POST',
                 dataType : 'json',
                 success: function(data){
-//                    $("#preloader").hide();
-                    //error de imagen
-                   
                    //registro
-                   if(data.registro==1){
-                       alert("Se registro correctamente.");
-                       $(location).attr('href', base_url+"admin/producto/listado");
-//                       redirect("admin/noticia_articulo/listado");
-                   }else{
-                       $("#preloader").hide();
-                       if(data.upload_imagen!=''){
+//                   if(data.registro==1){
+//                       alert("Se registro correctamente.");
+//                       $(location).attr('href', base_url+"admin/producto/listado");
+//                   }else{
+//                        $("#preloader").hide();
+                        if(data.upload_imagen!=''){
                             alert(data.upload_imagen);
                             return;
                         }else{
-                            alert("Sucedio un error no se pudo registrar.");
+                            //REDIRECCIONAR AL LISTADO
+                           $(location).attr('href', base_url+"admin/producto/listado");
                         }                           
                        
-                   }
+//                   }
                     
                 }
             });
