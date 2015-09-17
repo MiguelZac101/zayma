@@ -8,5 +8,5 @@ RewriteEngine on
 #RewriteCond $1 !^(index\.php|images|uploads|plugins|css|js|fonts|robots\.txt)
 #RewriteRule ^(.*)$ /velascoperu_CI_3.0.1/index.php?/$1 [L]
 
-RewriteCond $1 !^(index\.php|images|uploads|plugins|css|js|fonts|robots\.txt)
+RewriteCond $1 !^(index\.php|images|uploads|plugins|css|js|fuentes|robots\.txt)
 RewriteRule ^(.*)$ /index.php?/$1 [L]

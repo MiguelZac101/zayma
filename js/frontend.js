@@ -52,5 +52,64 @@ $(document).ready(function(){
         }
     });
     
+    //MENU
+
+    var animRunning = false;
+    var $header = $('#menu');
+    $('html,body').scrollTop(0);
+    $('> div', $header).width($(window).width()); 
+        
+    // Open Header
+    $('.btn-menu').on('click', function(){
+        if(!animRunning){
+            animRunning = true;
+            
+            $header.css('display','block');
+            setTimeout(function(){ $header.addClass('opened'); }, 100);
+            setTimeout(function(){
+                    $('.secondary-links', $header).addClass('loaded');
+                    setTimeout(function(){
+                            $('.secondary-links .btn-shop', $header).addClass('loaded');
+                            setTimeout(function(){
+                                    $('.secondary-links .btn-follow', $header).addClass('loaded');
+                            }, 250);
+                    }, 100);
+            }, 950);
+            setTimeout(function(){ animRunning = false; }, 750);
+        }
+
+        return false;
+    });
+
+    // Close Header
+    $('a.btn-menu-cerrar').on('click', function(event){
+        event.preventDefault();
+       
+//        if((event.target.tagName != 'A' && $(event.target).parents('a').length == 0) || (event.target.tagName == 'A' && $(event.target).hasClass('btn-menu'))){
+            if(!animRunning){
+                animRunning = true;
+                 
+                $header.addClass('leaving');
+                setTimeout(function(){
+                        $header.removeClass('leaving').removeClass('opened');
+                        $('.secondary-links', $header).removeClass('loaded');
+                        animRunning = false;	
+                }, 1250);
+            }
+
+            return false;
+//        }
+    });
+    
+    $(window).resize(function(){       
+        scrollContent();        
+    }).scroll(function(){	
+	scrollContent();
+    });   
+    
+    function scrollContent(){
+        $('> div', $header).width($(window).width()); 
+    }
+
 });
 

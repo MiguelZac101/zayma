@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'CaviarDreams';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fuentes/CaviarDreams_total/caviardreams-webfont.eot'); /* IE9 Compat Modes */
+    src: url('../fuentes/CaviarDreams_total/caviardreams-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fuentes/CaviarDreams_total/caviardreams-webfont.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fuentes/CaviarDreams_total/caviardreams-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+         url('../fuentes/CaviarDreams_total/caviardreams-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('../fuentes/CaviarDreams_total/caviardreams-webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+  }
+
 /*@font-face {
     font-family: 'CaviarDreams';
     src: url('../fuentes/CaviarDreams/caviardreams-webfont.eot');
@@ -11,31 +23,6 @@
 }*/
 
 /* Caviar Dreams Fonts */
-
-@font-face {
-    font-family: 'Caviar Dreams';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Caviar Dreams'), local('CaviarDreams'), url(../fuentes/CaviarDreams/CaviarDreams.woff2) format('woff2'), url(../fuentes/CaviarDreams/CaviarDreams.woff) format('woff');
-}
-@font-face {
-    font-family: 'Caviar Dreams';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Caviar Dreams Bold'), local('CaviarDreams-Bold'), url(../fuentes/CaviarDreams/CaviarDreams_Bold.woff2) format('woff2'), url(../fuentes/CaviarDreams/CaviarDreams_Bold.woff) format('woff');
-}
-@font-face {
-    font-family: 'Caviar Dreams';
-    font-style: italic;
-    font-weight: 400;
-    src: local('Caviar Dreams Italic'), local('CaviarDreams-Italic'), url(../fuentes/CaviarDreams/CaviarDreams_Italic.woff2) format('woff2'), url(../fuentes/CaviarDreams/CaviarDreams_Italic.woff) format('woff');
-}
-@font-face {
-    font-family: 'Caviar Dreams';
-    font-style: italic;
-    font-weight: 700;
-    src: local('Caviar Dreams Bold Italic'), local('CaviarDreams-BoldItalic'), url(../fuentes/CaviarDreams/CaviarDreams_BoldItalic.woff2) format('woff2'), url(../fuentes/CaviarDreams/CaviarDreams_BoldItalic.woff) format('woff');
-}
 
 /*@font-face {
     font-family: CaviarDreams;

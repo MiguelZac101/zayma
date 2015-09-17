@@ -60,7 +60,30 @@
             </div>
         </footer>
         <!--FIN FOOTER--> 
+        
+        <!--MENU-->
+        <div  id="menu" class="">
+            <div>
 
+                <!-- Background -->
+                <div class="bg"></div>         
+                <div id="menu_contenido">
+                    <div class="container" >
+                        <div class="row">                        
+                            <div class="col-xs-12" id="contenedor_salir">
+                                <a class="btn-menu-cerrar">
+                                    SALIR
+                                </a>                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+               
+            </div>
+        </div>
+        <!--FIN MENU-->
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
         

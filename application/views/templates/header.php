@@ -7,7 +7,7 @@
 
         <title>Zayma - titulo</title>
         
-        <link href="<?php echo base_url();?>css/fuentes.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+        
         
         <!-- Bootstrap -->   
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -15,17 +15,16 @@
         <link href="plugins/animsition-master/dist/css/animsition.min.css" rel="stylesheet" type="text/css"/>      
         
         <link href="<?php echo base_url();?>css/estilos.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+        <link href="<?php echo base_url();?>css/menu.css" rel="stylesheet" type="text/css" charset="utf-8"/>
         
+        <link href="<?php echo base_url();?>css/fuentes.css" rel="stylesheet" type="text/css" charset="utf-8"/>
         
         <!--
         <script src="js/loadingAsync.js" type="text/javascript" async="async"></script>
         -->
     </head>
     <body  data-spy="scroll" data-target="#navegacion" class="animsition">   
-      
-        
-   
-        
+       
         
         <div class="container-fluid" id="menu_top">
             <div class="row">
@@ -35,7 +34,7 @@
                     </a>                   
                 </div>
                 <div class="col-xs-4 col-sm-4" id="menu_top_menu">
-                    <a href="" title="">
+                    <a href="" title="" class="btn-menu">
                         MENÚ
                     </a>                    
                 </div>
