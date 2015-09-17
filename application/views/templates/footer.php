@@ -47,8 +47,8 @@
                 </div>
             </div>
             <div id="footer_logo" class="text-center">
-                <a href="#" title="Visitar LifeDigital">
-                    <img src="images/logo_life.png" alt="imagen de lifedigital" class="img-responsive"/><br/>
+                <a href="http://lifedigital.pe" title="Visitar LifeDigital">
+                    <img src="<?php echo base_url();?>images/logo_life.png" alt="imagen de lifedigital" class="img-responsive"/><br/>
                 </a> 
                 
                 <p>
@@ -89,15 +89,16 @@
         
 
         
-        <script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
+        <script src="<?php echo base_url();?>plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
      
-        <script src="plugins/animsition-master/dist/js/jquery.animsition.min.js" type="text/javascript"></script>
-        <script src="js/animsition.config.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>plugins/animsition-master/dist/js/jquery.animsition.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>js/animsition.config.js" type="text/javascript"></script>
     
    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>        
-        <script src="js/frontend.js" type="text/javascript"></script>
-        <script src="js/sliderZayma.js" type="text/javascript"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script> 
+        <script src="<?php echo base_url();?>js/base_url.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>js/frontend.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>js/sliderZayma.js" type="text/javascript"></script> 
 
     </body>
 </html>

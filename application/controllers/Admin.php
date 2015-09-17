@@ -9,6 +9,7 @@ Class Admin extends CI_Controller {
         $this->load->library("producto_categoria_library");
         $this->load->library("producto_subcategoria_library");
         $this->load->library("producto_library");
+        $this->load->library("producto_imagen_library");
         
         if (is_logged()) {
 //            echo "esta logueado";

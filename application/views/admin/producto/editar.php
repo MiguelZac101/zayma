@@ -67,10 +67,10 @@
             <div class="form-group">
                 <label>Imagen</label>
                 <input id="imagen" type="file" name="imagen[]" class="file" accept="image/*" data-show-upload="false" data-show-caption="false" multiple>
-                <p class="text-info" style="font-size: 11px;">Dimensiones de imagen 850 pixeles de ancho y 500 pixeles de alto.</p>
+<!--                <p class="text-info" style="font-size: 11px;">Dimensiones de imagen 850 pixeles de ancho y 500 pixeles de alto.</p>
                 <script>
                     $('#imagen').fileinput();
-                </script>
+                </script>-->
             </div>                      
 
             <hr>                
@@ -105,13 +105,13 @@
                     <img src="<?php echo base_url().$imagen['imagen'];?>" alt="imagen de producto" class="img-responsive">
                     <div class="caption">                        
                         
-                        <a href="#" class="btn btn-danger btn-block btn-eliminar" role="button" data-imagen="<?php echo $imagen['id'];?>">
+                        <a href="#" class="btn btn-danger btn-block btneliminar"  data-imagen="<?php echo $imagen['id'];?>">
                             Eliminar
                         </a> 
-                        <a href="#" class="btn btn-default btn-block btn-destacado" role="button" data-imagen="<?php echo $imagen['id'];?>">
+<!--                        <a href="#" class="btn btn-default btn-block btn-destacado" role="button" data-imagen="<?php echo $imagen['id'];?>">
                             Destacado
                         </a>
-                        
+                        -->
                     </div>
                 </div>
     
@@ -140,8 +140,7 @@
                 required: true,
                 minlength: 5
             },
-            imagen: {
-                required: true,
+            imagen: {                
                 accept: "image/*"
             }
 
@@ -193,16 +192,19 @@
     $('form[name=form_editar] button[name=cancelar]').on('click',function(e){
         e.preventDefault();
         $("#preloader").show();
-        $.post('<?php echo base_url(); ?>admin/producto/nuevo/', {
-            
-        }, function (data) {
-            $("#cargar_ajax").html(data);
-            $("#preloader").hide();
-        });
+        $(location).attr('href', "<?php echo base_url();?>admin/producto/listado");
+//        $.post('<?php echo base_url(); ?>admin/producto/nuevo/', {
+//            
+//        }, function (data) {
+//            $("#cargar_ajax").html(data);
+//            $("#preloader").hide();
+//        });
     });
     
-    $(".btn_eliminar").on('click', function (e) {
+//ELIMINAR IMAGEN    
+    $(".btneliminar").on('click', function (e) {        
         e.preventDefault();
+        
         if (!confirm('¿Esta seguro de eliminar esta imagen?'))return;            
         
         var imagen = $(this);
@@ -219,6 +221,29 @@
         }, 'json');
 
         return false;
+    });
+    
+    //CARGAR AJAX LAS CATEGORIAS SEGUN EL GRUPO
+    $("select[name=id_grupo]").on('change',function(){
+        var id_grupo = $(this).val();        
+        $.post( "<?php echo base_url(); ?>admin/combo/categorias_grupo", 
+            { id_grupo: id_grupo },
+            function(data){
+                $("select[name=id_categoria]").html(data);
+        });
+        //borrar las opciones de las subcategorias
+        $("select[name=id_subcategoria] option[value!=0]").remove();
+       
+    });
+    
+    //CARGAR AJAX LAS SUBCATEGORIAS SEGUN LA CATEGORIA
+    $("select[name=id_categoria]").on('change',function(){
+        var id_categoria = $(this).val();        
+        $.post( "<?php echo base_url(); ?>admin/combo/subcategorias_categoria", 
+            { id_categoria: id_categoria },
+            function(data){
+                $("select[name=id_subcategoria]").html(data);
+        }); 
     });
 
 });

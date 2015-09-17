@@ -25,7 +25,7 @@
                                         <div class="left"></div>
                                     </div>                                    
                                 </div>
-                                <a href="#" class="btn_servicio">
+                                <a href="<?php echo base_url()."damas/"; ?>" class="btn_servicio">
                                     DAMAS
                                 </a>
                             </div>
@@ -42,7 +42,7 @@
                                         <div class="left"></div>
                                     </div>                                    
                                 </div>
-                                <a href="#"  class="btn_servicio">
+                                <a href="<?php echo base_url()."caballeros/"; ?>"  class="btn_servicio">
                                     CABALLEROS
                                 </a>
                             </div>
@@ -59,7 +59,7 @@
                                         <div class="left"></div>
                                     </div>                                    
                                 </div>
-                                <a href="#"  class="btn_servicio">
+                                <a href="<?php echo base_url()."accesorios/"; ?>"  class="btn_servicio">
                                     ACCESORIOS
                                 </a>
                             </div>

@@ -96,11 +96,23 @@ $(document).ready(function (){
 
     $('form[name=form_nuevo]').validate({   
         rules:{
-            nombre: {
+            nombre : {
                 required: true,
                 minlength: 5
-            },        
-            imagen: {
+            },  
+            id_grupo : {    
+                required: true,
+                min: 1
+            },
+            id_categoria : {    
+                required: true,
+                min: 1
+            },
+            id_subcategoria : {    
+                required: true,
+                min: 1
+            },
+            imagen : {
                 required: true,
                 accept: "image/*"
             }
@@ -109,6 +121,15 @@ $(document).ready(function (){
             imagen: {
                 required: "Imagen requerido.",
                 accept: "Solo se aceptan imagenes."
+            },
+            id_grupo:{
+                min: "Debe seleccionar alguna opción"
+            },
+            id_categoria:{
+                min: "Debe seleccionar alguna opción"
+            },
+            id_subcategoria:{
+                min: "Debe seleccionar alguna opción"
             }
         },
         submitHandler: function(form) {
@@ -154,6 +175,8 @@ $(document).ready(function (){
             function(data){
                 $("select[name=id_categoria]").html(data);
         }); 
+        //borrar las opciones de las subcategorias
+        $("select[name=id_subcategoria] option[value!=0]").remove();
     });
     
     //CARGAR AJAX LAS SUBCATEGORIAS SEGUN LA CATEGORIA

@@ -22,15 +22,103 @@ Class Frontend extends CI_Controller {
             switch($uri1){     
                 case "home"     : $this->home(); break;
                 case "galeria"  : $this->galeria(); break;
-                default : echo "otro caso"; break;
+                default : 
+                    //REDIRECCION LISTA DE PRODUCTOS
+                    $grupo = $this->generico_model->getCondicion(array("url"=>$uri1),"producto_grupo");
+                    if($grupo){
+                        
+                        //mostrar categoria y subcategoria por defecto
+                        $categoria_condicion = array(
+                            "id_grupo" => $grupo['id'],
+                            "order_by" => array(
+                                "columna" => "orden",
+                                "ordenar" => "ASC"
+                            )
+                        );
+                        $categoria_default = $this->generico_model->getCondicion($categoria_condicion,"producto_categoria");
+                        
+                        //mostrar la subcategoria por defecto
+                        $subcategoria_condicion = array(
+                            "id_categoria" => $categoria_default['id'],
+                            "order_by" => array(
+                                "columna" => "orden",
+                                "ordenar" => "ASC"
+                            )
+                        );
+                        $subcategoria_default = $this->generico_model->getCondicion($subcategoria_condicion,"producto_subcategoria");
+                        
+                        if(!$categoria_default || !$subcategoria_default ){
+                            echo "404";
+                        }else{
+                            redirect($grupo['url']."/".$categoria_default['url']."/".$subcategoria_default['url']."/");
+                        }                        
+                        
+                    }else{
+                        echo "404";
+                    }
+                break;
             }
         }
+        else if($uri1 && $uri2 && $uri3){
+            //LISTA DE PRODUCTOS
+            $grupo = $this->generico_model->getCondicion(array("url"=>$uri1),"producto_grupo");
+            if($grupo){
+
+                //mostrar categoria
+                $categoria_condicion = array(
+                    "id_grupo" => $grupo['id'],
+                    "url" => $uri2                    
+                );
+                $categoria = $this->generico_model->getCondicion($categoria_condicion,"producto_categoria");
+
+                //mostrar la subcategoria
+                $subcategoria_condicion = array(
+                    "id_categoria" => $categoria['id'],
+                    "url" => $uri3
+                );
+                $subcategoria = $this->generico_model->getCondicion($subcategoria_condicion,"producto_subcategoria");
+
+                if(!$categoria || !$subcategoria ){
+                    echo "404";
+                }else{
+                    //LISTADO DE LOS PRODUCTOS DENTRO DE UNA SUBCATEGORIA
+//                    echo $grupo['url']."/".$categoria['url']."/".$subcategoria['url'];
+                    $productos = $this->generico_model->listadoCondicion(array("id_subcategoria"=>$subcategoria['id']),"producto");
+//                    echo "<pre>";
+//                    print_r($productos);
+//                    echo "</pre>";
+                    
+                    $grupos = $this->generico_model->listado("producto_grupo");
+                    
+                    $categorias = $this->generico_model->listadoCondicion(array("id_grupo"=>$grupo["id"]),"producto_categoria");
+                    
+                    $subcategorias = $this->generico_model->listadoCondicion(array("id_categoria"=>$categoria["id"]),"producto_subcategoria");
+                    
+                    $data = array(
+                        "grupos" => $grupos,
+                        "grupo_seleccionado" => $grupo,
+                        
+                        "categorias" => $categorias,
+                        "categoria_seleccionado" => $categoria,
+                        
+                        "subcategorias" => $subcategorias,
+                        "subcategoria_seleccionado" => $subcategoria,
+                        
+                        "productos" => $productos
+                    );
+                    
+                    $this->load->view("templates/header");
+                    $this->load->view("producto",$data);
+                    $this->load->view("templates/footer");
+                }                        
+
+            }else{
+                echo "404";
+            }
+        } 
         else if($uri1 && $uri2){
             echo "2";
-        } 
-        else if($uri1 && $uri2 && $uri3){
-            echo "3";
-        }        
+        }               
         else{
             echo "ERROR 404!<br/>";
         }

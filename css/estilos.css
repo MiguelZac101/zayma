@@ -680,13 +680,21 @@ form[name=frm_contacto] .contenedor_textarea{
     }
 
     div.selectOptions  {        
-        left: -1px;
+/*        left: -1px;
         overflow: hidden;
         padding-top: 0;
         position: absolute;
         top: 54px;
         width: 300px;
+        display: none;*/
+        
         display: none;
+left: -1px;
+overflow: hidden;
+padding-top: 0;
+position: absolute;
+top: 54px;
+width: 300px;
     }
 
     span.selectOption {
@@ -727,20 +735,25 @@ form[name=frm_contacto] .contenedor_textarea{
         position: relative;
         width: 100%;
     }
-    .select_galeria.nivel01{
+    .select_galeria#producto_combo_1{
         z-index: 3;
     }
-    .select_galeria.nivel02{
+    .select_galeria#producto_combo_2{
         z-index: 2;
     }
-    .select_galeria.nivel03{
+    .select_galeria#producto_combo_3{
         z-index: 1;
     }
     .select_galeria div.selectOptions{
-        background-color: #eae3d0;
+/*        background-color: #eae3d0;
         border: 1px solid #353f47;
         margin-top: 1px;
-        width: 100%;
+        width: 100%;*/
+        
+        background-color: #eae3d0;
+border: 1px solid #353f47;
+margin-top: 1px;
+width: calc(100% + 2px);
     }
     .select_galeria span.selectOption:hover{
         color:#eae3d0;

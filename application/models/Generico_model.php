@@ -23,8 +23,13 @@ Class Generico_Model extends CI_Model {
         
         if(is_array($condicion) && count($condicion)>0){
             foreach ($condicion as $key => $value) {
+                if($key == "order_by"){
+                    $this->db->order_by($value["columna"],$value["ordenar"] );
+                    continue;
+                }
                 $this->db->where($key, $value);
             }
+            $this->db->limit(1);
             $query = $this->db->get($tabla);
             return $query->row_array();
         }else{

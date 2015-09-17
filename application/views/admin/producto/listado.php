@@ -6,11 +6,13 @@
                     <div class="panel-heading">
                         <div class="row">                      
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-6" style="padding-top: 8px;">
                                 PRODUCTO - Listado
                             </div>
                             <div class="col-sm-6 text-right">
-
+                                <a href="<?php echo base_url();?>admin/producto/nuevo" class="btn btn-primary">
+                                    NUEVO
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -32,6 +34,7 @@
             columnas: [  
                 
                 {leyenda: 'Nombre', style: '', class: '', columna: 'nombre'},
+                //{leyenda: 'Subcategoria', style: '', columna: 'id_subcategoria'},
 //                {leyenda: 'Publicar', style: 'width:100px;', columna: 'publicar'},
 //                {leyenda: 'Destacado', style: 'width:100px;', columna: 'destacado'},
                 {style: 'width:48px;'},
