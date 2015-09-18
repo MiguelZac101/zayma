@@ -1,31 +1,44 @@
 $(document).ready(function(){
     
 //    SELECT DE CONTACTO
-    function enableSelectBoxes() {
-        $('div.selectBox').each(function () {
-            $(this).children('span.selected').html($(this).children('div.selectOptions').children('span.selectOption:first').html());
-            $(this).attr('value', $(this).children('div.selectOptions').children('span.selectOption:first').attr('value'));
-
-            $(this).children('span.selected,span.selectArrow').click(function () {
-                if ($(this).parent().children('div.selectOptions').css('display') == 'none') {
-                    $(this).parent().children('div.selectOptions').css('display', 'block');
-                }
-                else
-                {
-                    $(this).parent().children('div.selectOptions').css('display', 'none');
-                }
-            });
-
-            $(this).find('span.selectOption').click(function () {
-                $(this).parent().css('display', 'none');
-                $(this).closest('div.selectBox').attr('value', $(this).attr('value'));
-                $(this).parent().siblings('span.selected').html($(this).html());
-            });
-        });
-    }
+//    function enableSelectBoxes() {
+//        $('div.selectBox').each(function () {
+//            //$(this).children('span.selected').html($(this).children('div.selectOptions').children('span.selectOption:first').html());
+////            $(this).attr('value', $(this).children('div.selectOptions').children('span.selectOption:first').attr('value'));
+//
+//            $(this).children('span.selected,span.selectArrow').click(function () {
+//                if ($(this).parent().children('div.selectOptions').css('display') == 'none') {
+//                    $(this).parent().children('div.selectOptions').css('display', 'block');
+//                }
+//                else
+//                {
+//                    $(this).parent().children('div.selectOptions').css('display', 'none');
+//                }
+//            });     
+//
+//            
+//            $(this).parent().children('div.selectOptions').mouseout(function () {
+//                alert("salio del cuadro");
+//            });
+//
+//            $(this).find('span.selectOption').click(function () {
+//                $(this).parent().css('display', 'none');
+//                $(this).closest('div.selectBox').attr('data-id', $(this).data('id'));
+////                alert($(this).data('id'));
+//                $(this).parent().siblings('span.selected').html($(this).html());
+//            });
+//        });
+//    }
+//    
+//    enableSelectBoxes();
     
-    enableSelectBoxes();
     
+    
+    //COMBOS LISTA DE PRODUCTOS
+    $("#producto_combo_1 .selectOptions .selectOption").click(function(){
+        var dominio = base_url+$(this).data("url")+"/";
+	window.location.href=dominio;
+    });
 
     /* smooth scrolling sections */
     $('a[href*=#]:not([href=#])').click(function () {
@@ -41,16 +54,19 @@ $(document).ready(function(){
     });
     
     //poner mas arriba el navegador si sobrepasa su posicion
-    var altura = $('#navegacion').offset().top;    
-    $(window).on('scroll', function(){
-        if ( $(window).scrollTop() > altura ){
-            $('#navegacion').addClass('navegacion_posicion_top');
-            $('#navegacion').removeClass('navegacion_posicion_standar');
-        } else {
-            $('#navegacion').addClass('navegacion_posicion_standar');
-            $('#navegacion').removeClass('navegacion_posicion_top');
-        }
-    });
+    if($('#navegacion').length){
+        var altura = $('#navegacion').offset().top;    
+        $(window).on('scroll', function(){
+            if ( $(window).scrollTop() > altura ){
+                $('#navegacion').addClass('navegacion_posicion_top');
+                $('#navegacion').removeClass('navegacion_posicion_standar');
+            } else {
+                $('#navegacion').addClass('navegacion_posicion_standar');
+                $('#navegacion').removeClass('navegacion_posicion_top');
+            }
+        });
+    }
+    
     
     //MENU
 

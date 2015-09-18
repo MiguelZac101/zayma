@@ -680,13 +680,21 @@ form[name=frm_contacto] .contenedor_textarea{
     }
 
     div.selectOptions  {        
-        left: -1px;
+/*        left: -1px;
         overflow: hidden;
         padding-top: 0;
         position: absolute;
         top: 54px;
         width: 300px;
+        display: none;*/
+        
         display: none;
+left: -1px;
+overflow: hidden;
+padding-top: 0;
+position: absolute;
+top: 54px;
+width: 300px;
     }
 
     span.selectOption {
@@ -737,10 +745,15 @@ form[name=frm_contacto] .contenedor_textarea{
         z-index: 1;
     }
     .select_galeria div.selectOptions{
-        background-color: #eae3d0;
+/*        background-color: #eae3d0;
         border: 1px solid #353f47;
         margin-top: 1px;
-        width: 100%;
+        width: 100%;*/
+        
+        background-color: #eae3d0;
+border: 1px solid #353f47;
+margin-top: 1px;
+width: calc(100% + 2px);
     }
     .select_galeria span.selectOption:hover{
         color:#eae3d0;
@@ -748,6 +761,101 @@ form[name=frm_contacto] .contenedor_textarea{
     }
 /*FIN SECCION CONTACTO*/
 
+/*COMBO ZAYMA*/
+.combo_zayma{
+margin: 0 0 20px;
+padding: 0;
+position: relative;
+text-align: left;
+width: 100%;
+z-index: 2;
+}
+.combo_zayma_cabecera{
+    cursor: pointer;
+    display: block;
+    font-size: 18px;
+    height: 55px; 
+    text-align: left;    
+}
+.combo_zayma_cabecera:hover{
+    text-decoration: none;
+}
+.combo_zayma_submenu{    
+    border: 1px solid #353f47;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 58px;
+    width: 100%;
+    display: none;
+}
+.combo_zayma_submenu li{
+    
+}
+.combo_zayma_submenu li a{
+    border-bottom: 1px solid;
+    cursor: pointer;
+    display: block;
+    height: 52px;    
+    width: 100%;
+    color: #353f47;
+    padding: 14px;
+}
+
+.combo_zayma_submenu li a:hover{
+    text-decoration: none;    
+}
+
+.combo_zayma_submenu li:last-of-type a {
+  border-bottom: medium none;
+}
+
+.combo_zayma_cabecera_nombre{
+    padding: 14px;
+    padding: 14px 50px 14px 14px;
+    overflow: hidden;
+}
+/*COMBO PRODUCTO*/
+.combo_producto .combo_zayma_cabecera{
+    background-color: #eae3d0;
+    border: 1px solid #353f47;
+    color: #353f47;    
+    position: relative;
+    width: 100%;
+}
+.combo_producto .combo_zayma_cabecera:after{
+    background-image: url("../images/select_flecha_02.png");
+    background-repeat: no-repeat;
+    content: "";
+    display: block;
+    height: 16px;
+    position: absolute;
+    right: 14px;
+    top: calc(50% - 8px);
+    width: 33px;
+}
+
+.combo_producto .combo_zayma_submenu{
+    background-color: #eae3d0;    
+}
+.combo_producto .combo_zayma_submenu li a:hover{ 
+    color:#eae3d0;
+    background-color: #353f47;
+}
+
+#combo_producto_grupo{
+    z-index: 30;
+}
+#combo_producto_categoria{
+    z-index: 20;
+}
+#combo_producto_subcategoria{
+    z-index: 10;
+}
+/*FIN COMBO PRODUCTO*/
+
+/*FIN COMBO ZAYMA*/
 /*MAPA*/
      
 /*FIN MAPA*/
@@ -872,7 +980,7 @@ transition: width 0.1s linear;
 }
 
 #seccion_productos .seccion_producto_selectores{
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 }
 .producto{
     cursor: pointer;
