@@ -74,8 +74,38 @@
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                 <a class="producto">
-                    <div class="producto_imagen">
-                        <img src="<?php echo base_url();?>images/producto.jpg" alt="imagen de producto" class="img-responsive"/>
+                    <div class="producto_imagen" >
+                        <!--<img src="<?php echo base_url();?>images/producto.jpg" alt="imagen de producto" class="img-responsive"/>-->
+                        <div class="producto_imagen_img" style="background-image: url('<?php echo base_url();?>images/producto.jpg');">
+                            <!--<img src="<?php echo base_url();?>images/producto.jpg" alt="imagen de producto" class="img-responsive"/>-->
+                        </div>
+                        <div class="producto_imagen_sombra">
+                            <div class="producto_imagen_sombra_lineas bloque_lineas">
+                                <div class="producto_imagen_sombra_lineas_cruz">
+
+                                </div>
+                                <div class="top"></div>
+                                <div class="right"></div>
+                                <div class="bottom"></div>
+                                <div class="left"></div>
+                            </div>
+                        </div>
+                    </div>                            
+                    <div class="producto_contenedor_titulo">
+                        <div class="producto_titulo">
+                            CARTERA<BR/>
+                            TIPO 01
+                        </div>
+                    </div>
+                </a>                      
+            </div>
+             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <a class="producto">
+                    <div class="producto_imagen" >
+                        <!--<img src="<?php echo base_url();?>images/producto.jpg" alt="imagen de producto" class="img-responsive"/>-->
+                        <div class="producto_imagen_img" style="background-image: url('<?php echo base_url();?>images/producto.jpg');">
+                            <!--<img src="<?php echo base_url();?>images/producto.jpg" alt="imagen de producto" class="img-responsive"/>-->
+                        </div>
                         <div class="producto_imagen_sombra">
                             <div class="producto_imagen_sombra_lineas bloque_lineas">
                                 <div class="producto_imagen_sombra_lineas_cruz">

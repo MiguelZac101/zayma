@@ -86,19 +86,23 @@
         <!--FIN MENU-->
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
-        
-
-        
-        <script src="<?php echo base_url();?>plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
-     
+        <script src="<?php echo base_url();?>plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>  
+        <script>
+            $('.carousel').carousel();
+        </script>
+   
         <script src="<?php echo base_url();?>plugins/animsition-master/dist/js/jquery.animsition.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>js/animsition.config.js" type="text/javascript"></script>
-    
-   
+
+  
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script> 
+   
         <script src="<?php echo base_url();?>js/base_url.js" type="text/javascript"></script>
+  
         <script src="<?php echo base_url();?>js/frontend.js" type="text/javascript"></script>
+        
         <script src="<?php echo base_url();?>js/sliderZayma.js" type="text/javascript"></script> 
+  
         <script src="<?php echo base_url();?>js/jquery.menuzac.js" type="text/javascript"></script> 
         <script type="text/javascript">
         $(document).ready(function(){ 
@@ -116,5 +120,6 @@
             }); 
         });
         </script>
+
     </body>
 </html>
