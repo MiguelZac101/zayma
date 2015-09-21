@@ -234,9 +234,9 @@
         </div>
         <!--FIN CONTACTO--> 
         <!--MAPA--> 
-        <div id="seccion_mapa">
-            seccion mapa
-        </div>
+<?php
+    echo $seccion_mapa;
+?> 
         <!--FIN MAPA--> 
         <!--ENCUENTRANOS--> 
         <!--PORTAFOLIO-->

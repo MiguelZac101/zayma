@@ -1,39 +1,8 @@
 $(document).ready(function(){
-    
-//    SELECT DE CONTACTO
-//    function enableSelectBoxes() {
-//        $('div.selectBox').each(function () {
-//            //$(this).children('span.selected').html($(this).children('div.selectOptions').children('span.selectOption:first').html());
-////            $(this).attr('value', $(this).children('div.selectOptions').children('span.selectOption:first').attr('value'));
-//
-//            $(this).children('span.selected,span.selectArrow').click(function () {
-//                if ($(this).parent().children('div.selectOptions').css('display') == 'none') {
-//                    $(this).parent().children('div.selectOptions').css('display', 'block');
-//                }
-//                else
-//                {
-//                    $(this).parent().children('div.selectOptions').css('display', 'none');
-//                }
-//            });     
-//
-//            
-//            $(this).parent().children('div.selectOptions').mouseout(function () {
-//                alert("salio del cuadro");
-//            });
-//
-//            $(this).find('span.selectOption').click(function () {
-//                $(this).parent().css('display', 'none');
-//                $(this).closest('div.selectBox').attr('data-id', $(this).data('id'));
-////                alert($(this).data('id'));
-//                $(this).parent().siblings('span.selected').html($(this).html());
-//            });
-//        });
-//    }
+    //ANCHO DEL SCROLL
+    $.scrollbarWidth=function(){var a,b,c;if(c===undefined){a=$('<div style="width:50px;height:50px;overflow:auto"><div/></div>').appendTo('body');b=a.children();c=b.innerWidth()-b.height(99).innerWidth();a.remove()}return c};
+//    alert($.scrollbarWidth());
 //    
-//    enableSelectBoxes();
-    
-    
-    
     //COMBOS LISTA DE PRODUCTOS
     $("#producto_combo_1 .selectOptions .selectOption").click(function(){
         var dominio = base_url+$(this).data("url")+"/";
@@ -144,5 +113,28 @@ $(document).ready(function(){
         $('#videoModal iframe').attr('src', "");
     });
 
+//PRODUCTOS COMBO
+    $("#combo_producto_grupo a.combo_zayma_cabecera").menuzac({
+        id_cuadromenu: '#combo_producto_grupo ul.combo_zayma_submenu',
+        tiempo: 100
+    });
+    $("#combo_producto_categoria a.combo_zayma_cabecera").menuzac({
+        id_cuadromenu: '#combo_producto_categoria ul.combo_zayma_submenu',
+        tiempo: 100
+    });
+    $("#combo_producto_subcategoria a.combo_zayma_cabecera").menuzac({
+        id_cuadromenu: '#combo_producto_subcategoria ul.combo_zayma_submenu',
+        tiempo: 100
+    }); 
+    
+    //ancho de google map
+    var ancho_ventana = $(window).width();// - $.scrollbarWidth();
+    $("#mapa_zayma").css("width",ancho_ventana);
+    
+//    var margen_lado = (1600 - ancho_ventana)/2;
+//    $("#mapa_zayma").css("margin-left",- margen_lado);
+////    $("#mapa_zayma").css("margin-right",margen_lado);
+//    var  nuevo_ancho = 1600 - 2*margen_lado;
+//    $("#mapa_zayma").css("width",nuevo_ancho);
 });
 

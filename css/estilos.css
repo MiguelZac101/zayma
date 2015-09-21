@@ -879,7 +879,34 @@ z-index: 2;
 /*SECCION ENCUENTRANOS*/
 #seccion_encuentranos{
     background-color: #98968f;
+    padding-bottom: 30px;
+    padding-top: 5px;
 }
+#seccion_encuentranos .email{
+font-size: 18px;
+margin-bottom: 20px;
+text-align: center;
+text-decoration: underline;
+}
+#seccion_encuentranos .tambien{
+font-style: oblique;
+font-weight: bold;
+margin-bottom: 16px;
+text-align: center;
+}
+#seccion_encuentranos .redes_sociales{
+    text-align: center;
+}
+#seccion_encuentranos .redes_sociales a{
+display: inline-block;
+margin: 0 3px;
+}
+#seccion_encuentranos .redes_sociales a img{
+
+}
+
+
+
 /*FIN SECCION ENCUENTRANOS*/
 
 /*FOOTER*/
@@ -1347,6 +1374,43 @@ width: 33.3333%;
         left: 40px;
 
     }
+ /*CARRUSEL DIRECCION FOOTER*/
+#encuentranos_carousel{
+     margin-bottom: 15px;
+}
+#encuentranos_carousel .carousel-inner{
+     
+}
+#encuentranos_carousel .carousel-inner .item{
+     
+}
+#encuentranos_carousel .carousel-control{
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    margin-top: 5%;
+}
+#encuentranos_carousel .carousel-control img{
+    
+}
+#encuentranos_carousel address{
+    font-size: 12px;
+    line-height: 21px;
+}
+
+.contenedor_direccion{
+    position: relative;
+}
+.contenedor_direccion .direccion{
+float: left;
+padding-right: 20px;
+text-align: left;
+width: 65%;
+}
+.contenedor_direccion .numeros{
+float: left;
+text-align: left;
+width: 35%;
+}
+    
  /*VIDEO MODAL*/
  #videoModal{
      

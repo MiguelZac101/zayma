@@ -82,7 +82,9 @@ section > .row .panel > .panel-body {
     padding: 0;
 }
 .navbar-brand img{
-    height: 100%;
+    height: 32px;
+    margin-top: 9px;
+    width: 32px;
 }
 
 footer {
@@ -123,4 +125,12 @@ footer .row {
     position: absolute;
     top: 50%;
    
+}
+
+/*MODAL MAS ANCHO*/
+.modal.modal-wide .modal-dialog {
+  width: 100%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
 }

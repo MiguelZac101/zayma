@@ -96,15 +96,15 @@
 
   
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script> 
-   
+  
         <script src="<?php echo base_url();?>js/base_url.js" type="text/javascript"></script>
   
         <script src="<?php echo base_url();?>js/frontend.js" type="text/javascript"></script>
         
         <script src="<?php echo base_url();?>js/sliderZayma.js" type="text/javascript"></script> 
-  
+        
         <script src="<?php echo base_url();?>js/jquery.menuzac.js" type="text/javascript"></script> 
-        <script type="text/javascript">
+<!--        <script type="text/javascript">
         $(document).ready(function(){ 
             $("#combo_producto_grupo a.combo_zayma_cabecera").menuzac({
                 id_cuadromenu:'#combo_producto_grupo ul.combo_zayma_submenu',
@@ -119,7 +119,7 @@
                 tiempo:100
             }); 
         });
-        </script>
-
+        </script>-->       
+        
     </body>
 </html>
