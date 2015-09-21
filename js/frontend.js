@@ -53,12 +53,9 @@ $(document).ready(function(){
             $header.css('display','block');
             setTimeout(function(){ $header.addClass('opened'); }, 100);
             setTimeout(function(){
-                    $('.secondary-links', $header).addClass('loaded');
+                    $('.redes_sociales', $header).addClass('loaded');
                     setTimeout(function(){
-                            $('.secondary-links .btn-shop', $header).addClass('loaded');
-                            setTimeout(function(){
-                                    $('.secondary-links .btn-follow', $header).addClass('loaded');
-                            }, 250);
+                            $('.datos_contacto', $header).addClass('loaded');                            
                     }, 100);
             }, 950);
             setTimeout(function(){ animRunning = false; }, 750);
@@ -78,7 +75,8 @@ $(document).ready(function(){
                 $header.addClass('leaving');
                 setTimeout(function(){
                         $header.removeClass('leaving').removeClass('opened');
-                        $('.secondary-links', $header).removeClass('loaded');
+                        $('.redes_sociales', $header).removeClass('loaded');
+                        $('.datos_contacto', $header).removeClass('loaded');
                         animRunning = false;	
                 }, 1250);
             }
@@ -136,5 +134,33 @@ $(document).ready(function(){
 ////    $("#mapa_zayma").css("margin-right",margen_lado);
 //    var  nuevo_ancho = 1600 - 2*margen_lado;
 //    $("#mapa_zayma").css("width",nuevo_ancho);
+
+    /*  MENU  */
+    $("#menu .btn_menu").hover(function(){
+        $(this).removeClass("btn_menu_borde"); 
+    });
+    $("#menu .btn_menu").mouseleave(function(){
+        var puntero = $(this);
+        setTimeout(
+            function(){
+                puntero.addClass("btn_menu_borde");
+            }
+            , 550);
+        
+    });
+//    $("#menu_top  a.btn-menu").click(function(){
+//       $("#menu").addClass("abrir"); 
+//    });
+//    $("#menu a.btn-menu-cerrar").click(function(){
+//       $("#menu").addClass("leaving"); 
+//       setTimeout(function(){
+//           $("#menu").removeClass("abrir");
+//           $("#menu").removeClass("leaving");
+//       },300);
+//    });
+    
+//    $("#menu .btn_menu").hover(function(){
+//       $(this).removeClass("btn_menu_borde"); 
+//    });
 });
 

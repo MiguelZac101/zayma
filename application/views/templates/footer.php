@@ -75,6 +75,91 @@
                                     SALIR
                                 </a>                    
                             </div>
+                            <div class="col-xs-12 contenedor_btn_menu" style="position: relative;">
+                                <a href="" class="btn_menu btn_menu_borde btn_menu_cuadritos_top btn-outlined btn_giro">
+                                    CRECEMOS CON EL MISMO OBJETIVO
+                                    <span class="sub">
+                                        NOSOTROS
+                                    </span>
+                                    <span class="line top"></span>
+                                    <span class="line right"></span>
+                                    <span class="line bottom"></span>
+                                    <span class="line left"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 contenedor_btn_menu">
+                                <a href="" class="btn_menu btn_menu_borde btn-outlined btn_giro">
+                                    LA MODA PASA, EL ESTILO NUNCA
+                                    <span class="sub">
+                                        GALERÍA
+                                    </span>
+                                    <span class="line top"></span>
+                                    <span class="line right"></span>
+                                    <span class="line bottom"></span>
+                                    <span class="line left"></span>
+                                </a>
+                            </div>
+                            
+                            <div class="col-xs-12 contenedor_btn_menu">
+                                <a href="" class="btn_menu btn_menu_borde btn-outlined btn_giro">
+                                    LAS MEJORES, SOLO HECHAS PARA TI
+                                    <span class="sub">
+                                        PROMOCIONES
+                                    </span>
+                                    <span class="line top"></span>
+                                    <span class="line right"></span>
+                                    <span class="line bottom"></span>
+                                    <span class="line left"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 contenedor_btn_menu">
+                                <a href="" class="btn_menu btn_menu_borde btn-outlined btn_giro">
+                                    LO ÚLTIMO DE LA MODA
+                                    <span class="sub">
+                                        NOVEDADES
+                                    </span>
+                                    <span class="line top"></span>
+                                    <span class="line right"></span>
+                                    <span class="line bottom"></span>
+                                    <span class="line left"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 contenedor_btn_menu">
+                                <a href="" class="btn_menu btn_menu_borde btn_menu_cuadritos_bottom btn-outlined btn_giro">
+                                    ENCUENTRANOS
+                                    <span class="sub">
+                                        CONTACTO
+                                    </span>
+                                    <span class="line top"></span>
+                                    <span class="line right"></span>
+                                    <span class="line bottom"></span>
+                                    <span class="line left"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 redes_sociales">
+                                <a href="" title="" class="rs_item">
+                                    <img src="<?php echo base_url(); ?>images/icono_youtube_blanco.png" alt=""/>
+                                </a>
+                                <a href="" title="" class="rs_item">
+                                    <img src="<?php echo base_url(); ?>images/icono_facebook_blanco.png" alt=""/>
+                                </a>
+                                <a href="" title="" class="rs_item">
+                                    <img src="<?php echo base_url(); ?>images/icono_twitter_blanco.png" alt=""/>
+                                </a>
+                            </div>
+                            <div class="datos_contacto">
+                                
+                                    <div class="item item1 text-right">
+                                        zayma@gmail.com 
+                                    </div>
+                                    <div class="item item2 text-center">
+                                        /
+                                    </div>
+                                    <div class="item item3 text-left">
+                                        (01) 1234567
+                                    </div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
