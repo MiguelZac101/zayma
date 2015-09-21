@@ -129,7 +129,7 @@ footer .row {
 
 /*MODAL MAS ANCHO*/
 .modal.modal-wide .modal-dialog {
-  width: 100%;
+  width: 95%;
 }
 .modal-wide .modal-body {
   overflow-y: auto;

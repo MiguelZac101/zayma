@@ -40,7 +40,7 @@
             class: 'table-striped table-bordered table-condensed',
             columnas: [
                 {leyenda: '#', style: 'width:30px;text-align:center;', class: '', columna: 'orden'},
-                {leyenda: 'Titulo', style: '', class: '', columna: 'titulo'},
+                {leyenda: 'Nombre', style: '', class: '', columna: 'titulo'},
                 {leyenda: 'Publicar', style: 'width:100px;', columna: 'publicar'},
                 {style: 'width:48px;'},
                 {style: 'width:48px;'},

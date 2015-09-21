@@ -7,19 +7,19 @@
         <form name="form_carrusel_nuevo" role="form">  
             <div class="form-group">
                 <label>Imagen Grande</label>
-                <input id="imagen_grande" type="file" name="imagen_grande" class="file" accept="image/*" data-show-upload="false" data-show-caption="false">
+                <input id="imagen_lg" type="file" name="imagen_lg" class="file" accept="image/*" data-show-upload="false" data-show-caption="false">
                 <p class="text-info" style="font-size: 11px;">Dimensiones de imagen recomendado 600x270px.</p>
                 <script>
-                    $('#imagen_grande').fileinput();
+                    $('#imagen_lg').fileinput();
                 </script>
             </div>
             
             <div class="form-group">
                 <label>Imagen Pequeña</label>
-                <input id="imagen_peque" type="file" name="imagen_peque" class="file" accept="image/*" data-show-upload="false" data-show-caption="false">
+                <input id="imagen_xs" type="file" name="imagen_xs" class="file" accept="image/*" data-show-upload="false" data-show-caption="false">
                 <p class="text-info" style="font-size: 11px;">Dimensiones de imagen recomendado 600x270px.</p>
                 <script>
-                    $('#imagen_peque').fileinput();
+                    $('#imagen_xs').fileinput();
                 </script>
             </div>
             
@@ -45,22 +45,22 @@ $(document).ready(function (){
 
     $('form[name=form_carrusel_nuevo]').validate({   
         rules:{
-            imagen_grande: {
+            imagen_lg: {
                 required: true,
                 accept: "image/*"
             }
             ,
-            imagen_peque: {
+            imagen_xs: {
                 required: true,
                 accept: "image/*"
             }
         },
         messages:{
-            imagen_grande: {
+            imagen_lg: {
                 required: "Imagen requerido.",
                 accept: "Solo se aceptan imagenes."
             },
-            imagen_peque: {
+            imagen_xs: {
                 required: "Imagen requerido.",
                 accept: "Solo se aceptan imagenes."
             }
@@ -83,9 +83,14 @@ $(document).ready(function (){
                    if(data.registro==1){
                        alert("Se registro correctamente.");
                        //actualizar el LISTADO
-                       
+                        $.post('<?php echo base_url(); ?>admin/novedad_carrusel/listado', {
+                            
+                        }, function (data) {                
+                            $("#myModal #modal_listado").html(data);
+                            $("#preloader").hide();
+                        });
                        //quitar cargador
-                       $("#preloader").hide();
+//                       $("#preloader").hide();
                        //$(location).attr('href', base_url+"admin/novedad/listado");
 //                       redirect("admin/noticia_articulo/listado");
                    }else{

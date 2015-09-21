@@ -25,10 +25,10 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-xs-6" id="modal_listado">
-                                listado
+                                cargando...
                             </div>
                             <div class="col-xs-6" id="modal_proceso">
-                                nuevo/editar
+                                cargando...
                             </div>
                         </div>
                     </div>

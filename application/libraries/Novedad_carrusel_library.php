@@ -9,10 +9,13 @@ Class Novedad_carrusel_library {
         $this->CI->load->model("generico_model");
         $this->CI->load->model("anexgrid_model"); 
         $this->CI->load->library("anexgrid");
+        
+        $this->CI->load->library('upload');
     }
     
     //VISTA MODAL
     public function vista_modal(){
+        $this->CI->session->set_userdata('id_novedad',$this->CI->input->post("id"));
         ob_start();
         $this->nuevo();
         $vista_nuevo = ob_get_contents();
@@ -53,11 +56,11 @@ Class Novedad_carrusel_library {
 //        $config['max_height'] = '270';
 //        $config['min_width'] = '600';
 //        $config['min_height'] = '270';
-
-        $this->CI->load->library('upload', $config);
+        
+        $this->CI->upload->initialize($config);
         
         //IMAGEN GRANDE
-        if (!$this->CI->upload->do_upload("imagen_grande")) {
+        if (!$this->CI->upload->do_upload("imagen_lg")) {
             //*** ocurrio un error            
             $errors['upload_imagen_lg'] =  $this->CI->upload->display_errors('','');    
             $errors['registro'] = 0;
@@ -65,7 +68,7 @@ Class Novedad_carrusel_library {
         }else{
             $uploadSuccess = $this->CI->upload->data();
             $file_name_ext = $uploadSuccess['file_name']; 
-            $path_imagen_grande = $config['upload_path'].$file_name_ext;
+            $path_imagen_lg = $config['upload_path'].$file_name_ext;
         } 
         
         $config['upload_path'] = "uploads/novedad_carrusel/";
@@ -76,23 +79,24 @@ Class Novedad_carrusel_library {
 //        $config['max_height'] = '270';
 //        $config['min_width'] = '600';
 //        $config['min_height'] = '270';
-
+        
+        $this->CI->upload->initialize($config);        
         //IMAGEN PEQUEÑA
-        if (!$this->CI->upload->do_upload("imagen_peque")) {
+        if (!$this->CI->upload->do_upload("imagen_xs")) {
             //*** ocurrio un error            
             $errors['upload_imagen_xs'] =  $this->CI->upload->display_errors('','');            
             $errors['registro'] = 0;
         }else{
             $uploadSuccess = $this->CI->upload->data();
             $file_name_ext = $uploadSuccess['file_name'];
-            $path_imagen_pequeno = $config['upload_path'].$file_name_ext;
+            $path_imagen_xs = $config['upload_path'].$file_name_ext;
         } 
         
         if($errors['registro']!=0){
             //REGISTRO DE LOS DATOS     
             $novedad_carrusel = array(                
-                'imagen_lg' => $path_imagen_grande,
-                'imagen_xs' => $path_imagen_pequeno,
+                'imagen_lg' => $path_imagen_lg,
+                'imagen_xs' => $path_imagen_xs,
                 'id_novedad' => $id_novedad
             );            
 
@@ -181,13 +185,14 @@ Class Novedad_carrusel_library {
     }
     
     public function anexgrid(){
+        $id_novedad = $this->CI->session->userdata('id_novedad');
 //        $this->CI->novedad_anexgrid->set();
         try
         {
             $this->CI->anexgrid->set();
 
             /* Si es que hay filtro, tenemos que crear un WHERE dinÃ¡mico */
-            $wh = "id > 0";
+            $wh = "id > 0 and id_novedad = ".$id_novedad;
 
             foreach($this->CI->anexgrid->filtros as $f)
             {
@@ -220,17 +225,16 @@ Class Novedad_carrusel_library {
     
     public function eliminar(){
         $id = $this->CI->input->post('id');  
-        $data_error = array("error" => 1); 
+        $data_error = array("error" => 0); 
         
-        //VERIFICAR DEPENDIENTES NOVEDAD_CARRUSEL
-        if(!$this->CI->generico_model->getCondicion(array('id_novedad'=> $id ),"novedad_carrusel")){
-            $novedad = $this->CI->generico_model->get($id,"novedad_carrusel");
-            //eliminar imagen
-            @unlink($novedad['imagen']);
-            //eliminar registro de base de datos
-            $result = $this->CI->generico_model->eliminar($id,"novedad_carrusel");       
-            $data_error["error"] = 0;            
-        } 
+        $novedad = $this->CI->generico_model->get($id,"novedad_carrusel");
+        //eliminar imagen
+        @unlink($novedad['imagen_lg']);
+        @unlink($novedad['imagen_xs']);
+        
+        //eliminar registro de base de datos
+        $result = $this->CI->generico_model->eliminar($id,"novedad_carrusel");                            
+        
         echo json_encode($data_error);  
          
     }

@@ -79,13 +79,13 @@
 
             $("#preloader").show();
             /* Petición ajax al servidor */
-            $.post('<?php echo base_url(); ?>admin/novedad/eliminar/', {
+            $.post('<?php echo base_url(); ?>admin/novedad_carrusel/eliminar/', {
                 id: fila.id
             }, function (r) {
                 if (r.error==0) {
                     agrid.refrescar();                    
                 }else{
-                    alert("Al parecer esta Categoria tiene Subcategorias registradas, primero debe eliminar todas las subcategorias dependientes.")
+                    alert("No se pudo eliminar.");
                 }    
                 
                 $("#preloader").hide();
