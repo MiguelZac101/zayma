@@ -13,11 +13,12 @@
         <link href="<?php echo base_url();?>plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- animsition.css -->
         <link href="<?php echo base_url();?>plugins/animsition-master/dist/css/animsition.min.css" rel="stylesheet" type="text/css"/>      
+        <link href="<?php echo base_url();?>css/fuentes.css" rel="stylesheet" type="text/css" charset="utf-8"/>
         
         <link href="<?php echo base_url();?>css/estilos.css" rel="stylesheet" type="text/css" charset="utf-8"/>
         <link href="<?php echo base_url();?>css/menu.css" rel="stylesheet" type="text/css" charset="utf-8"/>
         
-        <link href="<?php echo base_url();?>css/fuentes.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+        
         
         <!--
         <script src="js/loadingAsync.js" type="text/javascript" async="async"></script>

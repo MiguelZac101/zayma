@@ -24,6 +24,7 @@ Class Frontend extends CI_Controller {
                 case "nosotros"  : $this->nosotros(); break;
                 case "novedades"  : $this->novedades(); break;
                 case "promociones"  : $this->promociones(); break;
+                case "fuentedem"  : $this->load->view("fuentedem",null); break;
                 default : 
                     //REDIRECCION LISTA DE PRODUCTOS
                     $grupo = $this->generico_model->getCondicion(array("url"=>$uri1),"producto_grupo");
@@ -182,7 +183,7 @@ Class Frontend extends CI_Controller {
 
     }    
     public function promociones(){
-        echo "PROMOCIONES";
+        $this->load->view("promociones",null);
     }
 
 }

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-                <h2 class="titulo01">Encuentranos</h2>
+                <h2 class="titulo01">ENCUENTRANOS</h2>
                 <h3 class="titulo04">Estamos a tu servicio</h3>
                 <br/><br/>
                 
@@ -21,12 +21,12 @@
                         <div class="active item">
                             <address>
                                 <div class="row">
-                                    <div class="col-xs-offset-2 col-xs-5">
+                                    <div class="col-xs-offset-1 col-xs-5">
                                         <strong>Twitter, Inc.</strong><br>
                                         795 Folsom Ave, Suite 600<br>
                                         San Francisco, CA 94107<br>
                                     </div>
-                                    <div class="col-xs-3">
+                                    <div class="col-xs-5">
                                         <div>
                                             <img src="<?php echo base_url(); ?>images/icono_telefono.png" alt=""/> (123) 456-7890
                                         </div>                                         

@@ -1,91 +1,52 @@
+/*CaviarDreams*/
 @font-face {
     font-family: 'CaviarDreams';
     font-style: normal;
     font-weight: 400;
-    src: url('../fuentes/CaviarDreams_total/caviardreams-webfont.eot'); /* IE9 Compat Modes */
-    src: url('../fuentes/CaviarDreams_total/caviardreams-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../fuentes/CaviarDreams_total/caviardreams-webfont.woff2') format('woff2'), /* Super Modern Browsers */
-         url('../fuentes/CaviarDreams_total/caviardreams-webfont.woff') format('woff'), /* Pretty Modern Browsers */
-         url('../fuentes/CaviarDreams_total/caviardreams-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
-         url('../fuentes/CaviarDreams_total/caviardreams-webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
-  }
+    src: local('Caviar Dreams'), local('CaviarDreams'), url(../fonts/caviardreams/CaviarDreams_normal.woff2) format('woff2'), url(../fonts/caviardreams/CaviarDreams_normal.woff) format('woff');
+}
 
-/*@font-face {
+@font-face {
     font-family: 'CaviarDreams';
-    src: url('../fuentes/CaviarDreams/caviardreams-webfont.eot');
-    src: url('../fuentes/CaviarDreams/caviardreams-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fuentes/CaviarDreams/caviardreams-webfont.woff2') format('woff2'),
-         url('../fuentes/CaviarDreams/caviardreams-webfont.woff') format('woff'),
-         url('../fuentes/CaviarDreams/caviardreams-webfont.ttf') format('truetype'),
-         url('../fuentes/CaviarDreams/caviardreams-webfont.svg#caviar_dreamsregular') format('svg');
-    font-weight: normal;
     font-style: normal;
-}*/
-
-/* Caviar Dreams Fonts */
-
-/*@font-face {
-    font-family: CaviarDreams;
-    src: url('../fuentes/CaviarDreams_Bold.ttf');
+    font-weight: 700;
+    src: local('Caviar Dreams Bold'), local('CaviarDreams-Bold'), url(../fonts/caviardreams/CaviarDreams_Bold.woff2) format('woff2'), url(../fonts/caviardreams/CaviarDreams_Bold.woff) format('woff');
 }
 @font-face {
-    font-family: CaviarDreams;
-    src: url('../fuentes/CaviarDreams_BoldItalic.ttf');
+    font-family: 'CaviarDreams';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Caviar Dreams Italic'), local('CaviarDreams-Italic'), url(../fonts/caviardreams/CaviarDreams_Italic.woff2) format('woff2'), url(../fonts/caviardreams/CaviarDreams_Italic.woff) format('woff');
 }
 @font-face {
-    font-family: CaviarDreams;
-    src: url('../fuentes/CaviarDreams_Italic.ttf');
+    font-family: 'CaviarDreams';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Caviar Dreams Bold Italic'), local('CaviarDreams-BoldItalic'), url(../fonts/caviardreams/CaviarDreams_BoldItalic.woff2) format('woff2'), url(../fonts/caviardreams/CaviarDreams_BoldItalic.woff) format('woff');
 }
-
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-Black.otf');
-}
+/*HVD Fonts - BrandonText-Regular*/
 
 @font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-BlackItalic.otf');
+    font-family: 'BrandonText';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Caviar Dreams'), local('BrandonText'), url(../fonts/brandontext/BrandonText-Regular.woff2) format('woff2'), url(../fonts/brandontext/BrandonText-Regular.woff) format('woff');
 }
 @font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-Bold.otf');
-}
-
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-BoldItalic.otf');
+    font-family: 'BrandonText';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Brandon Text Bold'), local('BrandonText-Bold'), url(../fonts/brandontext/BrandonText-Bold.woff2) format('woff2'), url(../fonts/brandontext/BrandonText-Bold.woff) format('woff');
 }
 @font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-Light.otf');
+    font-family: 'BrandonText';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Brandon Text Italic'), local('BrandonText-Italic'), url(../fonts/brandontext/BrandonText-RegularItalic.woff2) format('woff2'), url(../fonts/brandontext/BrandonText-RegularItalic.woff) format('woff');
 }
 @font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-LightItalic.otf');
+    font-family: 'BrandonText';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Brandon Text Bold Italic'), local('BrandonText-BoldItalic'), url(../fonts/brandontext/BrandonText-BoldItalic.woff2) format('woff2'), url(../fonts/brandontext/BrandonText-BoldItalic.woff) format('woff');
 }
-
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-Medium.otf');
-}
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-MediumItalic.otf');
-}
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-Regular.otf');
-}
-
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-RegularItalic.otf');
-}
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-Thin.otf');
-}
-@font-face {
-    font-family: BrandonText;
-    src: url('../fuentes/HVD Fonts - BrandonText-ThinItalic.otf');
-}*/

@@ -1,20 +1,9 @@
-
-
-body{
-  
+*{
+    font-family: CaviarDreams, Arial, sans-serif;    
 }
-
 h2{
-    
+    font-family: BrandonText, Arial, sans-serif;    
 }
-span{
-    font-family: 'CaviarDreams', Arial, sans-serif;;
-}
-
-body{
-    position: relative;
-}
-
 h2{
 font-size: 25px;
 font-weight: bold;
@@ -32,6 +21,7 @@ h3{
     margin-top: 17px;
     position: relative;
     text-align: center;
+        
 }
 
 h3:after {
@@ -424,8 +414,24 @@ float: left;
 height: 515px;
 width: calc(100% - 505px);
 }
-#seccion_portafolio .portafolio .portafolio_imagen img{
-    height: 515px;
+#portafolio_carousel{
+    
+}
+#portafolio_carousel .carousel-indicators{
+    bottom: 5px;
+}
+#portafolio_carousel .carousel-indicators li{
+background-color: transparent;
+background-image: url("../images/portafolio_icono.png");
+border: medium none;
+border-radius: 0;
+display: inline-block;
+height: 20px;
+margin: 0 12px;
+width: 18px;
+}
+#portafolio_carousel .carousel-indicators li.active{
+    background-image: url("../images/portafolio_icono_activo.png");
 }
 
 /*movil*/
@@ -883,7 +889,8 @@ z-index: 2;
     padding-top: 5px;
 }
 #seccion_encuentranos .email{
-font-size: 18px;
+font-size: 27px;
+font-weight: bold;
 margin-bottom: 20px;
 text-align: center;
 text-decoration: underline;
@@ -1387,13 +1394,14 @@ width: 33.3333%;
 #encuentranos_carousel .carousel-control{
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     margin-top: 5%;
+    width: 10%;
 }
 #encuentranos_carousel .carousel-control img{
     
 }
 #encuentranos_carousel address{
-    font-size: 12px;
-    line-height: 21px;
+font-size: 16px;
+line-height: 21px;
 }
 
 .contenedor_direccion{
