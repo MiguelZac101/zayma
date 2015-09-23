@@ -52,11 +52,11 @@
                     ,
                 {formato: function (tr, obj, celda) {
                         return anexGrid_boton({
-                            class: 'btn btn-default btn-sm btn-ver',
-                            contenido: '<i class="fa fa-eye fa-fw"></i>',
+                            class: 'btn btn-primary btn-sm btn-editar',
+                            contenido: '<i class="fa fa-pencil-square-o fa-fw"></i>',
                             value: tr.data('fila'),
                             attr: [
-                                'title="Ver Detalles"'
+                                'title="Editar"'
                             ]
                         });
                     }}
@@ -94,7 +94,7 @@
             return false;
         });
         
-        agrid.tabla().on('click', '.btn-ver', function (e) {
+        agrid.tabla().on('click', '.btn-editar', function (e) {
             e.preventDefault();
             //if(!confirm('¿Esta seguro de eliminar este registro?')) return;
 
@@ -102,15 +102,17 @@
             var fila = agrid.obtener($(this).val());
             $("#preloader").show();
             /* Petición ajax al servidor */
-            $.post('<?php echo base_url(); ?>admin/novedad_carrusel/ver', {
+            $.post('<?php echo base_url(); ?>admin/novedad_carrusel/editar', {
                 id: fila.id
             }, function (data) {                
-                $("#cargar_ajax").html(data);
+                $("#myModal #modal_proceso").html(data);
                 $("#preloader").hide();
             });
 
             return false;
         });
+        
+
 
     })
 </script>       

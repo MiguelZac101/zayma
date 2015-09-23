@@ -9,7 +9,6 @@ Class Admin extends CI_Controller {
         $this->load->library("producto_categoria_library");
         $this->load->library("producto_subcategoria_library");
         $this->load->library("producto_library");
-        $this->load->library("producto_imagen_library");
         
         $this->load->library("novedad_library");
         $this->load->library("novedad_carrusel_library");
@@ -173,7 +172,8 @@ Class Admin extends CI_Controller {
     }
     
     //PRODUCTO IMAGEN
-    public function producto_imagen($page,$id_producto=NULL){
+    public function producto_imagen($page,$id_producto=NULL){        
+        
         switch($page){           
             case "eliminar": 
                 $this->producto_imagen_library->eliminar();
@@ -245,10 +245,7 @@ Class Admin extends CI_Controller {
                 break;
             case "orden_abajo": 
                 $this->novedad_library->orden_abajo();
-                break;   
-            case "destacado": 
-                $this->novedad_library->destacado();
-                break;
+                break;           
         }
     }
     

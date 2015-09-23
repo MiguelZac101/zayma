@@ -160,60 +160,6 @@ h3.titulo04:after{
 
 /*SERVICIOS*/
 
-/*#seccion_servicios, #seccion_servicios_movil{
-    background-color: #eae3d0;
-    padding-bottom: 40px;
-    padding-top: 40px;
-    position: relative;
-}
-
-#seccion_servicios #contenedor_servicio{
-  
-}
-#seccion_servicios #contenedor_servicio ul#servicio{  
-    list-style: outside none none;
-    margin: 0;
-    padding: 0;
-}
-#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque{
-    display: block;
-    float: left;
-    margin-right: 40px;
-    width: 352px;
-}
-#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque:last-of-type{
-    margin-right: 0px;
-}
-#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque div{
-    position: relative;
-}
-
-#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque div span.img{
-    background: rgba(0, 0, 0, 0) none no-repeat scroll 50% 50% / auto 100%;
-    display: block;
-    height: 460px;
-    opacity: 1 !important;
-    width: 100%;
-}
-
-
-
-#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque div a{    
-    bottom: 30px;   
-    display: block;
-    left: 50%;
-    margin-left: -112px;   
-    position: absolute; 
-}
-
-
-
-#seccion_servicios #contenedor_servicio ul#servicio li.servicio_bloque div a:hover{
-    text-decoration: none;
-}*/
-
-/*SERVICIOS*/
-
 #seccion_servicios, #seccion_servicios_movil{
     background-color: #eae3d0;
     padding-bottom: 40px;
@@ -1301,6 +1247,31 @@ display: block;
     text-align: center;
 }
 
+/*SECCION NOVEDADES*/
+#seccion_novedades{
+    background-color: #eae3d0;
+    padding: 40px 0;
+}
+
+.novedad{
+cursor: pointer;
+display: block;
+}
+.novedad:hover{
+    text-decoration: none;
+}
+.novedad img{
+    width: 100%;
+}
+.novedad_nombre{
+    background-color: #98968f;
+    color: #353f47;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 30px 0;
+    text-align: center;
+}
+
 
 /*CARRUSEL FADE*/
 .carousel-fade    .carousel-inner       .item {
@@ -1345,53 +1316,55 @@ display: block;
 }
 
 /*NOVEDADES CARRUSEL*/
-    #novedades_carrusel{
+#novedades_carrusel{
 
-    }
-    #novedades_carrusel .carousel-indicators{ 
-        bottom: 0;
-        display: block;
-        left: 0;
-        margin-bottom: 0;
-        margin-left: 0;
-        position: relative;
-        width: 100%;
-    }    
-    #novedades_carrusel .carousel-indicators li{     
- border: medium none;
-border-radius: 0;
-display: block;
-float: left;
-height: auto;
-margin: 0;
-padding: 0;
-position: relative;
-width: 33.3333%;
-    }
-    #novedades_carrusel .carousel-indicators li a{
-        
-    }
-    #novedades_carrusel .carousel-indicators li a img{
-        
-    }
-    #novedades_carrusel .carousel-control.right,#novedades_carrusel .carousel-control.left{
-        border: 2px solid #eae3d0; 
-        height: 40px;
-        top: 210px;
-        width: 40px;
-        background: none;
-        transform: rotate(45deg);
-    }
-    #novedades_carrusel .carousel-control.right{
-        
-        right: 40px;
-        
-    }
-    #novedades_carrusel .carousel-control.left{
+}
+#novedades_carrusel .carousel-indicators{ 
+    bottom: 0;
+    display: block;
+    left: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    position: relative;
+    width: 100%;
+}    
+#novedades_carrusel .carousel-indicators li{     
+    border: medium none;
+    border-radius: 0;
+    display: block;
+    float: left;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 33.3333%;
+}
+#novedades_carrusel .carousel-indicators li a{
 
-        left: 40px;
+}
+#novedades_carrusel .carousel-indicators li a img{
 
-    }
+}
+#novedades_carrusel .carousel-control.right,#novedades_carrusel .carousel-control.left{
+    height: 66px;
+    top: 210px;
+    width: 67px;
+}
+#novedades_carrusel .carousel-control.right{
+    right: 40px;
+    background-image: url("../images/novedad_flecha_derecha.png");
+}
+#novedades_carrusel .carousel-control.right:hover{   
+    background-image: url("../images/novedad_flecha_derecha_hover.png");
+}
+#novedades_carrusel .carousel-control.left{
+    left: 40px;
+    background-image: url("../images/novedad_flecha_izquierda.png");
+}
+#novedades_carrusel .carousel-control.left:hover{ 
+    background-image: url("../images/novedad_flecha_izquierda_hover.png");
+}
+
  /*CARRUSEL DIRECCION FOOTER*/
 #encuentranos_carousel{
      margin-bottom: 15px;

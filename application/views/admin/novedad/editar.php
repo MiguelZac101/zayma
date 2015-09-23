@@ -72,18 +72,18 @@
                 type: 'POST',
                 dataType : 'json',
                 success: function(data){
-                    $("#preloader").hide();
-                    //error de imagen
-//                   if(data.upload_imagen!=''){
-//                       alert(data.upload_imagen);
-//                   }
-                   //registro
                    if(data.actualizar==1){
                        alert("Registro Actualizado!.");
                        $(location).attr('href', base_url+"admin/novedad/listado");
-//                       redirect("admin/editor/listado");
+
                    }else{
-                       alert("Sucedio un error no se pudo actualizar el registrar.");
+                       $("#preloader").hide();
+                       
+                        if(data.upload_imagen!=''){
+                            alert(data.upload_imagen);
+                        }else{
+                            alert("Sucedio un error no se pudo actualizar el registro.");
+                        } 
                    }
                     
                 }

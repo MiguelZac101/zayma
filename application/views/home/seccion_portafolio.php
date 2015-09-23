@@ -9,7 +9,7 @@
                     Con un toque de estilo
                 </h3>
                 <br><br><br/><br/>
-                <a href="" title="" class="btn01">
+                <a href="<?php echo base_url()?>novedades" title="" class="btn01">
                     DESCUBRE MÁS
                 </a>
                 <div class="top"></div>

@@ -9,6 +9,8 @@ Class Novedad_library {
         $this->CI->load->model("generico_model");
         $this->CI->load->model("anexgrid_model"); 
         $this->CI->load->library("anexgrid");
+        
+        $this->CI->load->library('upload');
     }
     
     //nuevo vista
@@ -34,7 +36,7 @@ Class Novedad_library {
 
         //$url = codificarURL($nombre);
         
-        $config['upload_path'] = "uploads/novedad/";
+        $config['upload_path'] = "./temp/";
         $config['file_name'] = "novedad_".Date("YmdHis");
         $config['allowed_types'] = "gif|jpg|jpeg|png";  
 //            $config['max_size'] = '100';
@@ -43,7 +45,7 @@ Class Novedad_library {
         $config['min_width'] = '600';
         $config['min_height'] = '270';
 
-        $this->CI->load->library('upload', $config);
+        $this->CI->upload->initialize($config);
         
         /////////////////////////////////////////
         if (!$this->CI->upload->do_upload("imagen")) {
@@ -97,7 +99,8 @@ Class Novedad_library {
         $config['min_width'] = '600';
         $config['min_height'] = '270';
 
-        $this->CI->load->library('upload', $config);
+        
+        $this->CI->upload->initialize($config);
         
         //update
         $novedad_update = array(
@@ -107,7 +110,7 @@ Class Novedad_library {
         
         if (!$this->CI->upload->do_upload("imagen")) {
             //*** ocurrio un error            
-            //$errors['upload_imagen'] =  $this->CI->upload->display_errors('','');
+            $errors['upload_imagen'] =  $this->CI->upload->display_errors('','').$config['upload_path'];
         }else{
             //como cargo una imagen, primero borramos las imagenes antiguas
             @unlink($imagen_path_antiguo);
@@ -255,6 +258,16 @@ Class Novedad_library {
             //sino es el primero
             echo json_encode(array("abajo"=> 0)); 
         }        
+    }
+    
+    public function destacado(){
+        $id = $this->CI->input->post('id'); 
+        //todos poner a 0 su destacado
+        $this->CI->generico_model->editar_todos(array('destacado' => 0 ),"novedad");  
+        //cambiar destacado a 1 solo a este item
+        $this->CI->generico_model->editar($id,array('destacado' => 1 ),"novedad");     
+        
+        echo json_encode(true);  
     }
     
 

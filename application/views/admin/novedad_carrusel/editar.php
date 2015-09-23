@@ -1,28 +1,31 @@
 <div class="panel panel-default">
-    <div class="panel-heading">NOVEDADES - Editar</div>                      
+    <div class="panel-heading">CARRUSEL - Editar</div>                      
 
     <div class="panel-body" >
-        <form name="form_editar" role="form" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?php echo $id; ?>"/>
-
+        <form name="form_carrusel_editar" role="form" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?php echo $novedad_carrusel['id']; ?>"/>
+            
             <div class="form-group">
-                <label>Titulo</label>
-                <input type="text" class="form-control" id="nombre" name="titulo" placeholder="" value="<?php echo $titulo; ?>">
-            </div>          
-            <div class="form-group">
-                <label>Descripción</label>
-                <textarea class="form-control" rows="3" maxlength="200" id="descripcion" name="descripcion" placeholder="Descripción"><?php echo $descripcion; ?></textarea>
-                <p class="text-info" style="font-size: 11px;">Máximo de caracteres 200.</p>
-            </div>
-
-            <div class="form-group">
-                <label>Imagen</label>
-                <input id="imagen" type="file" name="imagen" class="file" accept="image/*" data-show-upload="false" data-show-caption="false">
-                <p class="text-info" style="font-size: 11px;">Dimensiones de imagen recomendado 600x270 pixeles.</p>
-                <script>
-                    $('#imagen').fileinput({
+                <label>Imagen Grande</label>
+                <input id="imagen_lg" type="file" name="imagen_lg" class="file" accept="image/*" data-show-upload="false" data-show-caption="false">
+                <p class="text-info" style="font-size: 11px;">Dimensiones de imagen recomendado 1280x515px.</p>
+                <script>                    
+                    $('#imagen_lg').fileinput({
                         initialPreview: [
-                            '<img src="<?php echo base_url($imagen); ?>" class="file-preview-image" alt="<?php echo $titulo; ?>">'
+                            '<img src="<?php echo base_url($novedad_carrusel['imagen_lg']); ?>" class="file-preview-image" alt="imagen lg">'
+                        ]
+                    });
+                </script>
+            </div>
+            
+            <div class="form-group">
+                <label>Imagen Pequeña</label>
+                <input id="imagen_xs" type="file" name="imagen_xs" class="file" accept="image/*" data-show-upload="false" data-show-caption="false">
+                <p class="text-info" style="font-size: 11px;">Dimensiones de imagen recomendado 428x358px.</p>
+                <script>                    
+                    $('#imagen_xs').fileinput({
+                        initialPreview: [
+                            '<img src="<?php echo base_url($novedad_carrusel['imagen_xs']); ?>" class="file-preview-image" alt="imagen xs">'
                         ]
                     });
                 </script>
@@ -47,21 +50,33 @@
     $(document).ready(function (){
 
     
-    $('form[name=form_editar]').validate({        
+    $('form[name=form_carrusel_editar]').validate({        
         rules:{
-            titulo: {
-                required: true,
-                minlength: 5
+            imagen_lg: {             
+                accept: "image/*"
             }
-
-        },       
+            ,
+            imagen_xs: {                
+                accept: "image/*"
+            }
+        }
+        ,
+        messages:{
+            imagen_lg: {
+                required: "Imagen requerido.",
+                accept: "Solo se aceptan imagenes."
+            },
+            imagen_xs: {
+                required: "Imagen requerido.",
+                accept: "Solo se aceptan imagenes."
+            }
+        }
+        ,        
         submitHandler: function(form) {
-            // some other code
-            // maybe disabling submit button
-            // then:
-//            $(form).submit(); 
-            var url = base_url + 'admin/novedad/actualizar';
+            var url = base_url + 'admin/novedad_carrusel/actualizar';
             var data = new FormData(form);
+            data.append("id_novedad",$("#myModal").attr("data-id"));
+            
             $("#preloader").show();
             $.ajax({
                 url: url,
@@ -73,17 +88,33 @@
                 dataType : 'json',
                 success: function(data){
                     $("#preloader").hide();
-                    //error de imagen
-//                   if(data.upload_imagen!=''){
-//                       alert(data.upload_imagen);
-//                   }
                    //registro
                    if(data.actualizar==1){
                        alert("Registro Actualizado!.");
-                       $(location).attr('href', base_url+"admin/novedad/listado");
-//                       redirect("admin/editor/listado");
+                       $.post('<?php echo base_url(); ?>admin/novedad_carrusel/listado', {
+                            
+                        }, function (data) {                
+                            $("#myModal #modal_listado").html(data);
+                            
+                            //actualizar nuevo
+                            $.post('<?php echo base_url(); ?>admin/novedad_carrusel/nuevo', {
+
+                            }, function (data) {                
+                                $("#myModal #modal_proceso").html(data);
+                                $("#preloader").hide();
+                            });
+                                                        
+                            $("#preloader").hide();
+                        });
                    }else{
-                       alert("Sucedio un error no se pudo actualizar el registrar.");
+                   
+                       $("#preloader").hide();
+                       if(data.upload_imagen!=''){
+                            alert(data.upload_imagen);
+                            return;
+                        }else{
+                            alert("Sucedio un error no se pudo registrar.");
+                        } 
                    }
                     
                 }
@@ -92,13 +123,13 @@
     });
     
     //CANCELAR, CARGAR EL FORMULARIO DE "NUEVO"
-    $('form[name=form_editar] button[name=cancelar]').on('click',function(e){
+    $('form[name=form_carrusel_editar] button[name=cancelar]').on('click',function(e){
         e.preventDefault();
         $("#preloader").show();
-        $.post('<?php echo base_url(); ?>admin/novedad/nuevo/', {
+        $.post('<?php echo base_url(); ?>admin/novedad_carrusel/nuevo/', {
             
         }, function (data) {
-            $("#cargar_ajax").html(data);
+            $("#myModal #modal_proceso").html(data);
             $("#preloader").hide();
         });
     });

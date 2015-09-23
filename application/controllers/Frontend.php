@@ -131,6 +131,7 @@ Class Frontend extends CI_Controller {
     
     public function home(){
         $data_home = array(
+            "seccion_home_header" => $this->load->view("home/seccion_home_header",null,true),
             "seccion_servicios" => $this->home_servicios(),
             "seccion_portafolio" => $this->home_portafolio(),
             "seccion_encuentranos" => $this->seccion_encuentranos(),
@@ -178,16 +179,24 @@ Class Frontend extends CI_Controller {
         echo "NOSOTROS";
     }
     public function novedades(){
-        $data = array(            
-            
-        );
+        $data = array( );
+        $novedad_destacado = $this->generico_model->getCondicion(array("destacado" => 1,"publicar"=>1),"novedad"); 
+        $data['carrusel'] = $this->generico_model->listadoCondicion(array("id_novedad" => $novedad_destacado['id']),"novedad_carrusel"); 
+        
+        $data["novedades"] = $this->generico_model->listadoCondicion(array("publicar" => 1),"novedad"); 
+        
         $this->load->view("templates/header");
         $this->load->view("novedades",$data);
         $this->load->view("templates/footer");
 
     }    
     public function promociones(){
-        $this->load->view("promociones",null);
+        $data = array(            
+            
+        );
+        $this->load->view("templates/header");
+        $this->load->view("promociones",$data);
+        $this->load->view("templates/footer");
     }
 
 }

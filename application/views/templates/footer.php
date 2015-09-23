@@ -76,7 +76,7 @@
                                 </a>                    
                             </div>
                             <div class="col-xs-12 contenedor_btn_menu" style="position: relative;">
-                                <a href="" class="btn_menu btn_menu_borde btn_menu_cuadritos_top btn-outlined btn_giro">
+                                <a href="<?php echo base_url(); ?>nosotros" class="btn_menu btn_menu_borde btn_menu_cuadritos_top btn-outlined btn_giro">
                                     CRECEMOS CON EL MISMO OBJETIVO
                                     <span class="sub">
                                         NOSOTROS
@@ -88,7 +88,7 @@
                                 </a>
                             </div>
                             <div class="col-xs-12 contenedor_btn_menu">
-                                <a href="" class="btn_menu btn_menu_borde btn-outlined btn_giro">
+                                <a href="<?php echo base_url(); ?>caballeros" class="btn_menu btn_menu_borde btn-outlined btn_giro">
                                     LA MODA PASA, EL ESTILO NUNCA
                                     <span class="sub">
                                         GALERÍA
@@ -101,7 +101,7 @@
                             </div>
                             
                             <div class="col-xs-12 contenedor_btn_menu">
-                                <a href="" class="btn_menu btn_menu_borde btn-outlined btn_giro">
+                                <a href="<?php echo base_url(); ?>promociones" class="btn_menu btn_menu_borde btn-outlined btn_giro">
                                     LAS MEJORES, SOLO HECHAS PARA TI
                                     <span class="sub">
                                         PROMOCIONES
@@ -113,7 +113,7 @@
                                 </a>
                             </div>
                             <div class="col-xs-12 contenedor_btn_menu">
-                                <a href="" class="btn_menu btn_menu_borde btn-outlined btn_giro">
+                                <a href="<?php echo base_url(); ?>novedades" class="btn_menu btn_menu_borde btn-outlined btn_giro">
                                     LO ÚLTIMO DE LA MODA
                                     <span class="sub">
                                         NOVEDADES

@@ -42,6 +42,8 @@
                 {leyenda: '#', style: 'width:30px;text-align:center;', class: '', columna: 'orden'},
                 {leyenda: 'Nombre', style: '', class: '', columna: 'titulo'},
                 {leyenda: 'Publicar', style: 'width:100px;', columna: 'publicar'},
+                {leyenda: 'Destacado', style: 'width:100px;', columna: 'destacado'},
+                {style: 'width:48px;'},
                 {style: 'width:48px;'},
                 {style: 'width:48px;'},
                 {style: 'width:48px;'},
@@ -56,15 +58,8 @@
                 {propiedad: 'publicar', formato: function (tr, obj, valor) {
                         return valor == 1 ? '<div class="text-success">Publicado</div>' : '<div class="text-danger">No Publicado</div>';
                     }},
-                {formato: function (tr, obj, celda) {
-                        return anexGrid_boton({
-                            class: 'btn btn-danger btn-sm btn-eliminar',
-                            contenido: '<i class="fa fa-trash-o fa-fw"></i>',
-                            value: tr.data('fila'),
-                            attr: [
-                                'title="Eliminar"'
-                            ]
-                        });
+                {propiedad: 'destacado', formato: function (tr, obj, valor) {
+                        return valor == 1 ? '<div class="text-success">Destacado</div>' : '<div class="text-danger">No Destacado</div>';
                     }},
                 {formato: function (tr, obj, celda) {
                         return anexGrid_boton({
@@ -95,10 +90,22 @@
                                 'title="Publicar/Despublicar"'
                             ]
                         });    
-                    }},
+                    }}
+                    ,
                     { formato: function(tr, obj, celda){
                         return anexGrid_boton({
-                            class: 'btn btn-info btn-sm btn-arriba',
+                            class: 'btn btn-info btn-sm btn-destacado',
+                            contenido: '<i class="fa fa-star fa-fw"></i>',
+                            value: tr.data('fila'),
+                            attr: [
+                                'title="Destacado"'
+                            ]
+                        });    
+                    }}
+                    ,
+                    { formato: function(tr, obj, celda){
+                        return anexGrid_boton({
+                            class: 'btn btn-default btn-sm btn-arriba',
                             contenido: '<i class="fa fa-arrow-up fa-fw"></i>',
                             value: tr.data('fila'),
                             attr: [
@@ -108,13 +115,23 @@
                     }},
                     { formato: function(tr, obj, celda){
                         return anexGrid_boton({
-                            class: 'btn btn-info btn-sm btn-abajo',
+                            class: 'btn btn-default btn-sm btn-abajo',
                             contenido: '<i class="fa fa-arrow-down fa-fw"></i>',
                             value: tr.data('fila'),
                             attr: [
                                 'title="Abajo"'
                             ]
                         });    
+                    }},
+                {formato: function (tr, obj, celda) {
+                        return anexGrid_boton({
+                            class: 'btn btn-danger btn-sm btn-eliminar',
+                            contenido: '<i class="fa fa-trash-o fa-fw"></i>',
+                            value: tr.data('fila'),
+                            attr: [
+                                'title="Eliminar"'
+                            ]
+                        });
                     }}
                
             ],
@@ -259,8 +276,24 @@
 
             return false;
         });
+        
+        agrid.tabla().on('click', '.btn-destacado', function(e){
+            e.preventDefault();
+            //if(!confirm('¿Esta seguro de eliminar este registro?')) return;
 
+            /* Obtiene el objeto actual de la fila seleccionada */
+            var fila = agrid.obtener($(this).val());               
+            $("#preloader").show();
+            /* Petición ajax al servidor */
+            $.post('<?php echo base_url(); ?>admin/novedad/destacado/', {
+                id: fila.id
+            }, function(r){
+                if(r) agrid.refrescar();
+                $("#preloader").hide();
+            }, 'json');
 
+            return false;
+        });
 
     })
 </script>       

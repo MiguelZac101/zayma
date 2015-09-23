@@ -1,4 +1,8 @@
-<?php     echo $seccion_servicios;
+<?php   
+
+echo $seccion_home_header;
+
+echo $seccion_servicios;
 ?>
         
         <!--FRASE-->
@@ -58,7 +62,7 @@
                                 tal manera que logró hacer un libro de textos especimen.                             
                             </p>
                             <br/><br/>
-                            <a href="" title="" class="btn02">
+                            <a href="<?php echo base_url();?>conocenos" title="" class="btn02">
                                 DESCUBRE MÁS
                             </a>
                         </div>
