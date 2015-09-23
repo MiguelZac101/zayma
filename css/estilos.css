@@ -1,20 +1,9 @@
-
-
-body{
-  
+*{
+    font-family: CaviarDreams, Arial, sans-serif;    
 }
-
 h2{
-    
+    font-family: BrandonText, Arial, sans-serif;    
 }
-span{
-    font-family: 'CaviarDreams', Arial, sans-serif;;
-}
-
-body{
-    position: relative;
-}
-
 h2{
 font-size: 25px;
 font-weight: bold;
@@ -32,6 +21,7 @@ h3{
     margin-top: 17px;
     position: relative;
     text-align: center;
+        
 }
 
 h3:after {
@@ -85,11 +75,14 @@ h3.titulo04:after{
 }
 .btn01{
     border: 1px solid #eae3d0;
-    color: #eae3d0;   
+    color: #eae3d0;  
+/*    background-color: rgba(234, 227, 208,0.25);    */
 }
 .btn02{
     border: 1px solid #98968f;
-    color: #98968f;   
+    color: #98968f; 
+    transition: background-color 0.35s ease 0s, color 0.35s ease 0s;
+    
 }
 .btn03{
     background-color: rgba(50, 64, 67, 0.4);
@@ -105,6 +98,17 @@ h3.titulo04:after{
     padding: 19px 0; 
     text-align: center;
     width: 225px;
+}
+
+.btn01:hover{
+    text-decoration: none;
+    color: #eae3d0;  
+}
+.btn02:hover{
+    text-decoration: none;
+    /*background-color: #98968f;*/
+    /*color: #eae3d0;*/  
+    color: #98968f;
 }
 
 #menu_top{
@@ -378,6 +382,7 @@ height: 59px;
 position: absolute;
 right: -29px;
 width: 29px;
+z-index: 1;
 }
 #seccion_portafolio .portafolio .portafolio_descripcion .portafolio_descripcion_lineas{
     padding-top: 115px;    
@@ -409,8 +414,24 @@ float: left;
 height: 515px;
 width: calc(100% - 505px);
 }
-#seccion_portafolio .portafolio .portafolio_imagen img{
-    height: 515px;
+#portafolio_carousel{
+    
+}
+#portafolio_carousel .carousel-indicators{
+    bottom: 5px;
+}
+#portafolio_carousel .carousel-indicators li{
+background-color: transparent;
+background-image: url("../images/portafolio_icono.png");
+border: medium none;
+border-radius: 0;
+display: inline-block;
+height: 20px;
+margin: 0 12px;
+width: 18px;
+}
+#portafolio_carousel .carousel-indicators li.active{
+    background-image: url("../images/portafolio_icono_activo.png");
 }
 
 /*movil*/
@@ -419,7 +440,8 @@ width: calc(100% - 505px);
 }
 #seccion_portafolio_movil .portafolio{
     background-color: #98968f;
-    height: 430px;
+    /*height: 430px;*/
+    height:100%;
     position: relative;
     width: 100%;
 }
@@ -593,10 +615,12 @@ form[name=frm_contacto] .campo{
     color: #eae3d0;
     font-size: 18px;
     padding: 14px;
+    width: 100%;
     
 }
 form[name=frm_contacto] .contenedor_input{
-    width: 300px;
+    display: inline-block;
+    margin-bottom: 25px;   
 }
 form[name=frm_contacto] .contenedor_textarea{
     margin: 0 auto;
@@ -605,13 +629,22 @@ form[name=frm_contacto] .contenedor_textarea{
     resize: none;
     vertical-align: bottom;    
 }
-.contenedor_input_movil{
+
+.frm_contacto_contenedor_input_nombre, .frm_contacto_contenedor_input_telefono{
+    display: inline-block;
     position: relative;
-    width: 100%;
 }
-.contenedor_input_movil textarea{ 
-    resize: none;
-    vertical-align: bottom;
+.frm_contacto_contenedor_input_nombre:before{
+    display: inline-block;
+    position: relative;
+    border: 1px solid #eae3d0;
+    content: "";
+    display: block;
+    height: 8px;   
+    position: absolute;    
+    width: 8px;
+    left: -7px;
+    top: -7px;
 }
 
 .cuadradito_top_left,.cuadradito_top_right{
@@ -761,6 +794,101 @@ width: calc(100% + 2px);
     }
 /*FIN SECCION CONTACTO*/
 
+/*COMBO ZAYMA*/
+.combo_zayma{
+margin: 0 0 20px;
+padding: 0;
+position: relative;
+text-align: left;
+width: 100%;
+z-index: 2;
+}
+.combo_zayma_cabecera{
+    cursor: pointer;
+    display: block;
+    font-size: 18px;
+    height: 55px; 
+    text-align: left;    
+}
+.combo_zayma_cabecera:hover{
+    text-decoration: none;
+}
+.combo_zayma_submenu{    
+    border: 1px solid #353f47;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 58px;
+    width: 100%;
+    display: none;
+}
+.combo_zayma_submenu li{
+    
+}
+.combo_zayma_submenu li a{
+    border-bottom: 1px solid;
+    cursor: pointer;
+    display: block;
+    height: 52px;    
+    width: 100%;
+    color: #353f47;
+    padding: 14px;
+}
+
+.combo_zayma_submenu li a:hover{
+    text-decoration: none;    
+}
+
+.combo_zayma_submenu li:last-of-type a {
+  border-bottom: medium none;
+}
+
+.combo_zayma_cabecera_nombre{
+    padding: 14px;
+    padding: 14px 50px 14px 14px;
+    overflow: hidden;
+}
+/*COMBO PRODUCTO*/
+.combo_producto .combo_zayma_cabecera{
+    background-color: #eae3d0;
+    border: 1px solid #353f47;
+    color: #353f47;    
+    position: relative;
+    width: 100%;
+}
+.combo_producto .combo_zayma_cabecera:after{
+    background-image: url("../images/select_flecha_02.png");
+    background-repeat: no-repeat;
+    content: "";
+    display: block;
+    height: 16px;
+    position: absolute;
+    right: 14px;
+    top: calc(50% - 8px);
+    width: 33px;
+}
+
+.combo_producto .combo_zayma_submenu{
+    background-color: #eae3d0;    
+}
+.combo_producto .combo_zayma_submenu li a:hover{ 
+    color:#eae3d0;
+    background-color: #353f47;
+}
+
+#combo_producto_grupo{
+    z-index: 30;
+}
+#combo_producto_categoria{
+    z-index: 20;
+}
+#combo_producto_subcategoria{
+    z-index: 10;
+}
+/*FIN COMBO PRODUCTO*/
+
+/*FIN COMBO ZAYMA*/
 /*MAPA*/
      
 /*FIN MAPA*/
@@ -768,7 +896,35 @@ width: calc(100% + 2px);
 /*SECCION ENCUENTRANOS*/
 #seccion_encuentranos{
     background-color: #98968f;
+    padding-bottom: 30px;
+    padding-top: 5px;
 }
+#seccion_encuentranos .email{
+font-size: 27px;
+font-weight: bold;
+margin-bottom: 20px;
+text-align: center;
+text-decoration: underline;
+}
+#seccion_encuentranos .tambien{
+font-style: oblique;
+font-weight: bold;
+margin-bottom: 16px;
+text-align: center;
+}
+#seccion_encuentranos .redes_sociales{
+    text-align: center;
+}
+#seccion_encuentranos .redes_sociales a{
+display: inline-block;
+margin: 0 3px;
+}
+#seccion_encuentranos .redes_sociales a img{
+
+}
+
+
+
 /*FIN SECCION ENCUENTRANOS*/
 
 /*FOOTER*/
@@ -885,19 +1041,56 @@ transition: width 0.1s linear;
 }
 
 #seccion_productos .seccion_producto_selectores{
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 }
 .producto{
     cursor: pointer;
     display: block;
     margin-bottom: 30px;
     max-width: 388px;
+    overflow: hidden;
 }
-.producto:hover .producto_imagen .producto_imagen_sombra{
-    display: block;
-}
+
 .producto .producto_imagen{
+    height: 336px;
+    max-width: 388px;
     position: relative;
+    overflow: hidden;
+
+}
+
+.producto .producto_imagen:hover{
+    /*transform: scale(1.05);*/
+    /*background-size: 120%;*/   
+
+}
+
+.producto .producto_imagen img{
+    z-index: 1;
+}
+.producto .producto_imagen_img{
+    z-index: 1;
+    height: 336px;
+    position: relative;
+    background-position: center center;
+    scale:1;
+    transition: transform 5s ease-in-out .2s; 
+    -webkit-transition: -webkit-transform 5s ease-in-out .2s;  
+}
+
+.producto:hover .producto_imagen_img{
+    display: block;
+    transform: scale(1.05); 
+    -webkit-transform: scale(1.05);
+}
+
+.producto .producto_imagen img{
+    /*transition: all 6s ease-in-out;*/ 
+/*    transform: scale(1.05);
+    transition: transform 6s cubic-bezier(0.39, 0.575, 0.565, 1) 0s;*/
+}
+.producto .producto_imagen img:hover{
+    /*transform: scale(1.1);*/
 }
 .producto .producto_imagen .producto_imagen_sombra{
     background-color: rgba(0, 0, 0, 0.4);
@@ -907,7 +1100,18 @@ transition: width 0.1s linear;
     position: absolute;
     top: 0;
     width: 100%;
-    display: none;
+    display: block; 
+    
+    z-index: 2;
+    
+    opacity:0;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+.producto:hover .producto_imagen .producto_imagen_sombra{
+    display: block;
+    opacity: 1;  
 }
 
 .producto_imagen_sombra_lineas_cruz{
@@ -1098,12 +1302,183 @@ display: block;
 }
 
 
+/*CARRUSEL FADE*/
+.carousel-fade    .carousel-inner       .item {
+    transition-property: opacity;
+}
+
+.carousel-fade    .carousel-inner   .item,
+.carousel-fade    .carousel-inner   .active.left,
+.carousel-fade    .carousel-inner   .active.right {
+    opacity: 0;
+}
+
+.carousel-fade    .carousel-inner   .active,
+.carousel-fade    .carousel-inner   .next.left,
+.carousel-fade    .carousel-inner    .prev.right {
+    opacity: 1;
+}
+
+.carousel-fade    .carousel-inner   .next,
+.carousel-fade    .carousel-inner   .prev,
+.carousel-fade    .carousel-inner   .active.left,
+.carousel-fade    .carousel-inner   .active.right {
+    left: 0;
+    transform: translate3d(0, 0, 0);
+}
+
+.carousel-fade    .carousel-control {
+    z-index: 2;
+}
+
+    .carousel, 
+    .carousel-inner, 
+    .carousel-inner .item {
+        height: 100%;
+    }
+    
+/*PORTAFOLIO CARRUSEL*/
+#portafolio_carousel .carousel-inner .item{    
+    background-position: center center;
+    height: 515px;
+    width: 100%;
+}
+
+/*NOVEDADES CARRUSEL*/
+    #novedades_carrusel{
+
+    }
+    #novedades_carrusel .carousel-indicators{ 
+        bottom: 0;
+        display: block;
+        left: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        position: relative;
+        width: 100%;
+    }    
+    #novedades_carrusel .carousel-indicators li{     
+ border: medium none;
+border-radius: 0;
+display: block;
+float: left;
+height: auto;
+margin: 0;
+padding: 0;
+position: relative;
+width: 33.3333%;
+    }
+    #novedades_carrusel .carousel-indicators li a{
+        
+    }
+    #novedades_carrusel .carousel-indicators li a img{
+        
+    }
+    #novedades_carrusel .carousel-control.right,#novedades_carrusel .carousel-control.left{
+        border: 2px solid #eae3d0; 
+        height: 40px;
+        top: 210px;
+        width: 40px;
+        background: none;
+        transform: rotate(45deg);
+    }
+    #novedades_carrusel .carousel-control.right{
+        
+        right: 40px;
+        
+    }
+    #novedades_carrusel .carousel-control.left{
+
+        left: 40px;
+
+    }
+ /*CARRUSEL DIRECCION FOOTER*/
+#encuentranos_carousel{
+     margin-bottom: 15px;
+}
+#encuentranos_carousel .carousel-inner{
+     
+}
+#encuentranos_carousel .carousel-inner .item{
+     
+}
+#encuentranos_carousel .carousel-control{
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    margin-top: 5%;
+    width: 10%;
+}
+#encuentranos_carousel .carousel-control img{
+    
+}
+#encuentranos_carousel address{
+font-size: 16px;
+line-height: 21px;
+}
+
+.contenedor_direccion{
+    position: relative;
+}
+.contenedor_direccion .direccion{
+float: left;
+padding-right: 20px;
+text-align: left;
+width: 65%;
+}
+.contenedor_direccion .numeros{
+float: left;
+text-align: left;
+width: 35%;
+}
+    
+ /*VIDEO MODAL*/
+ #videoModal{
+     
+ }
+ #videoModal .modal-dialog{
+ 
+ }
+ #videoModal .modal-dialog .modal-content{
+background-color: transparent;
+border: medium none;
+border-radius: 0;
+box-shadow: none;
+ }
+ 
+ #videoModal .modal-dialog .modal-content .modal-header{
+border: medium none;
+padding: 15px;
+text-align: center;
+ }
+#videoModal .modal-dialog .modal-content .modal-header .close{
+color: #eae3d0;
+display: block;
+float: none;
+font-size: 15px;
+font-weight: normal;
+margin: 0 auto;
+opacity: 1;
+text-shadow: none;
+}
+#videoModal .modal-dialog .modal-content .modal-body{
+     padding: 15px 0 0;
+}
+
+.modal-backdrop{
+    background-color: #2c343b;
+    
+}
+.modal-backdrop.in{
+    opacity: .8;
+}
+
 /*MEDIA QUERIES*/
 /*
 para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
 */
-@media (max-width: 535px) {  
-    
+@media (max-width: 480px) {  
+    #videoModal .modal-dialog{
+        margin-top: 120px;
+    }
 
   
    
@@ -1136,7 +1511,7 @@ para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
     
     /*CONOCENOS*/
     #seccion_conocenos{        
-        padding: 40px 0;
+        padding: 20px 0;
     }
     
     
@@ -1145,15 +1520,16 @@ para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
     #seccion_contacto{
         background-image: url("../images/fondo_contacto_movil.jpg");  
         background-size: 100% 910px;
-        height: 910px;
-        padding: 40px 0;
+        height: 760px;
+        padding: 20px 0;
     }
-    form[name=frm_contacto] input.campo{
+    form[name=frm_contacto] .contenedor_input {    
+        width: 100%;
+    }        
+    form[name=frm_contacto] .contenedor_textarea {        
         width: 100%;
     }
-    form[name=frm_contacto] textarea.campo{
-        width: 100%;
-    }
+    
     form[name=frm_contacto] input.campo::-webkit-input-placeholder {
     text-align: center;
     }
@@ -1167,14 +1543,34 @@ para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
     text-align: center; 
     }
     
-    .selectBox ,div.selectOptions {
-        width: 100%;
+    .frm_contacto_contenedor_input_nombre:after{
+        display: inline-block;
+        position: relative;
+        border: 1px solid #eae3d0;
+        content: "";
+        display: block;
+        height: 8px;   
+        position: absolute;    
+        width: 8px;
+        right:  -7px;
+        top: -7px;
     }   
+
     
     /*SECCION VIDEOS*/
+    #seccion_videos{
+        padding: 15px;
+    }    
     #seccion_videos .seccion_videos_contenedor a.play{    
-        margin-bottom: 30px;
-        margin-top: 40px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        
+    }
+    #seccion_videos .seccion_videos_contenedor .seccion_videos_contenedor_pensamiento_autor .pensamiento {
+        font-size: 18px;        
+    }
+    #seccion_videos .seccion_videos_contenedor .seccion_videos_contenedor_pensamiento_autor .autor {
+        margin-top: 15px;        
     }
     /*PROMOCION*/
     .promocion {        
@@ -1206,23 +1602,35 @@ para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
 
     /*CONOCENOS*/
     #seccion_conocenos{        
-        padding: 70px 0;
+        padding: 30px 0;
     }
     /*CONTACTO*/
     #seccion_contacto{
         background-image: url("../images/fondo_contacto.jpg");  
         background-size: 100% 580px;
         height: 580px;
-        padding: 40px 0;
+        padding: 20px 0;
     }
-    form[name=frm_contacto] input.campo{
-    width: 300px;
-    }
+    form[name=frm_contacto] .contenedor_input {    
+        width: 300px;
+    }  
     form[name=frm_contacto] textarea.campo{
         width: 630px;
         height: 100%;
     }
     
+    .frm_contacto_contenedor_input_telefono:after{
+        display: inline-block;
+        position: relative;
+        border: 1px solid #eae3d0;
+        content: "";
+        display: block;
+        height: 8px;   
+        position: absolute;    
+        width: 8px;
+        right:  -7px;
+        top: -7px;
+    }
     /*PROMOCION*/
     .promocion{
         margin-bottom: 30px;

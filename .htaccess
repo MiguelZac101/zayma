@@ -1,12 +1,7 @@
 RewriteEngine on
 
-#RewriteCond %{HTTP_HOST} ^www\.velascoperu\.com\.pe [NC]
-#RewriteRule ^(.*)$ http://velascoperu.com.pe/$1 [R=301,L]
-#RewriteCond $1 !^(index\.php|images|uploads|plugins|css|js|fonts|robots\.txt)
-#RewriteRule ^(.*)$ /index.php?/$1 [L]
+RewriteCond %{HTTP_HOST} ^www\.zayma\.pe [NC]
+RewriteRule ^(.*)$ http://zayma.pe/$1 [R=301,L]
 
-#RewriteCond $1 !^(index\.php|images|uploads|plugins|css|js|fonts|robots\.txt)
-#RewriteRule ^(.*)$ /velascoperu_CI_3.0.1/index.php?/$1 [L]
-
-RewriteCond $1 !^(index\.php|images|uploads|plugins|css|js|fuentes|robots\.txt)
+RewriteCond $1 !^(index\.php|images|uploads|plugins|css|js|fonts|robots\.txt)
 RewriteRule ^(.*)$ /index.php?/$1 [L]

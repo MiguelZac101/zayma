@@ -45,7 +45,7 @@
         
         
         <script type="text/javascript" src="<?php echo base_url('js/base_url.js'); ?>"></script>
-<!--        <script type="text/javascript" src="<?php echo base_url('js/default.js'); ?>"></script>-->
+        <script type="text/javascript" src="<?php echo base_url('js/admin.js'); ?>"></script>
    
     </head>
     <body>
@@ -59,7 +59,7 @@
         <div class="modal fade in" id="modalPopUp"></div>-->
 
         <header>
-            <nav class="navbar navbar-inverse navbar-fixed-top container-fluid">
+            <nav class="navbar navbar-inverse navbar-fixed-top container-fluid" style="background-color: #353f47;">
                 <div class="nav-row">
                     <div class="navbar-header">
                         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -69,7 +69,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="<?php echo base_url('admin/home/listado'); ?>" class="navbar-brand">
-                            <img src="<?php echo base_url(); ?>images/logo velasco.png" alt=""/>
+                            <img src="<?php echo base_url(); ?>images/logo.jpg" alt=""/>
                         </a>
                     </div>
                     <div class="collapse navbar-collapse">
@@ -125,6 +125,19 @@
                                             Productos
                                         </a>
                                     </li>
+                                </ul>
+                            </li>  
+                            <li class="dropdown">
+                                <a tabindex="0" data-toggle="dropdown">
+                                    Novedades <i class="fa fa-angle-down fa-fw"></i>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="<?php echo base_url('admin/novedad/listado'); ?>" tabindex="0">
+                                            <i class="fa fa-book fa-fw"></i> 
+                                            Listado
+                                        </a>
+                                    </li>                                   
                                 </ul>
                             </li>  
                            

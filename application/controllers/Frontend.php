@@ -21,7 +21,10 @@ Class Frontend extends CI_Controller {
         if($uri1 && !$uri2 && !$uri3){            
             switch($uri1){     
                 case "home"     : $this->home(); break;
-                case "galeria"  : $this->galeria(); break;
+                case "nosotros"  : $this->nosotros(); break;
+                case "novedades"  : $this->novedades(); break;
+                case "promociones"  : $this->promociones(); break;
+                case "fuentedem"  : $this->load->view("fuentedem",null); break;
                 default : 
                     //REDIRECCION LISTA DE PRODUCTOS
                     $grupo = $this->generico_model->getCondicion(array("url"=>$uri1),"producto_grupo");
@@ -128,7 +131,13 @@ Class Frontend extends CI_Controller {
     
     public function home(){
         $data_home = array(
-            "seccion_servicios" => $this->home_servicios()
+            "seccion_servicios" => $this->home_servicios(),
+            "seccion_portafolio" => $this->home_portafolio(),
+            "seccion_encuentranos" => $this->seccion_encuentranos(),
+            "seccion_video" => $this->seccion_video(),
+            "seccion_mapa" => $this->seccion_mapa(),
+            "seccion_contacto" => $this->seccion_contacto(),
+            
         );
         $this->load->view("templates/header");
         $this->load->view("home",$data_home);
@@ -148,8 +157,37 @@ Class Frontend extends CI_Controller {
         return $this->load->view("home/seccion_servicios",$data,true);
     }
     
-    public function galeria(){
-        echo "GALERIA";
+     public function home_portafolio(){
+        return $this->load->view("home/seccion_portafolio",null,true);
+    }
+    
+    public function seccion_encuentranos(){ 
+        return $this->load->view("home/seccion_encuentranos",null,true);
+    }
+    public function seccion_video(){ 
+        return $this->load->view("home/seccion_video",null,true);
+    }
+    public function seccion_mapa(){ 
+        return $this->load->view("home/seccion_mapa",null,true);
+    }
+    public function seccion_contacto(){ 
+        return $this->load->view("home/seccion_contacto",null,true);
+    }
+    
+    public function nosotros(){
+        echo "NOSOTROS";
+    }
+    public function novedades(){
+        $data = array(            
+            
+        );
+        $this->load->view("templates/header");
+        $this->load->view("novedades",$data);
+        $this->load->view("templates/footer");
+
+    }    
+    public function promociones(){
+        $this->load->view("promociones",null);
     }
 
 }

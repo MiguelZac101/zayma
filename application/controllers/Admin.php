@@ -11,6 +11,9 @@ Class Admin extends CI_Controller {
         $this->load->library("producto_library");
         $this->load->library("producto_imagen_library");
         
+        $this->load->library("novedad_library");
+        $this->load->library("novedad_carrusel_library");
+        
         if (is_logged()) {
 //            echo "esta logueado";
             
@@ -208,6 +211,81 @@ Class Admin extends CI_Controller {
                 }
                 echo $html_select;
                 break;
+        }
+    }
+    
+    //NOVEDADES
+    public function novedad($page){       
+        switch($page){
+            case "nuevo":                
+                $this->novedad_library->nuevo();
+                break;
+            case "registrar": 
+                $this->novedad_library->registrar();
+                break;
+            case "listado": 
+                $this->novedad_library->listado();
+                break;
+            case "editar": 
+                $this->novedad_library->editar();
+                break;            
+            case "actualizar": 
+                $this->novedad_library->actualizar(); 
+                break; 
+            case "anexgrid": 
+                $this->novedad_library->anexgrid();
+                break;          
+            case "eliminar": 
+                $this->novedad_library->eliminar();
+                break;
+            case "publicar": 
+                $this->novedad_library->publicar();
+                break;
+            case "orden_arriba": 
+                $this->novedad_library->orden_arriba();
+                break;
+            case "orden_abajo": 
+                $this->novedad_library->orden_abajo();
+                break;           
+        }
+    }
+    
+    //NOVEDADES
+    public function novedad_carrusel($page){       
+        switch($page){
+            case "vista_modal":                
+                $this->novedad_carrusel_library->vista_modal();
+                break;
+            case "nuevo":                
+                $this->novedad_carrusel_library->nuevo();
+                break;
+            case "registrar": 
+                $this->novedad_carrusel_library->registrar();
+                break;
+            case "listado": 
+                $this->novedad_carrusel_library->listado();
+                break;
+            case "editar": 
+                $this->novedad_carrusel_library->editar();
+                break;            
+            case "actualizar": 
+                $this->novedad_carrusel_library->actualizar(); 
+                break; 
+            case "anexgrid": 
+                $this->novedad_carrusel_library->anexgrid();
+                break;          
+            case "eliminar": 
+                $this->novedad_carrusel_library->eliminar();
+                break;
+            case "publicar": 
+                $this->novedad_carrusel_library->publicar();
+                break;
+            case "orden_arriba": 
+                $this->novedad_carrusel_library->orden_arriba();
+                break;
+            case "orden_abajo": 
+                $this->novedad_carrusel_library->orden_abajo();
+                break;           
         }
     }
 }

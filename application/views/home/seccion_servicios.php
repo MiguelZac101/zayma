@@ -89,7 +89,7 @@
                 <div class="row">                            
                     <div class="col-xs-12 servicio_bloque">                               
                         <span style="background-image: url(<?php echo $serv_mov_1['imagen'] ?>);" class="img">
-                            <a href="#" title="DAMAS" class="btn04">
+                            <a href="<?php echo base_url()."damas/"; ?>" title="DAMAS" class="btn04">
                                 DAMAS
                             </a> 
                         </span> 
@@ -97,7 +97,7 @@
                     </div>   
                     <div class="col-xs-12 servicio_bloque">                               
                         <span style="background-image: url(<?php echo $serv_mov_2['imagen'] ?>);" class="img">
-                            <a href="#" title="CABALLEROS" class="btn04">
+                            <a href="<?php echo base_url()."caballeros/"; ?>" title="CABALLEROS" class="btn04">
                                 CABALLEROS
                             </a> 
                         </span>  
@@ -105,7 +105,7 @@
                     </div> 
                     <div class="col-xs-12 servicio_bloque">                               
                         <span style="background-image: url(<?php echo $serv_mov_3['imagen'] ?>);" class="img">
-                            <a href="#" title="ACCESORIOS" class="btn04">
+                            <a href="<?php echo base_url()."accesorios/"; ?>" title="ACCESORIOS" class="btn04">
                                 ACCESORIOS
                             </a> 
                         </span>                                                              
