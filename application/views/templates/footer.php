@@ -178,7 +178,6 @@
    
         <script src="<?php echo base_url();?>plugins/animsition-master/dist/js/jquery.animsition.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>js/animsition.config.js" type="text/javascript"></script>
-
   
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script> 
   
@@ -189,22 +188,16 @@
         <script src="<?php echo base_url();?>js/sliderZayma.js" type="text/javascript"></script> 
         
         <script src="<?php echo base_url();?>js/jquery.menuzac.js" type="text/javascript"></script> 
-<!--        <script type="text/javascript">
-        $(document).ready(function(){ 
-            $("#combo_producto_grupo a.combo_zayma_cabecera").menuzac({
-                id_cuadromenu:'#combo_producto_grupo ul.combo_zayma_submenu',
-                tiempo:100
-            });  
-            $("#combo_producto_categoria a.combo_zayma_cabecera").menuzac({
-                id_cuadromenu:'#combo_producto_categoria ul.combo_zayma_submenu',
-                tiempo:100
-            }); 
-            $("#combo_producto_subcategoria a.combo_zayma_cabecera").menuzac({
-                id_cuadromenu:'#combo_producto_subcategoria ul.combo_zayma_submenu',
-                tiempo:100
-            }); 
-        });
-        </script>-->       
-        
+      
+        <link href="<?php echo base_url();?>plugins/Select-or-Die-master/_src/selectordie.css" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url();?>plugins/Select-or-Die-master/_src/tema_zayma.css" rel="stylesheet" type="text/css"/>
+        <script src="<?php echo base_url();?>plugins/Select-or-Die-master/_demo/!inc/js/jquery.litelighter.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>plugins/Select-or-Die-master/_src/selectordie.min.js" type="text/javascript"></script>
+        <script>
+            $("form[name=frm_contacto] select[name=tienda]").selectOrDie({
+                customClass: "select_tema_zayma",
+                customID:    "frm_contacto"
+            });
+        </script>
     </body>
 </html>

@@ -135,7 +135,8 @@ Class Frontend extends CI_Controller {
             "seccion_portafolio" => $this->home_portafolio(),
             "seccion_encuentranos" => $this->seccion_encuentranos(),
             "seccion_video" => $this->seccion_video(),
-            "seccion_mapa" => $this->seccion_mapa()
+            "seccion_mapa" => $this->seccion_mapa(),
+            "seccion_contacto" => $this->seccion_contacto(),
             
         );
         $this->load->view("templates/header");
@@ -168,6 +169,9 @@ Class Frontend extends CI_Controller {
     }
     public function seccion_mapa(){ 
         return $this->load->view("home/seccion_mapa",null,true);
+    }
+    public function seccion_contacto(){ 
+        return $this->load->view("home/seccion_contacto",null,true);
     }
     
     public function nosotros(){

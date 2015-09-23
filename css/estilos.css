@@ -615,10 +615,12 @@ form[name=frm_contacto] .campo{
     color: #eae3d0;
     font-size: 18px;
     padding: 14px;
+    width: 100%;
     
 }
 form[name=frm_contacto] .contenedor_input{
-    width: 300px;
+    display: inline-block;
+    margin-bottom: 25px;   
 }
 form[name=frm_contacto] .contenedor_textarea{
     margin: 0 auto;
@@ -627,13 +629,22 @@ form[name=frm_contacto] .contenedor_textarea{
     resize: none;
     vertical-align: bottom;    
 }
-.contenedor_input_movil{
+
+.frm_contacto_contenedor_input_nombre, .frm_contacto_contenedor_input_telefono{
+    display: inline-block;
     position: relative;
-    width: 100%;
 }
-.contenedor_input_movil textarea{ 
-    resize: none;
-    vertical-align: bottom;
+.frm_contacto_contenedor_input_nombre:before{
+    display: inline-block;
+    position: relative;
+    border: 1px solid #eae3d0;
+    content: "";
+    display: block;
+    height: 8px;   
+    position: absolute;    
+    width: 8px;
+    left: -7px;
+    top: -7px;
 }
 
 .cuadradito_top_left,.cuadradito_top_right{
@@ -1509,15 +1520,16 @@ para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
     #seccion_contacto{
         background-image: url("../images/fondo_contacto_movil.jpg");  
         background-size: 100% 910px;
-        height: 910px;
-        padding: 40px 0;
+        height: 760px;
+        padding: 20px 0;
     }
-    form[name=frm_contacto] input.campo{
+    form[name=frm_contacto] .contenedor_input {    
+        width: 100%;
+    }        
+    form[name=frm_contacto] .contenedor_textarea {        
         width: 100%;
     }
-    form[name=frm_contacto] textarea.campo{
-        width: 100%;
-    }
+    
     form[name=frm_contacto] input.campo::-webkit-input-placeholder {
     text-align: center;
     }
@@ -1531,9 +1543,19 @@ para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
     text-align: center; 
     }
     
-    .selectBox ,div.selectOptions {
-        width: 100%;
+    .frm_contacto_contenedor_input_nombre:after{
+        display: inline-block;
+        position: relative;
+        border: 1px solid #eae3d0;
+        content: "";
+        display: block;
+        height: 8px;   
+        position: absolute;    
+        width: 8px;
+        right:  -7px;
+        top: -7px;
     }   
+
     
     /*SECCION VIDEOS*/
     #seccion_videos{
@@ -1587,16 +1609,28 @@ para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
         background-image: url("../images/fondo_contacto.jpg");  
         background-size: 100% 580px;
         height: 580px;
-        padding: 40px 0;
+        padding: 20px 0;
     }
-    form[name=frm_contacto] input.campo{
-    width: 300px;
-    }
+    form[name=frm_contacto] .contenedor_input {    
+        width: 300px;
+    }  
     form[name=frm_contacto] textarea.campo{
         width: 630px;
         height: 100%;
     }
     
+    .frm_contacto_contenedor_input_telefono:after{
+        display: inline-block;
+        position: relative;
+        border: 1px solid #eae3d0;
+        content: "";
+        display: block;
+        height: 8px;   
+        position: absolute;    
+        width: 8px;
+        right:  -7px;
+        top: -7px;
+    }
     /*PROMOCION*/
     .promocion{
         margin-bottom: 30px;
