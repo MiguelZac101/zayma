@@ -24,10 +24,10 @@
                         foreach ($carrusel as $car) {                            
                             $bandera++;
                             if($bandera==1){
-                                $class_item = "item";                                
+                                $class_item = "active";                                
                             }
                         ?>
-                        <div class="<?php if($bandera==1){ echo $class_item; } ?>">
+                        <div class="item <?php if($bandera==1){ echo $class_item; } ?>">
                             <img src="<?php echo $car['imagen_lg']; ?>" alt="" class="img-responsive"/>
                         </div>
                         <?php                            

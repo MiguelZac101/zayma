@@ -1020,8 +1020,8 @@ transition: width 0.1s linear;
     position: relative;
     background-position: center center;
     scale:1;
-    transition: transform 5s ease-in-out .2s; 
-    -webkit-transition: -webkit-transform 5s ease-in-out .2s;  
+    transition: transform 2s ease-in-out .2s; 
+    -webkit-transition: -webkit-transform 2s ease-in-out .2s;  
 }
 
 .producto:hover .producto_imagen_img{
