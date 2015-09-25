@@ -14,6 +14,8 @@ Class Admin extends CI_Controller {
         $this->load->library("novedad_library");
         $this->load->library("novedad_carrusel_library");
         
+        $this->load->library("promocion_library");
+        
         if (is_logged()) {
 //            echo "esta logueado";
             
@@ -136,7 +138,7 @@ Class Admin extends CI_Controller {
     }
     
     //PRODUCTOS
-    public function producto($page,$id_producto=NULL){        
+    public function producto($page){        
         
         switch($page){
             case "nuevo":                
@@ -149,7 +151,7 @@ Class Admin extends CI_Controller {
                 $this->producto_library->listado();
                 break;
             case "editar": 
-                $this->producto_library->editar($id_producto);
+                $this->producto_library->editar();
                 break;            
             case "actualizar": 
                 $this->producto_library->actualizar(); 
@@ -252,7 +254,7 @@ Class Admin extends CI_Controller {
         }
     }
     
-    //NOVEDADES
+    //NOVEDADES CARRUSEL
     public function novedad_carrusel($page){       
         switch($page){
             case "vista_modal":                
@@ -288,6 +290,45 @@ Class Admin extends CI_Controller {
             case "orden_abajo": 
                 $this->novedad_carrusel_library->orden_abajo();
                 break;           
+        }
+    }
+    
+    //PROMOCIONES
+    public function promocion($page){       
+        switch($page){
+            case "nuevo":                
+                $this->promocion_library->nuevo();
+                break;
+            case "registrar": 
+                $this->promocion_library->registrar();
+                break;
+            case "listado": 
+                $this->promocion_library->listado();
+                break;
+            case "editar": 
+                $this->promocion_library->editar();
+                break;            
+            case "actualizar": 
+                $this->promocion_library->actualizar(); 
+                break; 
+            case "anexgrid": 
+                $this->promocion_library->anexgrid();
+                break;          
+            case "eliminar": 
+                $this->promocion_library->eliminar();
+                break;
+            case "publicar": 
+                $this->promocion_library->publicar();
+                break;
+            case "orden_arriba": 
+                $this->promocion_library->orden_arriba();
+                break;
+            case "orden_abajo": 
+                $this->promocion_library->orden_abajo();
+                break;   
+            case "destacado": 
+                $this->promocion_library->destacado();
+                break;
         }
     }
 }

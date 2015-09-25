@@ -1,10 +1,5 @@
-<div id="wrapper">
-    <section>
-        <div class="row">
-            <div class="col-xs-6">
-
 <div class="panel panel-default">
-    <div class="panel-heading">PRODUCTO - EDITAR</div>                      
+    <div class="panel-heading">PRODUCTO - Editar</div>                      
 
     <div class="panel-body" >
         <form name="form_editar" role="form" enctype="multipart/form-data">
@@ -66,11 +61,15 @@
 
             <div class="form-group">
                 <label>Imagen</label>
-                <input id="imagen" type="file" name="imagen[]" class="file" accept="image/*" data-show-upload="false" data-show-caption="false" multiple>
-<!--                <p class="text-info" style="font-size: 11px;">Dimensiones de imagen 850 pixeles de ancho y 500 pixeles de alto.</p>
+                <input id="imagen" type="file" name="imagen" class="file" accept="image/*" data-show-upload="false" data-show-caption="false" >
+                <p class="text-info" style="font-size: 11px;">Dimensiones de imagen 360x338px.</p>
                 <script>
-                    $('#imagen').fileinput();
-                </script>-->
+                    $('#imagen').fileinput({
+                        initialPreview: [
+                            '<img src="<?php echo base_url($producto['imagen']); ?>" class="file-preview-image" alt="imagen">'
+                        ]
+                    });
+                </script>
             </div>                      
 
             <hr>                
@@ -88,66 +87,44 @@
     </div>
 </div>
 
-                </div>
-            <div class="col-xs-6">
-
-<div class="panel panel-default">
-    <div class="panel-heading">PRODUCTO - IMAGENES</div>                      
-
-    <div class="panel-body" >
-        <div class="row">
-            <?php
-            foreach ($producto_imagen as $key => $imagen) {                
-            ?>
-            <div class="col-xs-4 producto_imagen">
-
-                <div class="thumbnail">
-                    <img src="<?php echo base_url().$imagen['imagen'];?>" alt="imagen de producto" class="img-responsive">
-                    <div class="caption">                        
-                        
-                        <a href="#" class="btn btn-danger btn-block btneliminar"  data-imagen="<?php echo $imagen['id'];?>">
-                            Eliminar
-                        </a> 
-<!--                        <a href="#" class="btn btn-default btn-block btn-destacado" role="button" data-imagen="<?php echo $imagen['id'];?>">
-                            Destacado
-                        </a>
-                        -->
-                    </div>
-                </div>
-    
-                
-            </div>
-            <?php
-            }
-            ?>
-        </div>
-    </div>
-</div>
-                
-                
-            </div>
-        </div>
-    </section>
-</div>
-
 <script>
     $(document).ready(function (){
 
     
     $('form[name=form_editar]').validate({        
         rules:{
-            nombre: {
+           nombre : {
                 required: true,
                 minlength: 5
+            },  
+            id_grupo : {    
+                required: true,
+                min: 1
             },
-            imagen: {                
+            id_categoria : {    
+                required: true,
+                min: 1
+            },
+            id_subcategoria : {    
+                required: true,
+                min: 1
+            },
+            imagen : {
                 accept: "image/*"
             }
-
         }, 
         messages:{
-            imagen: {                
+            imagen: {
                 accept: "Solo se aceptan imagenes."
+            },
+            id_grupo:{
+                min: "Debe seleccionar alguna opción"
+            },
+            id_categoria:{
+                min: "Debe seleccionar alguna opción"
+            },
+            id_subcategoria:{
+                min: "Debe seleccionar alguna opción"
             }
         },
         submitHandler: function(form) {
@@ -168,19 +145,17 @@
                 type: 'POST',
                 dataType : 'json',
                 success: function(data){
-//                    $("#preloader").hide();
-                    //error de imagen
-//                   if(data.upload_imagen!=''){
-//                       alert(data.upload_imagen);
-//                   }
-                   //registro
-                   if(data.actualizar==1){
-                       alert(data.mensaje);
-                       $(location).attr('href', "<?php echo base_url();?>admin/producto/editar/<?php echo $producto['id'];?>");
-//                       redirect("admin/editor/listado");
-                   }else{
-                        $("#preloader").hide();
-                        alert(data.mensaje);                              
+                    if(data.actualizar==1){
+                       alert("Registro Actualizado!.");
+                       $(location).attr('href', base_url+"admin/producto/listado");
+                    }else{
+                       $("#preloader").hide();
+                       
+                        if(data.upload_imagen!=''){
+                            alert(data.upload_imagen);
+                        }else{
+                            alert("Sucedio un error no se pudo actualizar el registro.");
+                        } 
                    }
                     
                 }
@@ -192,36 +167,36 @@
     $('form[name=form_editar] button[name=cancelar]').on('click',function(e){
         e.preventDefault();
         $("#preloader").show();
-        $(location).attr('href', "<?php echo base_url();?>admin/producto/listado");
-//        $.post('<?php echo base_url(); ?>admin/producto/nuevo/', {
-//            
-//        }, function (data) {
-//            $("#cargar_ajax").html(data);
-//            $("#preloader").hide();
-//        });
+     
+        $.post('<?php echo base_url(); ?>admin/producto/nuevo/', {
+            
+        }, function (data) {
+            $("#cargar_ajax").html(data);
+            $("#preloader").hide();
+        });
     });
     
 //ELIMINAR IMAGEN    
-    $(".btneliminar").on('click', function (e) {        
-        e.preventDefault();
-        
-        if (!confirm('¿Esta seguro de eliminar esta imagen?'))return;            
-        
-        var imagen = $(this);
-        /* Obtiene el objeto actual de la fila seleccionada */
-        var id_imagen = $(this).data('imagen');
-
-        $("#preloader").show();
-        /* Petición ajax al servidor */
-        $.post('<?php echo base_url(); ?>admin/producto_imagen/eliminar/', {
-            id: id_imagen
-        }, function (r) {            
-            $("#preloader").hide();
-            imagen.parents(".producto_imagen").remove();
-        }, 'json');
-
-        return false;
-    });
+//    $(".btneliminar").on('click', function (e) {        
+//        e.preventDefault();
+//        
+//        if (!confirm('¿Esta seguro de eliminar esta imagen?'))return;            
+//        
+//        var imagen = $(this);
+//        /* Obtiene el objeto actual de la fila seleccionada */
+//        var id_imagen = $(this).data('imagen');
+//
+//        $("#preloader").show();
+//        /* Petición ajax al servidor */
+//        $.post('<?php echo base_url(); ?>admin/producto_imagen/eliminar/', {
+//            id: id_imagen
+//        }, function (r) {            
+//            $("#preloader").hide();
+//            imagen.parents(".producto_imagen").remove();
+//        }, 'json');
+//
+//        return false;
+//    });
     
     //CARGAR AJAX LAS CATEGORIAS SEGUN EL GRUPO
     $("select[name=id_grupo]").on('change',function(){

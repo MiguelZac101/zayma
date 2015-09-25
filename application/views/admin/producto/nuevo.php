@@ -1,10 +1,5 @@
-<div id="wrapper">
-    <section>
-        <div class="row">
-            <div class="col-xs-6">
-
 <div class="panel panel-default">
-    <div class="panel-heading">PRODUCTO - NUEVO</div>                      
+    <div class="panel-heading">PRODUCTO - Nuevo</div>                      
 
     <div class="panel-body" >
         <form name="form_nuevo" role="form" enctype="multipart/form-data">            
@@ -49,48 +44,26 @@
 
             <div class="form-group">
                 <label>Imagenes</label>
-                <input id="imagen" type="file" name="imagen[]" class="file" accept="image/*" data-show-upload="false" data-show-caption="false" multiple>
-                <p class="text-info" style="font-size: 11px;">Dimensiones de imagen 850 pixeles de ancho y 500 pixeles de alto.</p>
+                <input id="imagen" type="file" name="imagen" class="file" accept="image/*" data-show-upload="false" data-show-caption="false">
+                <p class="text-info" style="font-size: 11px;">Dimensiones de imagen 360x338px.</p>
                 <script>
                     $('#imagen').fileinput();
                 </script>
-
             </div>
+            
+            <hr>                
+            <div class="form-group text-right">
 
-
-                                         
-            <fieldset>
-                <hr>                
-                <div class="form-group text-right">
-                    
-                    <!--<button type="button" class="btn btn-default btn-sm" name="cancelar">CANCELAR</button>-->
-                    <input type="reset" value="CANCELAR" name="CANCELAR" class="btn btn-default btn-sm">
-                    <!--<button type="button" class="btn btn-success btn-sm" name="guardar">GUARDAR</button>-->
-                    <input type="submit" value="GUARDAR" name="GUARDAR" class="btn btn-success btn-sm">
-                    
-                </div>
-            </fieldset>
+                <!--<button type="button" class="btn btn-default btn-sm" name="cancelar">CANCELAR</button>-->
+                <input type="reset" value="CANCELAR" name="CANCELAR" class="btn btn-default btn-sm">
+                <!--<button type="button" class="btn btn-success btn-sm" name="guardar">GUARDAR</button>-->
+                <input type="submit" value="GUARDAR" name="GUARDAR" class="btn btn-success btn-sm">
+            </div>
             
         </form>
     </div>
 </div>
-
-                </div>
-            <div class="col-xs-6">
-
-<div class="panel panel-default">
-    <div class="panel-heading">PRODUCTO - IMAGENES</div>                      
-
-    <div class="panel-body" >
-    
-    </div>
-</div>
-                
-                
-            </div>
-        </div>
-    </section>
-</div>
+  
 <script>
 $(document).ready(function (){
 

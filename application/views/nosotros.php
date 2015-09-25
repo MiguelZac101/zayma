@@ -20,7 +20,7 @@
                                     </div>
                                     <div class="col-xs-6">
                                         <p id="seccion_nosotros_crecemos_contenido_texto02">
-                                           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+                                           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
                                         </p>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
     <!--FIN SECCION CRECEMOS-->
     
     <div id="seccion_nosotros_quienessomos">
-        <div id="quienes_somos_contenedor_parallax">
+        <div id="quienes_somos_contenedor_parallax" class="hidden-xs">
             <ul id="scene">
                 <li class="layer" data-depth="0.07" id="qs_billetera01">
                     <img src="<?php echo base_url(); ?>images/parallax01.png" >
@@ -68,20 +68,19 @@
         <div id="quienes_somos_contenido">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12 text-center">
+                    <div class="col-xs-12 text-center" id="quienes_somos_contenido_titulos">
                         <h2>¿QUIÉNES SOMOS?</h2>
                         <h3 class="titulo02">
                             Pura tendencia pensando en ti
-                        </h3>
-                        <br/><br/><br/><br/> <br/><br/>                       
+                        </h3>                                            
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-7">
                         <p class="text-justify" id="quienes_somos_contenido_texto">
                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+                            
                         </p>
                     </div>
                 </div>
@@ -93,18 +92,18 @@
     <div id="seccion_nosotros_vision">
         <div class="container">
             <div class="row">
-                <div class="col-xs-6 col-xs-offset-6">
+                <div class="col-lg-6 col-lg-offset-6 col-md-7 col-md-offset-5 col-sm-9 col-sm-offset-3 col-xs-12">
                     <div class="vision_titulo">
                         NUESTRA MISIÓN
                     </div>
                     <p class="vision_texto">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
                     </p>
                     <div class="vision_titulo">
                         NUESTRA viSIÓN
                     </div>
                     <p class="vision_texto">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
                     </p>
                 </div>
             </div>

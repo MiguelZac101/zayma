@@ -9,77 +9,34 @@
                 <br/>
             </div>
         </div>
-    </div>         
-    <div class="hidden-xs" id="promocion_detalle_contenedor">
-        <div class="promocion_detalle">                
-            <div class="promocion_detalle_descripcion">
-                <div class="promocion_detalle_descripcion_lineas bloque_lineas">
-                    <h2>
-                       CARTERA DE CUERO MARRÓN
-                    </h2>
-                    <br/>
-                    <p class="detalle">
-                        Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. 
-                        Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
-                        cuando un impresor.
-                    </p>
-                    <br/>
-                    <p class="precio01">
-                        De S/.50.00
-                    </p>
-                    <p class="precio02">
-                        A S/.49.99
-                    </p>
-
-                    <div class="top"></div>
-                    <div class="right"></div>
-                    <div class="bottom"></div>
-                    <div class="left"></div>
-                </div>
-            </div>
-            <div class="promocion_detalle_imagen">
-                <img class="img-responsive" alt="" src="images/promocion_detalle.jpg">
-            </div>                
-        </div>
-    </div>
-    <div id="promocion_detalle_contenedor_movil" class="visible-xs">
-        <div class="promocion_detalle">                
-            <div class="promocion_detalle_descripcion">
-                <div class="promocion_detalle_descripcion_lineas bloque_lineas">
-                    <h2>
-                       CARTERA DE CUERO MARRÓN
-                    </h2>
-                    <br/>
-                    <p class="detalle">
-                        Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. 
-                        Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
-                        cuando un impresor.
-                    </p>
-                    <br/>
-                    <p class="precio01">
-                        De S/.50.00
-                    </p>
-                    <p class="precio02">
-                        A S/.49.99
-                    </p>                      
-                    <div class="top"></div>
-                    <div class="right"></div>
-                    <div class="bottom"></div>
-                    <div class="left"></div>
-                </div>
-            </div>
-            <div class="promocion_detalle_imagen">
-                <img src="images/movil/promocion_detalle.jpg" alt="" class="img-responsive"/>
-                <a href="" title="" class="btn01">
-                    DESCUBRE MÁS
-                </a>
-            </div>                
-        </div>
-    </div>
+    </div>  
+    <div id="promocion_detalle_contenedor_ajax">
+    <?php echo $detalle; ?>
+    </div>    
     <div id="promocion_contenedor" >
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <?php
+                if(count($promociones)>0){
+                    foreach ($promociones as $nov) {
+                ?>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <a class="promocion" data-id="<?php echo $nov['id']; ?>">
+                                    <div class="promocion_imagen_contenedor">
+                                        <div class="promocion_imagen" style="background-image:url('<?php echo base_url().$nov['imagen_xs']; ?>');">
+                                        </div>
+                                    </div>
+                                    <!--<img src="<?php echo $nov['imagen']; ?>"/>-->
+                                    <div class="promocion_nombre">
+                                        <?php echo $nov['titulo']; ?>
+                                    </div>
+                                </a>
+                            </div>
+                <?php
+                    }
+                }
+                ?>
+<!--                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <a class="promocion">
                         <img src="images/producto_promocion.jpg"/>
                         <div class="promocion_nombre">
@@ -110,7 +67,7 @@
                             BILLETERA DE CUERO NEGRO
                         </div>
                     </a>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>

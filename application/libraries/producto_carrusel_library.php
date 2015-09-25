@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 
-Class Novedad_carrusel_library {
+Class Producto_carrusel_library {
 
     protected $CI;
 
@@ -31,14 +31,14 @@ Class Novedad_carrusel_library {
     //nuevo vista
     public function nuevo() {
         $data = array();
-        echo $this->CI->load->view("admin/novedad_carrusel/nuevo",$data,true);     
+        echo $this->CI->load->view("admin/producto_carrusel/nuevo",$data,true);     
     }   
      
     //editar vista  
     public function editar() {
         $id = $this->CI->input->post("id");
-        $data["novedad_carrusel"] = $this->CI->generico_model->get($id,"novedad_carrusel");
-        echo $this->CI->load->view("admin/novedad_carrusel/editar",$data,true);
+        $data["producto_carrusel"] = $this->CI->generico_model->get($id,"producto_carrusel");
+        echo $this->CI->load->view("admin/producto_carrusel/editar",$data,true);
     }
     
     public function registrar() {
@@ -50,7 +50,7 @@ Class Novedad_carrusel_library {
         
         //IMAGEN GRANDE
         
-        $config['upload_path'] = "uploads/novedad_carrusel/";
+        $config['upload_path'] = "uploads/producto_carrusel/";
         $config['file_name'] = "carrusel_lg_".Date("YmdHis");
         $config['allowed_types'] = "gif|jpg|jpeg|png";  
 //      $config['max_size'] = '100';
@@ -75,7 +75,7 @@ Class Novedad_carrusel_library {
         
         //IMAGEN PEQUEÑA
         
-        $config['upload_path'] = "uploads/novedad_carrusel/";
+        $config['upload_path'] = "uploads/producto_carrusel/";
         $config['file_name'] = "carrusel_xs_".Date("YmdHis");
         $config['allowed_types'] = "gif|jpg|jpeg|png";  
 //            $config['max_size'] = '100';
@@ -98,13 +98,13 @@ Class Novedad_carrusel_library {
         
         if($errors['registro']!=0){
             //REGISTRO DE LOS DATOS     
-            $novedad_carrusel = array(                
+            $producto_carrusel = array(                
                 'imagen_lg' => $path_imagen_lg,
                 'imagen_xs' => $path_imagen_xs,
                 'id_novedad' => $id_novedad
             );            
 
-            if($this->CI->generico_model->nuevo($novedad_carrusel,"novedad_carrusel")){
+            if($this->CI->generico_model->nuevo($producto_carrusel,"producto_carrusel")){
                 $errors['registro'] = 1;                
             }else{
                 $errors['registro'] = 0;                
@@ -129,7 +129,7 @@ Class Novedad_carrusel_library {
         $errors['upload_imagen_xs']="";
         
         //obtener item de carrusel
-        $icarrusel = $this->CI->generico_model->get($id,"novedad_carrusel");
+        $icarrusel = $this->CI->generico_model->get($id,"producto_carrusel");
         $imagen_path_antiguo_xs = $icarrusel['imagen_xs'];
         $imagen_path_antiguo_lg = $icarrusel['imagen_lg'];        
         
@@ -149,7 +149,7 @@ Class Novedad_carrusel_library {
         ////////////////////////////
         //IMAGEN GRANDE
         
-        $config['upload_path'] = "uploads/novedad_carrusel/";
+        $config['upload_path'] = "uploads/producto_carrusel/";
         $config['file_name'] = "carrusel_lg_".Date("YmdHis");
         $config['allowed_types'] = "gif|jpg|jpeg|png";  
 //      $config['max_size'] = '100';
@@ -175,7 +175,7 @@ Class Novedad_carrusel_library {
         ////////////////////////////
         //IMAGEN PEQUEÑA
         
-        $config['upload_path'] = "uploads/novedad_carrusel/";
+        $config['upload_path'] = "uploads/producto_carrusel/";
         $config['file_name'] = "carrusel_xs_".Date("YmdHis");
         $config['allowed_types'] = "gif|jpg|jpeg|png";  
 //            $config['max_size'] = '100';
@@ -235,7 +235,7 @@ Class Novedad_carrusel_library {
         }
         
         
-        if($this->CI->generico_model->editar($id,$carrusel_update,"novedad_carrusel")){
+        if($this->CI->generico_model->editar($id,$carrusel_update,"producto_carrusel")){
             $errors['actualizar'] = 1;                
         }else{
             $errors['actualizar'] = 0;                
@@ -247,7 +247,7 @@ Class Novedad_carrusel_library {
     
     public function listado() {        
         $data = array( );
-        echo $this->CI->load->view("admin/novedad_carrusel/listado",$data,true);       
+        echo $this->CI->load->view("admin/producto_carrusel/listado",$data,true);       
     }
     
     public function anexgrid(){
@@ -267,7 +267,7 @@ Class Novedad_carrusel_library {
             }
             
             $query = "
-                SELECT * FROM novedad_carrusel
+                SELECT * FROM producto_carrusel
                 WHERE $wh ORDER BY ".$this->CI->anexgrid->columna." ".$this->CI->anexgrid->columna_orden." 
                 LIMIT ".$this->CI->anexgrid->pagina." , ".$this->CI->anexgrid->limite;          
             
@@ -275,7 +275,7 @@ Class Novedad_carrusel_library {
             
             $query = "
                 SELECT COUNT(*) as Total
-                FROM novedad_carrusel
+                FROM producto_carrusel
                 WHERE $wh";
             
             $total = $this->CI->anexgrid_model->query_total($query);       
@@ -293,13 +293,13 @@ Class Novedad_carrusel_library {
         $id = $this->CI->input->post('id');  
         $data_error = array("error" => 0); 
         
-        $novedad = $this->CI->generico_model->get($id,"novedad_carrusel");
+        $novedad = $this->CI->generico_model->get($id,"producto_carrusel");
         //eliminar imagen
         @unlink($novedad['imagen_lg']);
         @unlink($novedad['imagen_xs']);
         
         //eliminar registro de base de datos
-        $result = $this->CI->generico_model->eliminar($id,"novedad_carrusel");                            
+        $result = $this->CI->generico_model->eliminar($id,"producto_carrusel");                            
         
         echo json_encode($data_error);  
          
@@ -312,15 +312,15 @@ Class Novedad_carrusel_library {
         
         if($publicar == 1){//quiere publicarlo
             //revisar si ya tiene las 4 imagenes del carrusel
-            if(count($this->CI->generico_model->listadoCondicion(array("id_novedad"=>$id),"novedad_carrusel"))==3){
-                $this->CI->generico_model->editar($id,array('publicar' =>$publicar),"novedad_carrusel");
+            if(count($this->CI->generico_model->listadoCondicion(array("id_novedad"=>$id),"producto_carrusel"))==3){
+                $this->CI->generico_model->editar($id,array('publicar' =>$publicar),"producto_carrusel");
             }else{
                 $data_error["error"] = 1;
                 $data_error["mensaje"] = "Esta novedad no tiene todas las imagenes para su carrusel, por ese  motivo no es posible publicarlo.xxxxx";
             }
             
         }else{//despublicar
-            $this->CI->generico_model->editar($id,array('publicar' =>$publicar),"novedad_carrusel");
+            $this->CI->generico_model->editar($id,array('publicar' =>$publicar),"producto_carrusel");
         }
         
         echo json_encode($data_error);  
@@ -329,7 +329,7 @@ Class Novedad_carrusel_library {
     public function orden_arriba(){
         $id = $this->CI->input->post('id'); 
                 
-        if($this->CI->orden_library->orden_arriba_tabla($id,"novedad_carrusel")){
+        if($this->CI->orden_library->orden_arriba_tabla($id,"producto_carrusel")){
             //intercambio bien
             echo json_encode(array("arriba"=> 1)); 
         }else{
@@ -341,7 +341,7 @@ Class Novedad_carrusel_library {
     public function orden_abajo(){
         $id = $this->CI->input->post('id'); 
                 
-        if($this->CI->orden_library->orden_abajo_tabla($id,"novedad_carrusel")){
+        if($this->CI->orden_library->orden_abajo_tabla($id,"producto_carrusel")){
             //intercambio bien
             echo json_encode(array("abajo"=> 1)); 
         }else{

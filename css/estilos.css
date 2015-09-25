@@ -1,6 +1,10 @@
 *{
     font-family: CaviarDreams, Arial, sans-serif;    
 }
+body{
+    margin-top: 66px;
+    position: relative;
+}
 h2{
     font-family: BrandonText, Arial, sans-serif;    
 }
@@ -128,6 +132,10 @@ h3.titulo05:after{
     background-color: #353f47;
     border: 1px solid;
     height: 86px;
+    z-index: 50;
+    position: fixed;
+    width: 100%;
+    top: 0px;
 }
 #menu_top #menu_top_logo{
     
@@ -951,7 +959,7 @@ width: 100%;
     position: absolute;
 }
 .navegacion_posicion_top{
-    top: 30px;
+    top: 160px;
     position: fixed;
 }
 .nav-navigation li a {
@@ -1170,12 +1178,21 @@ font-weight: bold;
 
 #promocion_detalle_contenedor .promocion_detalle .promocion_detalle_imagen{
     display: block;
-float: left;
-height: 515px;
-width: calc(100% - 505px);
-}
-#promocion_detalle_contenedor .promocion_detalle .promocion_detalle_imagen img{
+    float: left;
     height: 515px;
+    width: calc(100% - 505px);
+}
+#promocion_detalle_contenedor .promocion_detalle .promocion_detalle_imagen_fondo{
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 515px;
+    width: 100%;
+}
+
+#promocion_detalle_contenedor_ajax{
+    height: 515px;
+    width: 100%;
+    background-color: #98968f;
 }
 
 /*movil*/
@@ -1241,7 +1258,7 @@ width: 51px;
 #promocion_contenedor{
     padding-top: 60px;
 }
-.promocion{
+/*.promocion{
 cursor: pointer;
 display: block;
 }
@@ -1258,7 +1275,7 @@ display: block;
     font-weight: bold;
     padding: 30px 0;
     text-align: center;
-}
+}*/
 
 /*SECCION NOVEDADES*/
 #seccion_novedades{
@@ -1266,27 +1283,27 @@ display: block;
     padding: 40px 0;
 }
 
-.novedad{
+.novedad,.promocion{
     cursor: pointer;
     display: block;
     height: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     max-width: 600px;
     overflow: hidden;
     position: relative;
 }
-.novedad:hover{
+.novedad:hover, .promocion:hover{
     text-decoration: none;
 }
 
-.novedad_imagen_contenedor {
+.novedad_imagen_contenedor, .promocion_imagen_contenedor {
     height: 270px;
     max-width: 600px;
     overflow: hidden;
     position: relative;
 }
 
-.novedad_imagen{
+.novedad_imagen, .promocion_imagen{
 /*    background-image: url("http://zayma.pe/uploads/novedad/novedad_20150924134851.jpg");*/
     background-position: center center;
     height: 270px;
@@ -1294,19 +1311,25 @@ display: block;
     position: relative;
     background-size: 100% 100%;
     
-    transition: background-size 1s ease-in-out 0.1s;
+    /*transition: all 1s ease-in-out 0.1s;*/
     width: 100%;
     z-index: 1;
+    
+    max-width: 100%;
+    transition: transform 0.5s ease 0s;
 }
-.novedad:hover .novedad_imagen{    
+.novedad:hover .novedad_imagen,.promocion:hover .promocion_imagen{    
 /*    transform: scale(1.05); 
     -webkit-transform: scale(1.05);*/
     
-    background-size: 105% 105%;
+/*    background-size: 105% 105%;
     transform: all; 
-    -webkit-transform: all;
+    -webkit-transform: all;*/
+    
+    transform: scale3d(1.1, 1.1, 1)
+    
 }
-.novedad_nombre{
+.novedad_nombre,.promocion_nombre{
     background-color: #98968f;
     color: #353f47;
     font-size: 20px;
@@ -1316,7 +1339,7 @@ display: block;
     transition: all .3s ease-in-out 0.0s;
 }
 
-.novedad:hover .novedad_nombre{  
+.novedad:hover .novedad_nombre, .promocion:hover .promocion_nombre{  
     color: #98968f;
     background-color: #353f47;
 }
@@ -1505,6 +1528,8 @@ position: absolute;
 top: -150px;
 width: 100%;
 z-index: 1;
+left: 50%;
+margin-left: -790px;
 }
 #qs_billetera01{
 
@@ -1537,14 +1562,18 @@ z-index: 2;
     font-size: 17px;
     line-height: 27px;
 }
+#quienes_somos_contenido_titulos{
+    padding-bottom: 105px;
+}
+
 #seccion_nosotros_vision{
- background-image: url("../images/nosotros_vision_fondo.jpg");
+background-image: url("../images/conocenos_mision_fondo.jpg");
 background-position: center center;
 background-repeat: no-repeat;
 height: 536px;
 overflow: hidden;
-width: 1580px;
 padding-top: 70px;
+width: 100%;
 }
 .vision_titulo{
 color: #eae3d0;
@@ -1556,7 +1585,7 @@ text-align: right;
 }
 .vision_texto{
     color: #eae3d0;
-font-size: 17px;
+font-size: 18px;
 margin-bottom: 80px;
 line-height: 26px;
 }
@@ -1656,6 +1685,9 @@ para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
 <768
 */ 
 @media (max-width: 767px) {
+    body{
+        margin-top : 86px;
+    }
     #menu_top{       
         height: 86px;
         padding-top: 29px;
@@ -1669,12 +1701,15 @@ para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
     #header_home{
         height: 332px;
         background-image: url("../images/movil/header_fondo.jpg");
-        padding-top: 104px;        
+        padding-top: 88px;        
     }
     #header_galeria{
         height: 332px;
         background-image: url("../images/movil/galeria_header_fondo.jpg");
         padding-top: 104px;        
+    }
+    #header_home #header_logo_principal img{
+        max-width: 310px;
     }
     
     /*CONOCENOS*/
@@ -1744,6 +1779,41 @@ para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
     .promocion {        
         margin-bottom: 60px;
     }
+    #promocion_detalle_contenedor_ajax{
+        height: 100%;
+    }
+    
+    /*NOSOTROS*/
+    .vision_titulo{ 
+        text-align: center;     
+    }
+    .vision_texto{
+
+    }
+    #seccion_nosotros_vision{
+        background-image: url("../images/movil/nosotros_vision_fondo.jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: 834px;
+        overflow: hidden;
+        padding-top: 50px;
+        width: 100%;
+    }
+    #quienes_somos_contenido{   
+        padding-top: 25px;    
+    }
+    #seccion_nosotros_quienessomos {
+        background-image: url("../images/movil/nosotros_quienessomos_fondo.jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: 455px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+    #quienes_somos_contenido_titulos{
+        padding-bottom: 40px;
+    }
 }
 
 /* Portrait tablet to landscape and desktop 
@@ -1774,10 +1844,13 @@ para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
     }
     /*CONTACTO*/
     #seccion_contacto{
-        background-image: url("../images/fondo_contacto.jpg");  
-        background-size: 100% 580px;
+        background-image: url("../images/fondo_contacto1920.jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: auto auto;
         height: 580px;
         padding: 20px 0;
+        width: 100%;
     }
     form[name=frm_contacto] .contenedor_input {    
         width: 300px;
@@ -1800,9 +1873,9 @@ para el ancho del logo y nombre slogan, coregir letter-spacing y ancho
         top: -7px;
     }
     /*PROMOCION*/
-    .promocion{
+/*    .promocion{
         margin-bottom: 30px;
-    }
+    }*/
     
     
 }

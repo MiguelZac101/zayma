@@ -56,16 +56,6 @@
                     }},
                 {formato: function (tr, obj, celda) {
                         return anexGrid_boton({
-                            class: 'btn btn-danger btn-sm btn-eliminar',
-                            contenido: '<i class="fa fa-trash-o fa-fw"></i>',
-                            value: tr.data('fila'),
-                            attr: [
-                                'title="Eliminar"'
-                            ]
-                        });
-                    }},
-                {formato: function (tr, obj, celda) {
-                        return anexGrid_boton({
                             class: 'btn btn-primary btn-sm btn-editar',
                             contenido: '<i class="fa fa-pencil-square-o fa-fw"></i>',
                             value: tr.data('fila'),
@@ -103,6 +93,16 @@
                                 'title="Abajo"'
                             ]
                         });    
+                    }},
+                {formato: function (tr, obj, celda) {
+                        return anexGrid_boton({
+                            class: 'btn btn-danger btn-sm btn-eliminar',
+                            contenido: '<i class="fa fa-trash-o fa-fw"></i>',
+                            value: tr.data('fila'),
+                            attr: [
+                                'title="Eliminar"'
+                            ]
+                        });
                     }}
                
             ],

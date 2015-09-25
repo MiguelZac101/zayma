@@ -8,32 +8,23 @@ Class Producto_library {
         $this->CI =& get_instance();
         
         $this->CI->load->model("generico_model");
-//        $this->CI->load->model("producto_model");
         $this->CI->load->model("anexgrid_model");     
-        $this->CI->load->library("anexgrid");    
-//        $this->CI->load->library("session"); 
-        
+        $this->CI->load->library("anexgrid");
+        $this->CI->load->library('upload');
     }
     
     //nuevo vista
     //se llama por js
     public function nuevo() { 
-        $header = array();
-        $data = array();                     
-        $footer = array(); 
-        
+        $data = array();  
         $data['grupos'] = $this->CI->generico_model->listado("producto_grupo");
-        
-        $this->CI->view_admin_library->plantilla("producto/nuevo",$header,$data,$footer);       
+        echo $this->CI->load->view("admin/producto/nuevo",$data,true);       
     }   
      
     //editar vista  
     //se llama por js
-    public function editar($id_producto) { 
-        $header = array();
-        $data = array();                     
-        $footer = array();
-        
+    public function editar() { 
+        $id_producto = $this->CI->input->post("id");
         $producto = $this->CI->generico_model->get($id_producto,"producto"); 
         
         //subcategoria a la cual pertenece
@@ -53,182 +44,140 @@ Class Producto_library {
         $data['subcategorias'] = $this->CI->generico_model->listadoCondicion(array("id_categoria"=>$categoria['id']),"producto_subcategoria"); 
         
         //cargar las imagenes
-        $data['producto_imagen'] = $this->CI->generico_model->listadoCondicion(array("id_producto"=>$id_producto),"producto_imagen"); 
+//        $data['producto_imagen'] = $this->CI->generico_model->listadoCondicion(array("id_producto"=>$id_producto),"producto_imagen"); 
         
-        $this->CI->view_admin_library->plantilla("producto/editar",$header,$data,$footer); 
+        echo $this->CI->load->view("admin/producto/editar",$data,true); 
     }
     
     //esto viene de js que esta en la vista nuevo
     public function registrar() {
+        ///////////////////////////////////
         $errors = array(
             'upload_imagen' => '',
-            'registro' => 0,
-            'registro_imagenes' => 0
+            'registro' => 0           
         );
+        
         //datos del formulario
         $nombre = $this->CI->input->post("nombre");      
         $id_subcategoria = $this->CI->input->post("id_subcategoria");     
         $url = codificarURL($nombre);
         
-        //REGISTRAR PRODUCTO
-        $producto = array(
-            'nombre' => $nombre,           
-            'url' => $url ,          
-            'id_subcategoria' => $id_subcategoria
-        );
-        $id_producto = $this->CI->generico_model->nuevo($producto,"producto");
+        $config['upload_path'] = "uploads/productos/";
+        $config['file_name'] = "producto_".Date("YmdHis");
+        $config['allowed_types'] = "gif|jpg|jpeg|png";  
+//            $config['max_size'] = '100';
+//        $config['max_width'] = '600';
+//        $config['max_height'] = '270';
+//        $config['min_width'] = '600';
+//        $config['min_height'] = '270';
+
+        $this->CI->upload->initialize($config);
         
-        if($id_producto){
-            if(count($_FILES['imagen']['tmp_name'])>0 && $_FILES['imagen']['name'][0]!=""){
-                $errors['registro'] = 1;            
-               
-                ///////////////////////
-                 // retrieve the number of images uploaded;
-                $number_of_files = sizeof($_FILES['imagen']['tmp_name']);
-                // considering that do_upload() accepts single files, we will have to do a small hack so that we can upload multiple files. For this we will have to keep the data of uploaded files in a variable, and redo the $_FILE.
-                $files = $_FILES['imagen'];
-
-                // we first load the upload library
-                $this->CI->load->library('upload');
-                //REGISTRAR IMAGENES 
-                // next we pass the upload path for the images
-                $config['upload_path'] = "uploads/productos/";
-                $config['file_name'] = "producto_" . Date("YmdHis");
-                $config['allowed_types'] = "gif|jpg|jpeg|png";
-                    //            $config['max_size'] = '100';
-        //        $config['max_width'] = '400';
-        //        $config['max_height'] = '400';
-        //        $config['min_width'] = '400';
-        //        $config['min_height'] = '400';           
-
-                for ($i = 0; $i < $number_of_files; $i++) {
-                    $_FILES['img']['name'] = $files['name'][$i];
-                    $_FILES['img']['type'] = $files['type'][$i];
-                    $_FILES['img']['tmp_name'] = $files['tmp_name'][$i];
-                    $_FILES['img']['error'] = $files['error'][$i];
-                    $_FILES['img']['size'] = $files['size'][$i];
-                    //now we initialize the upload library
-                    $this->CI->upload->initialize($config);
-                    // we retrieve the number of files that were uploaded
-                    if ($this->CI->upload->do_upload('img')) {
-                        $uploads[$i] = $this->CI->upload->data();
-                    } else {
-                        $upload_errors[$i] = $this->CI->upload->display_errors();
-                    }
-                }
-
-                if ( isset($uploads) && count($uploads)> 0 ) {//no hay errores
-    //                if(sizeof($_FILES['imagen']['tmp_name'])>1){//numero de imagenes
-                    foreach ($uploads as $regimg) {
-                        $producto_imagen = array(
-                            'imagen' => $config['upload_path'] . $regimg['file_name'],
-                            'id_producto' => $id_producto
-                        );
-                        $this->CI->generico_model->nuevo($producto_imagen, "producto_imagen");
-                    }
-                } else {//hay errores
-                    $errors['upload_imagen'] = "problema no se puede subir algunas imagenes";
-                }
-                /////////////////////////
-            }else{
-                //no subio ninguna imagen
-                //$errors['upload_imagen'] = "";
-            }
+        /////////////////////////////////////////
+        if (!$this->CI->upload->do_upload("imagen")) {
+            //*** ocurrio un error            
+            $errors['upload_imagen'] =  $this->CI->upload->display_errors('','');            
             
-        }        
-    
+        }else{
+            $uploadSuccess = $this->CI->upload->data();
+            $file_name_ext = $uploadSuccess['file_name']; 
+            
+            //REGISTRAR PRODUCTO
+            $producto = array(
+                'nombre' => $nombre,           
+                'url' => $url ,          
+                'id_subcategoria' => $id_subcategoria,
+                'imagen' => $config['upload_path'].$file_name_ext
+            );
         
+            if($this->CI->generico_model->nuevo($producto,"producto")){
+                $errors['registro'] = 1;                
+            }else{
+                $errors['registro'] = 0;                
+            }            
+            
+        } 
         echo json_encode($errors);
+        ///////////////////////////////////////  
         
     }
     
     public function actualizar() {
-        $id_producto = $this->CI->input->post("id");
-                
-        //datos del formulario
-        $nombre = $this->CI->input->post("nombre");      
-        $id_subcategoria = $this->CI->input->post("id_subcategoria");     
-        $url = codificarURL($nombre);
-        
-        //ACTUALIZAR PRODUCTO
-        $producto = array(
-            'nombre' => $nombre,           
-            'url' => $url ,          
-            'id_subcategoria' => $id_subcategoria
-        );
-        $this->CI->generico_model->editar($id_producto,$producto,"producto");
-        /////////////////////////
+        $id = $this->CI->input->post("id");
+        $nombre = $this->CI->input->post("nombre");
         
         $errors = array(
-            'actualizar' => 1,
-            'mensaje' => "Registro Actualizado!."
-        );  
+            'upload_imagen' => '',
+            'actualizar' => 0
+        );       
         
-     
-        if(count($_FILES['imagen']['tmp_name'])>0 && $_FILES['imagen']['name'][0]!=""){                       
-            $uploads = array();   
-            ///////////////////////
-             // retrieve the number of images uploaded;
-            $number_of_files = count($_FILES['imagen']['tmp_name']);
-            // considering that do_upload() accepts single files, we will have to do a small hack so that we can upload multiple files. For this we will have to keep the data of uploaded files in a variable, and redo the $_FILE.
-            $files = $_FILES['imagen'];
-            
-            // we first load the upload library
-            $this->CI->load->library('upload');
-            //REGISTRAR IMAGENES 
-            // next we pass the upload path for the images
-            $config['upload_path'] = "uploads/productos/";
-            $config['file_name'] = "producto_" . Date("YmdHis");
-            $config['allowed_types'] = "gif|jpg|jpeg|png";
-                //            $config['max_size'] = '100';
-    //        $config['max_width'] = '400';
-    //        $config['max_height'] = '400';
-    //        $config['min_width'] = '400';
-    //        $config['min_height'] = '400';           
-            
-            for ($i = 0; $i < $number_of_files; $i++) {
-                $_FILES['img']['name'] = $files['name'][$i];
-                $_FILES['img']['type'] = $files['type'][$i];
-                $_FILES['img']['tmp_name'] = $files['tmp_name'][$i];
-                $_FILES['img']['error'] = $files['error'][$i];
-                $_FILES['img']['size'] = $files['size'][$i];
-                //now we initialize the upload library
-                $this->CI->upload->initialize($config);
-                // we retrieve the number of files that were uploaded
-                if ($this->CI->upload->do_upload('img')) {
-                    $uploads[$i] = $this->CI->upload->data();
-                } else {
-                    $upload_errors[$i] = $this->CI->upload->display_errors();
-                }
-            }
-            
-            if ( isset($uploads) && count($uploads)> 0 ) {//no hay errores
-//                if(sizeof($_FILES['imagen']['tmp_name'])>1){//numero de imagenes
-                foreach ($uploads as $regimg) {
-                    $producto_imagen = array(
-                        'imagen' => $config['upload_path'] . $regimg['file_name'],
-                        'id_producto' => $id_producto
-                    );
-                    $this->CI->generico_model->nuevo($producto_imagen, "producto_imagen");
-                }
-            } else {//hay errores
-                $errors['actualizar'] = 0;
-                $errors['mensaje'] = "Hubo un problema no se puede subir algunas imagenes ".count($_FILES['imagen']['name'])." ".count($_FILES['imagen']['tmp_name']);
-            }
-            /////////////////////////
-        }    
-           
-        echo json_encode($errors);
+        //obtener el novedad
+        $producto = $this->CI->generico_model->get($id,"producto");
+        $imagen_path_antiguo = $producto['imagen'];
         
+        $config['upload_path'] = "uploads/productos/";
+        $config['file_name'] = "producto_".Date("YmdHis");
+        $config['allowed_types'] = "gif|jpg|jpeg|png";  
+//      $config['max_size'] = '100';
+//        $config['max_width'] = '556';
+//        $config['max_height'] = '270';
+//        $config['min_width'] = '556';
+//        $config['min_height'] = '270';
+
+        
+        $this->CI->upload->initialize($config);
+        
+        //update
+        $producto_update = array(
+            'nombre' => $nombre
+        );
+        
+        if (!$this->CI->upload->do_upload("imagen")) {
+            //*** ocurrio un error            
+            $errors['upload_imagen'] =  $this->CI->upload->display_errors('','');
+        }else{
+            //como cargo una imagen, primero borramos las imagenes antiguas
+            @unlink($imagen_path_antiguo);
+            $uploadSuccess = $this->CI->upload->data();
+            $file_name_ext = $uploadSuccess['file_name'];
+            //borrar la imagen anterior
+            $producto_update['imagen'] = $config['upload_path'].$file_name_ext;
+        } 
+        
+        //envia imagen
+        if($_FILES['imagen']['tmp_name']!=''){//que esta llegando una imagen
+            if($errors['upload_imagen']!=''){//hay errores al cargar
+                $errors['actualizar'] = 0; 
+                echo json_encode($errors);
+                exit();
+            }else{
+                                
+            }
+        }else{//no envia nada
+            
+        }
+
+        if($this->CI->generico_model->editar($id,$producto_update,"producto")){
+            $errors['actualizar'] = 1;                
+        }else{
+            $errors['actualizar'] = 0;                
+        }
+            
+        echo json_encode($errors);        
     }
     
     public function listado() {
         $header = array();
-        $data = array(
-            
-        );             
+             
+        ob_start();
+        $this->nuevo();
+        $nuevo = ob_get_contents();
+        ob_end_clean();
         
-        $footer = array();        
+        $data = array(
+            "pagina" => $nuevo
+        );
+        $footer = array(); 
         
         $this->CI->view_admin_library->plantilla("producto/listado",$header,$data,$footer);       
     }
@@ -286,6 +235,9 @@ Class Producto_library {
             }
         }        
         
+        //eliminar la imagen del producto
+        $producto = $this->CI->generico_model->get($id_producto,"producto");
+        @unlink($producto['imagen']);
         //eliminar registro de base de datos
         $this->CI->generico_model->eliminar($id_producto,"producto");       
         
@@ -295,7 +247,7 @@ Class Producto_library {
     public function publicar(){
         $id = $this->CI->input->post('id'); 
         $publicar = ($this->CI->input->post('publicar')==1)?0:1;        
-        $this->CI->producto_model->editar($id,array('publicar' =>$publicar),$data['control']);       
+        $this->CI->generico_model->editar($id,array('publicar' =>$publicar),"producto");       
         
         echo json_encode(true);  
     }

@@ -27,7 +27,7 @@ $(document).ready(function(){
     if($('#navegacion').length){
         var altura = $('#navegacion').offset().top;    
         $(window).on('scroll', function(){
-            if ( $(window).scrollTop() > altura ){
+            if ( $(window).scrollTop() > 65 ){
                 $('#navegacion').addClass('navegacion_posicion_top');
                 $('#navegacion').removeClass('navegacion_posicion_standar');
             } else {
@@ -162,7 +162,29 @@ $(document).ready(function(){
             $("#novedades_carrusel_contenedor").css("opacity",1);
             $("#novedades_descripcion").css("opacity",1);
             
+            var target = $("#seccion_novedades");            
+            $('html,body').animate({
+                scrollTop: target.offset().top - 86
+            }, 1000);
+            
         },"json");
+    });
+    
+    //CARGAR DETALLE PROMOCION
+    $("a.promocion").click(function(e){
+        e.preventDefault();
+        var id_promocion = $(this).data("id"); 
+        $("#promocion_detalle_contenedor_ajax").css("opacity",.25);
+        
+        $.post(base_url+"frontend_ajax/promocion_detalle",{"id_promocion":id_promocion},function(data){            
+            $("#promocion_detalle_contenedor_ajax").html(data); 
+            $("#promocion_detalle_contenedor_ajax").css("opacity",1);
+            
+            var target = $("#promocion_detalle_contenedor_ajax");            
+            $('html,body').animate({
+                scrollTop: target.offset().top - 86
+            }, 1000);
+        });
     });
 });
 

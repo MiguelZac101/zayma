@@ -50,14 +50,11 @@
     </head>
     <body>
         <div id="preloader" >
-            <!--            <div id="loader"></div>-->
+
             <div class="throbber-loader">
                 Loading…
             </div>
         </div>
-<!--        <div id="bgLockerd"></div>
-        <div class="modal fade in" id="modalPopUp"></div>-->
-
         <header>
             <nav class="navbar navbar-inverse navbar-fixed-top container-fluid" style="background-color: #353f47;">
                 <div class="nav-row">
@@ -74,7 +71,6 @@
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            
                             <li class="dropdown">
                                 <a tabindex="0" data-toggle="dropdown">
                                     Home <i class="fa fa-angle-down fa-fw"></i>
@@ -100,8 +96,7 @@
                                         </a>
                                     </li>-->
                                 </ul>
-                            </li>                            
-                            
+                            </li>
                             <li class="dropdown">
                                 <a tabindex="0" data-toggle="dropdown">
                                     Productos <i class="fa fa-angle-down fa-fw"></i>
@@ -140,6 +135,19 @@
                                     </li>                                   
                                 </ul>
                             </li>  
+                            <li class="dropdown">
+                                <a tabindex="0" data-toggle="dropdown">
+                                    Promociones <i class="fa fa-angle-down fa-fw"></i>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="<?php echo base_url('admin/promocion/listado'); ?>" tabindex="0">
+                                            <i class="fa fa-book fa-fw"></i> 
+                                            Listado
+                                        </a>
+                                    </li>                                   
+                                </ul>
+                            </li>
                            
                             <li class="dropdown">
                                 <a tabindex="0" data-toggle="dropdown">

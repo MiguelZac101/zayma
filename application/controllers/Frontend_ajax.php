@@ -20,4 +20,13 @@ Class Frontend_ajax extends CI_Controller {
         $data = array("carrusel"=>$carrusel,"descripcion"=>$descripcion);
         echo json_encode($data);
     }
+    
+    public function promocion_detalle(){
+        $id_promocion = $this->input->post("id_promocion");        
+        
+        $data_detalle['promocion'] = $this->generico_model->getCondicion(array("id" => $id_promocion),"promocion");        
+        $data = $this->load->view("promociones/detalle",$data_detalle,true);
+        
+        echo $data;
+    }
 }

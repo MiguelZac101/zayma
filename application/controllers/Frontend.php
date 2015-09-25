@@ -197,9 +197,14 @@ Class Frontend extends CI_Controller {
 
     }    
     public function promociones(){
-        $data = array(            
-            
-        );
+        $data = array( );
+        
+        $promocion_destacado = $this->generico_model->getCondicion(array("destacado" => 1,"publicar"=>1),"promocion"); 
+        $data_detalle["promocion"] = $promocion_destacado;
+        $data["detalle"] = $this->load->view("promociones/detalle",$data_detalle,true);
+        
+        $data["promociones"] = $this->generico_model->listadoCondicion(array("publicar" => 1),"promocion"); 
+        
         $this->load->view("templates/header");
         $this->load->view("promociones",$data);
         $this->load->view("templates/footer");

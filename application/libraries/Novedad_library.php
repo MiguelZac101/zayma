@@ -36,7 +36,7 @@ Class Novedad_library {
 
         //$url = codificarURL($nombre);
         
-        $config['upload_path'] = "./temp/";
+        $config['upload_path'] = "uploads/novedad/";
         $config['file_name'] = "novedad_".Date("YmdHis");
         $config['allowed_types'] = "gif|jpg|jpeg|png";  
 //            $config['max_size'] = '100';
@@ -110,7 +110,7 @@ Class Novedad_library {
         
         if (!$this->CI->upload->do_upload("imagen")) {
             //*** ocurrio un error            
-            $errors['upload_imagen'] =  $this->CI->upload->display_errors('','').$config['upload_path'];
+            $errors['upload_imagen'] =  $this->CI->upload->display_errors('','');
         }else{
             //como cargo una imagen, primero borramos las imagenes antiguas
             @unlink($imagen_path_antiguo);

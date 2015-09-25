@@ -7,7 +7,7 @@
                         <div class="row">                      
 
                             <div class="col-sm-6">
-                                <?php echo $titulo_modulo; ?> - Listado
+                                PROMOCIONES - Listado
                             </div>
                             <div class="col-sm-6 text-right">
 
@@ -40,19 +40,29 @@
             class: 'table-striped table-bordered table-condensed',
             columnas: [
                 {leyenda: '#', style: 'width:30px;text-align:center;', class: '', columna: 'orden'},
-                {leyenda: 'Nombre', style: '', class: '', columna: 'nombre'},
+                {leyenda: 'Titulo', style: '', class: '', columna: 'titulo'},
+                {leyenda: 'Precio Normal', style: '', class: '', columna: 'precio_normal'},
+                {leyenda: 'Precio Promoción', style: '', class: '', columna: 'precio_promocion'},
                 {leyenda: 'Publicar', style: 'width:100px;', columna: 'publicar'},
+                {leyenda: 'Destacado', style: 'width:100px;', columna: 'destacado'},
                 {style: 'width:48px;'},
                 {style: 'width:48px;'},
                 {style: 'width:48px;'},
+                {style: 'width:48px;'},              
                 {style: 'width:48px;'},
                 {style: 'width:48px;'}
             ],
             modelo: [
                 {propiedad: 'orden', style:'text-align:center;'},
-                {propiedad: 'nombre'},              
+                {propiedad: 'titulo'},  
+                {propiedad: 'precio_normal'}, 
+                {propiedad: 'precio_promocion'}, 
+                
                 {propiedad: 'publicar', formato: function (tr, obj, valor) {
                         return valor == 1 ? '<div class="text-success">Publicado</div>' : '<div class="text-danger">No Publicado</div>';
+                    }},
+                {propiedad: 'destacado', formato: function (tr, obj, valor) {
+                        return valor == 1 ? '<div class="text-success">Destacado</div>' : '<div class="text-danger">No Destacado</div>';
                     }},
                 {formato: function (tr, obj, celda) {
                         return anexGrid_boton({
@@ -63,7 +73,7 @@
                                 'title="Editar"'
                             ]
                         });
-                    }},
+                    }},                   
                     { formato: function(tr, obj, celda){
                         return anexGrid_boton({
                             class: 'btn btn-success btn-sm btn-publicar',
@@ -73,10 +83,22 @@
                                 'title="Publicar/Despublicar"'
                             ]
                         });    
-                    }},
+                    }}
+                    ,
                     { formato: function(tr, obj, celda){
                         return anexGrid_boton({
-                            class: 'btn btn-info btn-sm btn-arriba',
+                            class: 'btn btn-info btn-sm btn-destacado',
+                            contenido: '<i class="fa fa-star fa-fw"></i>',
+                            value: tr.data('fila'),
+                            attr: [
+                                'title="Destacado"'
+                            ]
+                        });    
+                    }}
+                    ,
+                    { formato: function(tr, obj, celda){
+                        return anexGrid_boton({
+                            class: 'btn btn-default btn-sm btn-arriba',
                             contenido: '<i class="fa fa-arrow-up fa-fw"></i>',
                             value: tr.data('fila'),
                             attr: [
@@ -86,7 +108,7 @@
                     }},
                     { formato: function(tr, obj, celda){
                         return anexGrid_boton({
-                            class: 'btn btn-info btn-sm btn-abajo',
+                            class: 'btn btn-default btn-sm btn-abajo',
                             contenido: '<i class="fa fa-arrow-down fa-fw"></i>',
                             value: tr.data('fila'),
                             attr: [
@@ -106,11 +128,11 @@
                     }}
                
             ],
-            url: '<?php echo base_url(); ?>admin/<?php echo $control; ?>/anexgrid',
+            url: '<?php echo base_url(); ?>admin/promocion/anexgrid',
             paginable: true,
 //                    filtrable: true,
             limite: [10, 20, 50],
-            columna: 'id',
+            columna: 'orden',
             columna_orden: 'ASC'
         });
 
@@ -124,7 +146,7 @@
 
             $("#preloader").show();
             /* Petición ajax al servidor */
-            $.post('<?php echo base_url(); ?>admin/<?php echo $control; ?>/eliminar/', {
+            $.post('<?php echo base_url(); ?>admin/promocion/eliminar/', {
                 id: fila.id
             }, function (r) {
                 if (r.error==0) {
@@ -138,7 +160,28 @@
 
             return false;
         });
+        
+        agrid.tabla().on('click', '.btn-carrusel', function(e){
+            e.preventDefault();
+            var fila = agrid.obtener($(this).val()); 
+            var id_promocion = fila.id;
+            
+            $('#myModal').attr("data-id",id_promocion);
+            
+            $.post('<?php echo base_url(); ?>admin/promocion_carrusel/vista_modal', {
+                id: fila.id                
+            }, function(r){      
+                $('#myModal #modal_listado').html(r.listado);
+                $('#myModal #modal_proceso').html(r.nuevo); 
+            }, 'json');
+            
+            //cargar datos al modal
+            $('#myModal').find(".modal-title").html("NOVEDADES - Carrusel");            
+            $('#myModal').modal('show');            
 
+            return false;
+        });
+        
         agrid.tabla().on('click', '.btn-publicar', function(e){
             e.preventDefault();
             //if(!confirm('¿Esta seguro de eliminar este registro?')) return;
@@ -147,12 +190,16 @@
             var fila = agrid.obtener($(this).val());               
             $("#preloader").show();
             /* Petición ajax al servidor */
-            $.post('<?php echo base_url(); ?>admin/<?php echo $control; ?>/publicar/', {
+            $.post('<?php echo base_url(); ?>admin/promocion/publicar/', {
                 id: fila.id,
                 publicar:fila.publicar
-            }, function(r){
-                if(r) agrid.refrescar();
+            }, function(r){                
                 $("#preloader").hide();
+                if(r.error==0){
+                    agrid.refrescar();
+                }else{
+                    alert(r.mensaje);
+                }                
             }, 'json');
 
             return false;
@@ -166,7 +213,7 @@
             var fila = agrid.obtener($(this).val());
             $("#preloader").show();
             /* Petición ajax al servidor */
-            $.post('<?php echo base_url(); ?>admin/<?php echo $control; ?>/editar', {
+            $.post('<?php echo base_url(); ?>admin/promocion/editar', {
                 id: fila.id
             }, function (data) {                
                 $("#cargar_ajax").html(data);
@@ -184,7 +231,7 @@
             var fila = agrid.obtener($(this).val());
             $("#preloader").show();
             /* Petición ajax al servidor */
-            $.post('<?php echo base_url(); ?>admin/<?php echo $control; ?>/orden_arriba', {
+            $.post('<?php echo base_url(); ?>admin/promocion/orden_arriba', {
                 id: fila.id
             }, function (data) {
                 if(data.arriba==1){
@@ -207,7 +254,7 @@
             var fila = agrid.obtener($(this).val());
             $("#preloader").show();
             /* Petición ajax al servidor */
-            $.post('<?php echo base_url(); ?>admin/<?php echo $control; ?>/orden_abajo', {
+            $.post('<?php echo base_url(); ?>admin/promocion/orden_abajo', {
                 id: fila.id
             }, function (data) {  
 //                alert(data);
@@ -222,10 +269,25 @@
 
             return false;
         });
+        
+        agrid.tabla().on('click', '.btn-destacado', function(e){
+            e.preventDefault();
+            //if(!confirm('¿Esta seguro de eliminar este registro?')) return;
 
+            /* Obtiene el objeto actual de la fila seleccionada */
+            var fila = agrid.obtener($(this).val());               
+            $("#preloader").show();
+            /* Petición ajax al servidor */
+            $.post('<?php echo base_url(); ?>admin/promocion/destacado/', {
+                id: fila.id
+            }, function(r){
+                if(r) agrid.refrescar();
+                $("#preloader").hide();
+            }, 'json');
 
+            return false;
+        });
 
     })
 </script>       
 
-<script src="<?php echo base_url(); ?>plugins/jquery_anexgrid/jquery.anexgrid.js"></script>
