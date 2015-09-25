@@ -60,6 +60,19 @@ h3.titulo04{
 h3.titulo04:after{
     background-image: url("../images/vector02.png");
 }
+h3.titulo05{
+color: #474f53;
+font-family: BrandonText,Arial,sans-serif;
+font-size: 26px;
+font-weight: bold;
+line-height: 60px;
+margin-top: 17px;
+position: relative;
+text-align: center;
+}
+h3.titulo05:after{
+    background-image: url("../images/vector01.png");
+}
 
 .btn01:hover,.btn02:hover,.btn03:hover{
     text-decoration: none;
@@ -1254,14 +1267,44 @@ display: block;
 }
 
 .novedad{
-cursor: pointer;
-display: block;
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    margin-bottom: 25px;
+    max-width: 600px;
+    overflow: hidden;
+    position: relative;
 }
 .novedad:hover{
     text-decoration: none;
 }
-.novedad img{
+
+.novedad_imagen_contenedor {
+    height: 270px;
+    max-width: 600px;
+    overflow: hidden;
+    position: relative;
+}
+
+.novedad_imagen{
+/*    background-image: url("http://zayma.pe/uploads/novedad/novedad_20150924134851.jpg");*/
+    background-position: center center;
+    height: 270px;
+    max-width: 600px;
+    position: relative;
+    background-size: 100% 100%;
+    
+    transition: background-size 1s ease-in-out 0.1s;
     width: 100%;
+    z-index: 1;
+}
+.novedad:hover .novedad_imagen{    
+/*    transform: scale(1.05); 
+    -webkit-transform: scale(1.05);*/
+    
+    background-size: 105% 105%;
+    transform: all; 
+    -webkit-transform: all;
 }
 .novedad_nombre{
     background-color: #98968f;
@@ -1270,9 +1313,33 @@ display: block;
     font-weight: bold;
     padding: 30px 0;
     text-align: center;
+    transition: all .3s ease-in-out 0.0s;
 }
 
+.novedad:hover .novedad_nombre{  
+    color: #98968f;
+    background-color: #353f47;
+}
 
+.novedad_sombra {
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  transition: opacity 0.25s ease-in-out 0s;
+  width: 100%;
+  z-index: 2;
+}
+
+li.active a div.novedad_sombra , li a:hover div.novedad_sombra{
+    opacity: 1;
+}
+
+    
 /*CARRUSEL FADE*/
 .carousel-fade    .carousel-inner       .item {
     transition-property: opacity;
@@ -1365,6 +1432,134 @@ display: block;
     background-image: url("../images/novedad_flecha_izquierda_hover.png");
 }
 
+/*SECCION NOSOTROS*/
+#seccion_nosotros{
+    height: 100%;
+    margin: 0 auto; 
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+#seccion_nosotros_crecemos{
+    background-image: url("../images/nosotros_fondo_clip.jpg");
+    background-position: center center;
+    height: 735px;
+    margin: 0 auto;
+    max-width: 1580px;   
+    width: 100%;
+}
+
+#seccion_nosotros_crecemos_contenido{
+    padding-top: 108px;
+}
+#seccion_nosotros_crecemos_contenido_texto01{
+    color: #353f47;
+font-family: BrandonText,arial,sans-serif;
+font-size: 25px;
+font-weight: bold;
+line-height: 61px;
+padding-right: 27px;
+text-align: right;
+}
+#seccion_nosotros_crecemos_contenido_texto02{
+    font-size: 21px;
+font-style: oblique;
+line-height: 35px;
+padding-top: 10px;
+}
+
+#seccion_nosotros_crecemos_movil{
+background-image: url("../images/movil/nosotros_fondo_movil.jpg");
+background-position: center center;
+background-repeat: no-repeat;
+background-size: 100% 879px;
+height: 879px;
+margin: 0 auto;
+padding-top: 70px;
+position: relative;
+text-align: center;
+}
+#seccion_nosotros_crecemos_movil_logo{
+margin-bottom: 50px;
+text-align: center;
+}
+#seccion_nosotros_crecemos_movil_contenido_texto01{
+font-size: 21px;
+font-style: oblique;
+position: relative;
+text-align: justify;
+top: 260px;
+}
+
+#seccion_nosotros_quienessomos{
+background-color: #353f47;
+height: 616px;
+overflow: hidden;
+position: relative;
+width: 100%;
+}
+#quienes_somos_contenedor_parallax{  
+height: 616px;
+max-width: 1580px;
+position: absolute;
+top: -150px;
+width: 100%;
+z-index: 1;
+}
+#qs_billetera01{
+
+}
+#qs_billetera01 img{
+    
+}
+#qs_billetera02{
+    
+}
+#qs_billetera02 img{
+    
+}
+#qs_billetera03{
+    
+}
+#qs_billetera03 img{
+    
+}
+#scene{
+    position: relative;
+}
+#quienes_somos_contenido{
+color: #eae3d0;
+height: 616px;
+padding-top: 60px;
+z-index: 2;
+}
+#quienes_somos_contenido_texto{
+    font-size: 17px;
+    line-height: 27px;
+}
+#seccion_nosotros_vision{
+ background-image: url("../images/nosotros_vision_fondo.jpg");
+background-position: center center;
+background-repeat: no-repeat;
+height: 536px;
+overflow: hidden;
+width: 1580px;
+padding-top: 70px;
+}
+.vision_titulo{
+color: #eae3d0;
+font-family: BrandonText;
+font-size: 18px;
+font-weight: bold;
+margin-bottom: 31px;
+text-align: right;     
+}
+.vision_texto{
+    color: #eae3d0;
+font-size: 17px;
+margin-bottom: 80px;
+line-height: 26px;
+}
  /*CARRUSEL DIRECCION FOOTER*/
 #encuentranos_carousel{
      margin-bottom: 15px;

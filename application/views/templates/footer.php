@@ -196,5 +196,13 @@
                 customID:    "frm_contacto"
             });
         </script>
+        
+        <!-- Scripts -->  
+	<script src="<?php echo base_url();?>plugins/parallax-master/deploy/parallax.min.js"></script>
+	<script>
+	// Pretty simple huh?
+	var scene = document.getElementById('scene');
+	var parallax = new Parallax(scene);
+	</script>
     </body>
 </html>

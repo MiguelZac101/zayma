@@ -315,11 +315,11 @@ Class Novedad_carrusel_library {
         
         if($publicar == 1){//quiere publicarlo
             //revisar si ya tiene las 4 imagenes del carrusel
-            if(count($this->CI->generico_model->listadoCondicion(array("id_novedad"=>$id),"novedad_carrusel"))>3){
+            if(count($this->CI->generico_model->listadoCondicion(array("id_novedad"=>$id),"novedad_carrusel"))==3){
                 $this->CI->generico_model->editar($id,array('publicar' =>$publicar),"novedad_carrusel");
             }else{
                 $data_error["error"] = 1;
-                $data_error["mensaje"] = "Esta novedad no tiene todas las imagenes para su carrusel, por ese  motivo no es posible publicarlo.";
+                $data_error["mensaje"] = "Esta novedad no tiene todas las imagenes para su carrusel, por ese  motivo no es posible publicarlo.xxxxx";
             }
             
         }else{//despublicar

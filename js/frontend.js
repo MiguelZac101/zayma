@@ -148,19 +148,21 @@ $(document).ready(function(){
             , 550);
         
     });
-//    $("#menu_top  a.btn-menu").click(function(){
-//       $("#menu").addClass("abrir"); 
-//    });
-//    $("#menu a.btn-menu-cerrar").click(function(){
-//       $("#menu").addClass("leaving"); 
-//       setTimeout(function(){
-//           $("#menu").removeClass("abrir");
-//           $("#menu").removeClass("leaving");
-//       },300);
-//    });
     
-//    $("#menu .btn_menu").hover(function(){
-//       $(this).removeClass("btn_menu_borde"); 
-//    });
+    //CAGAR CARRUSEL NOVEDADES
+    $("a.novedad").click(function(e){
+        e.preventDefault();
+        var id_novedad = $(this).data("id"); 
+        $("#novedades_carrusel_contenedor").css("opacity",.25);
+        $("#novedades_descripcion").css("opacity",.25);
+        $.post(base_url+"frontend_ajax/novedad_carrusel",{"id_novedad":id_novedad},function(data){            
+            $("#novedades_carrusel_contenedor").html(data.carrusel);            
+            $("#novedades_descripcion").html(data.descripcion);
+            
+            $("#novedades_carrusel_contenedor").css("opacity",1);
+            $("#novedades_descripcion").css("opacity",1);
+            
+        },"json");
+    });
 });
 

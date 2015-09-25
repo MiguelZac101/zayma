@@ -176,18 +176,24 @@ Class Frontend extends CI_Controller {
     }
     
     public function nosotros(){
-        echo "NOSOTROS";
+        $this->load->view("templates/header");
+        $this->load->view("nosotros",null);
+        $this->load->view("templates/footer");
     }
     public function novedades(){
         $data = array( );
         $novedad_destacado = $this->generico_model->getCondicion(array("destacado" => 1,"publicar"=>1),"novedad"); 
-        $data['carrusel'] = $this->generico_model->listadoCondicion(array("id_novedad" => $novedad_destacado['id']),"novedad_carrusel"); 
+        $data["novedad"] = $novedad_destacado;
         
+        $data_carrusel['carrusel_items'] = $this->generico_model->listadoCondicion(array("id_novedad" => $novedad_destacado['id']),"novedad_carrusel"); 
+        
+        $data['carrusel'] = $this->load->view("novedades/carrusel",$data_carrusel,true);
+                
         $data["novedades"] = $this->generico_model->listadoCondicion(array("publicar" => 1),"novedad"); 
         
         $this->load->view("templates/header");
         $this->load->view("novedades",$data);
-        $this->load->view("templates/footer");
+        $this->load->view("templates/footer2");
 
     }    
     public function promociones(){

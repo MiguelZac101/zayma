@@ -94,9 +94,9 @@ Class Novedad_library {
         $config['file_name'] = "novedad_".Date("YmdHis");
         $config['allowed_types'] = "gif|jpg|jpeg|png";  
 //      $config['max_size'] = '100';
-        $config['max_width'] = '600';
+        $config['max_width'] = '556';
         $config['max_height'] = '270';
-        $config['min_width'] = '600';
+        $config['min_width'] = '556';
         $config['min_height'] = '270';
 
         
@@ -222,7 +222,7 @@ Class Novedad_library {
         
         if($publicar == 1){//quiere publicarlo
             //revisar si ya tiene las 4 imagenes del carrusel
-            if(count($this->CI->generico_model->listadoCondicion(array("id_novedad"=>$id),"novedad_carrusel"))>3){
+            if(count($this->CI->generico_model->listadoCondicion(array("id_novedad"=>$id),"novedad_carrusel"))==3){
                 $this->CI->generico_model->editar($id,array('publicar' =>$publicar),"novedad");
             }else{
                 $data_error["error"] = 1;
