@@ -24,6 +24,7 @@ Class Frontend extends CI_Controller {
                 case "nosotros"  : $this->nosotros(); break;
                 case "novedades"  : $this->novedades(); break;
                 case "promociones"  : $this->promociones(); break;
+                case "contacto"  : $this->contacto(); break;
                 case "fuentedem"  : $this->load->view("fuentedem",null); break;
                 default : 
                     //REDIRECCION LISTA DE PRODUCTOS
@@ -208,6 +209,12 @@ Class Frontend extends CI_Controller {
         $this->load->view("templates/header");
         $this->load->view("promociones",$data);
         $this->load->view("templates/footer");
+    }
+    
+    public function contacto(){
+        $this->load->view("templates/header");
+        //$this->load->view("nosotros",null);
+        $this->load->view("templates/footer2");
     }
 
 }

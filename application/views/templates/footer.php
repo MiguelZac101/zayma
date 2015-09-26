@@ -125,7 +125,7 @@
                                 </a>
                             </div>
                             <div class="col-xs-12 contenedor_btn_menu">
-                                <a href="" class="btn_menu btn_menu_borde btn_menu_cuadritos_bottom btn-outlined btn_giro">
+                                <a href="<?php echo base_url(); ?>contacto" class="btn_menu btn_menu_borde btn_menu_cuadritos_bottom btn-outlined btn_giro">
                                     ENCUENTRANOS
                                     <span class="sub">
                                         CONTACTO

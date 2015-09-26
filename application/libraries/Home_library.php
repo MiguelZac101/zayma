@@ -6,7 +6,8 @@ Class Home_library {
 
     public function __construct(){
         $this->CI =& get_instance();
-        $this->CI->load->model("generico_model");      
+        $this->CI->load->model("generico_model");    
+        $this->CI->load->library('upload');
     }
     
     public function actualizar($data_config) {
@@ -32,7 +33,7 @@ Class Home_library {
         $config['min_width'] = $ancho;
         $config['min_height'] = $alto;
         
-        $this->CI->load->library('upload', $config);
+        $this->CI->upload->initialize($config);
 
         if (!$this->CI->upload->do_upload("imagen")) {
             //*** ocurrio un error            
