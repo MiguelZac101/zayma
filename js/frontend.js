@@ -164,7 +164,7 @@ $(document).ready(function(){
             
             var target = $("#seccion_novedades");            
             $('html,body').animate({
-                scrollTop: target.offset().top - 86
+                scrollTop: target.offset().top - $("#menu_top").height()
             }, 1000);
             
         },"json");
@@ -182,7 +182,7 @@ $(document).ready(function(){
             
             var target = $("#promocion_detalle_contenedor_ajax");            
             $('html,body').animate({
-                scrollTop: target.offset().top - 86
+                scrollTop: target.offset().top - $("#menu_top").height()
             }, 1000);
         });
     });
